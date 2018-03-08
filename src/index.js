@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
 import { getAllProducts } from './actions'
-import Root from './containers/Root'
+import App from './containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
@@ -26,8 +26,8 @@ store.dispatch(getAllProducts())
 render(
     <Router>
         <Provider store={store}>
-            <Root/>
+            <App/>
         </Provider>
     </Router>,
   document.getElementById('root')
-)
+);

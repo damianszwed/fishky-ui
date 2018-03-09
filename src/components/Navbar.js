@@ -24,6 +24,7 @@ const Navbar = () => {
                     <input className="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" />
                     <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
+                <Link to="/not-implemented" className="btn btn-outline-info ml-sm-2">Sign in</Link>
             </div>
         </nav>
     )

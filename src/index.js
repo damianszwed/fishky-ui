@@ -12,6 +12,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import './components/sticky-footer-navbar.css';
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 const middleware = [ thunk ];
 if (process.env.NODE_ENV !== 'production') {

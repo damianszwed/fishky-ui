@@ -9,7 +9,9 @@ import reducer from './reducers'
 import { getAllProducts } from './actions'
 import App from './containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/css/bootstrap-grid.css';
+import 'bootstrap/dist/css/bootstrap-reboot.css';
+import './components/sticky-footer-navbar.css';
 
 const middleware = [ thunk ];
 if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
 const store = createStore(
   reducer,
   applyMiddleware(...middleware)
-)
+);
 
 store.dispatch(getAllProducts())
 

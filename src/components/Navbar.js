@@ -22,9 +22,9 @@ const Navbar = () => {
                 </ul>
                 <form className="form-inline mt-2 mt-md-0">
                     <input className="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
-                <Link to="/not-implemented" className="btn btn-outline-info ml-sm-2">Sign in</Link>
+                <Link to="/not-implemented" className="btn btn-outline-danger ml-sm-2">Sign in</Link>
             </div>
         </nav>
     )

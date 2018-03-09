@@ -13,11 +13,11 @@ const Navbar = () => {
                     <li className="nav-item active">
                         <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item active">
                         <Link to="/example" className="nav-link">Example</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
+                        <a className="nav-link disabled" href="/">Disabled</a>
                     </li>
                 </ul>
                 <form className="form-inline mt-2 mt-md-0">

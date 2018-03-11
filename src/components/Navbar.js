@@ -14,15 +14,15 @@ const Navbar = () => {
                         <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item active">
-                        <Link to="/example" className="nav-link">Example</Link>
+                        <Link to="/flashcards" className="nav-link">My flashcards</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link disabled" href="/">Disabled</a>
+                        <Link to="/not-implemented" className="nav-link disabled">Learning</Link>
                     </li>
                 </ul>
                 <form className="form-inline mt-2 mt-md-0">
-                    <input className="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" />
-                    <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    <input className="form-control mr-sm-2" placeholder="Search in my flashcards" aria-label="Search" type="text" />
+                    <Link to="/not-implemented" className="btn btn-outline-primary my-2 my-sm-0">Search</Link>
                 </form>
                 <Link to="/not-implemented" className="btn btn-outline-danger ml-sm-2">Sign in</Link>
             </div>

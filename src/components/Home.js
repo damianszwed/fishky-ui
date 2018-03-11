@@ -12,9 +12,6 @@ const Home = () => (
                     <Link to="not-implemented" className="btn btn-primary btn-lg">Sign up!</Link><br />
                 </p>
         </div>
-        <Link to="addAuthor" className="btn btn-light btn-block">Add Author</Link><br />
-        <Link to="notFound" className="btn btn-light btn-block">Example of not found</Link><br />
-        <Link to="example" className="btn btn-light btn-block">Example</Link>
     </div>
 );
 

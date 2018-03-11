@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
-import { getAllProducts } from './actions'
+import { getAllProducts, getAllFlashcards } from './actions'
 import App from './containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
@@ -26,7 +26,8 @@ const store = createStore(
   applyMiddleware(...middleware)
 );
 
-store.dispatch(getAllProducts())
+store.dispatch(getAllProducts());
+store.dispatch(getAllFlashcards());
 
 render(
     <Router>

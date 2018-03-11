@@ -29,7 +29,7 @@ ProductsContainer.propTypes = {
 
 const mapStateToProps = state => ({
   products: getVisibleProducts(state.products)
-})
+});
 
 export default connect(
   mapStateToProps,

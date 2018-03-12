@@ -5,9 +5,18 @@ const flashcards = (state = [], action) => {
   //   default:
   //     return state
   // }
-  return state;
+  // return state.concat(action.flashcards)
+  if (action.flashcards == null) {
+    return state;
+  }
+  return [
+    ...state,
+    ...action.flashcards
+  ]
 };
 
 export default combineReducers({
   flashcards
 })
+
+export const getFlashcards = state => state;

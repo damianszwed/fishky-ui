@@ -5,6 +5,7 @@ import {addToCart} from '../actions'
 import {getVisibleProducts} from '../reducers/products'
 import ProductItem from '../components/ProductItem'
 import ProductsList from '../components/ProductsList'
+import Flashcard from '../components/Flashcard'
 
 const FlashcardsContainer = ({flashcards}) => (
   <div>
@@ -12,23 +13,10 @@ const FlashcardsContainer = ({flashcards}) => (
       <div>{flashcard.question}</div>
     ))}
 
-    {/*<Flashcard/>*/}
-    <div className="input-group">
-      <input type="text" className="form-control" placeholder="Question" aria-label="Question"
-             aria-describedby="basic-addon2"/>
-      <div class="input-group-prepend">
-        <span class="input-group-text">=</span>
-      </div>
-      <input type="text" className="form-control" placeholder="Answer" aria-label="Answer"
-             aria-describedby="basic-addon2"/>
-      <div className="input-group-append">
-        <button className="btn btn-outline-secondary" type="button">Edit</button>
-        <button className="btn btn-outline-secondary" type="button">Delete</button>
-      </div>
-    </div>
-
-
-
+    <Flashcard/>
+    <Flashcard/>
+    <Flashcard/>
+    <Flashcard/>
   </div>
   // {/*<ProductsList title="Products">*/}
   // {flashcards.map(product =>

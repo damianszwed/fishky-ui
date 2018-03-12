@@ -12,9 +12,7 @@ const FlashcardsContainer = ({flashcards}) => (
       flashcards.length
     }
     {flashcards.map(flashcard => {
-      {
-        flashcard.question
-      }
+        // flashcard.question
       // {flashcards:question}
     })}
   </div>

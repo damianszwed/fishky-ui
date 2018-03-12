@@ -6,6 +6,7 @@ import {getVisibleProducts} from '../reducers/products'
 import ProductItem from '../components/ProductItem'
 import ProductsList from '../components/ProductsList'
 import Flashcard from '../components/Flashcard'
+import NewFlashcard from '../components/NewFlashcard'
 
 const FlashcardsContainer = ({flashcards}) => (
   <div>
@@ -13,6 +14,7 @@ const FlashcardsContainer = ({flashcards}) => (
       <div>{flashcard.question}</div>
     ))}
 
+    <NewFlashcard/>
     <Flashcard/>
     <Flashcard/>
     <Flashcard/>

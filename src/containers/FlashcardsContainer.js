@@ -8,13 +8,27 @@ import ProductsList from '../components/ProductsList'
 
 const FlashcardsContainer = ({flashcards}) => (
   <div>
-    {
-      flashcards.length
-    }
-    {flashcards.map(flashcard => {
-        // flashcard.question
-      // {flashcards:question}
-    })}
+    {flashcards.map(flashcard => (
+      <div>{flashcard.question}</div>
+    ))}
+
+    {/*<Flashcard/>*/}
+    <div className="input-group">
+      <input type="text" className="form-control" placeholder="Question" aria-label="Question"
+             aria-describedby="basic-addon2"/>
+      <div class="input-group-prepend">
+        <span class="input-group-text">=</span>
+      </div>
+      <input type="text" className="form-control" placeholder="Answer" aria-label="Answer"
+             aria-describedby="basic-addon2"/>
+      <div className="input-group-append">
+        <button className="btn btn-outline-secondary" type="button">Edit</button>
+        <button className="btn btn-outline-secondary" type="button">Delete</button>
+      </div>
+    </div>
+
+
+
   </div>
   // {/*<ProductsList title="Products">*/}
   // {flashcards.map(product =>

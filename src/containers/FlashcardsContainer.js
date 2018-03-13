@@ -8,11 +8,13 @@ import ProductsList from '../components/ProductsList'
 import Flashcard from '../components/Flashcard'
 import NewFlashcard from '../components/NewFlashcard'
 
+// {/*{flashcards.map(flashcard => (*/}
+// <div key={flashcard.question}>{flashcard.question}</div>
+// ))}
+
 const FlashcardsContainer = ({flashcards}) => (
   <div>
-    {flashcards.map(flashcard => (
-      <div key={flashcard.question}>{flashcard.question}</div>
-    ))}
+
 
     <NewFlashcard/>
     <Flashcard/>

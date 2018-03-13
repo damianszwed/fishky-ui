@@ -1,6 +1,6 @@
 import shop from '../api/shop'
 import flashcards from '../api/flashcards'
-import * as types from '../constants/ActionTypes'
+import * as types from './actionTypes'
 
 const receiveProducts = products => ({
   type: types.RECEIVE_PRODUCTS,

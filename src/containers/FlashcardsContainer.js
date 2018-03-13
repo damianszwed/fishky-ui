@@ -11,7 +11,7 @@ import NewFlashcard from '../components/NewFlashcard'
 const FlashcardsContainer = ({flashcards}) => (
   <div>
     {flashcards.map(flashcard => (
-      <div>{flashcard.question}</div>
+      <div key={flashcard.question}>{flashcard.question}</div>
     ))}
 
     <NewFlashcard/>

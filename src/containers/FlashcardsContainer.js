@@ -1,35 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {addToCart} from '../actions'
-import {getVisibleProducts} from '../reducers/products'
-import ProductItem from '../components/ProductItem'
-import ProductsList from '../components/ProductsList'
-import Flashcard from '../components/Flashcard'
-import NewFlashcard from '../components/NewFlashcard'
 
-// {/*{flashcards.map(flashcard => (*/}
-// <div key={flashcard.question}>{flashcard.question}</div>
-// ))}
+import FlashcardList from '../components/FlashcardList'
+import NewFlashcard from '../components/NewFlashcard'
 
 const FlashcardsContainer = ({flashcards}) => (
   <div>
-
-
     <NewFlashcard/>
-    <Flashcard/>
-    <Flashcard/>
-    <Flashcard/>
-    <Flashcard/>
+    <FlashcardList flashcards={flashcards}/>
   </div>
-  // {/*<ProductsList title="Products">*/}
-  // {flashcards.map(product =>
-  //     {/*<ProductItem*/}
-  // key={product.id}
-  // product={product}
-  // onAddToCartClicked={() => addToCart(product.id)} />
-  // )}
-  // </ProductsList>
 );
 
 FlashcardsContainer.propTypes = {
@@ -37,7 +17,6 @@ FlashcardsContainer.propTypes = {
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
   })).isRequired,
-  // addToCart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -45,6 +24,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
-  {/*addToCart*/}
+  mapStateToProps
 )(FlashcardsContainer)

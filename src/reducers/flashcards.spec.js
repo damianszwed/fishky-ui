@@ -1,4 +1,4 @@
-import reducer, * as flashcards from './flashcards'
+import reducer, * as flashcards from './flashcardReducer'
 
 describe('reducers', () => {
   describe('flashcards', () => {

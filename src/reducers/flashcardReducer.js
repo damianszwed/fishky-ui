@@ -1,22 +1,23 @@
-import {combineReducers} from 'redux'
+import * as types from '../actions/actionTypes';
 
-const flashcardReducer = (state = [], action) => {
-  // switch (action.type) {
-  //   default:
-  //     return state
-  // }
-  // return state.concat(action.flashcards)
-  if (action.flashcards == null) {
-    return state;
+export default function flashcardReducer(state = [], action) {
+  switch (action.type) {
+    case types.LOAD_FLASHCARDS:
+      return action.flashcards;
+
+    case types.CREATE_FLASHCARD_SUCCESS:
+      return [
+        ...state,
+        Object.assign({}, action.flashcard)
+      ];
+
+    case types.UPDATE_FLASHCARD_SUCCESS:
+      return [
+        ...state.filter(flashcard => flashcard.id !== action.flashcard.id),
+        Object.assign({}, action.flashcard)
+      ];
+
+    default:
+      return state;
   }
-  return [
-    ...state,
-    ...action.flashcards
-  ]
 };
-
-export default combineReducers({
-  flashcards: flashcardReducer
-})
-
-export const getFlashcards = state => state;

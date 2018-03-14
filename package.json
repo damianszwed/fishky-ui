@@ -8,8 +8,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "react-scripts": "^1.1.1",
     "react-test-renderer": "^16.2.0",
-    "react-addons-test-utils": "^15.6.2",
-    "expect": "1.19.0"
+    "react-addons-test-utils": "^15.6.2"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",

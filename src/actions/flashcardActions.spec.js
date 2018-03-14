@@ -1,4 +1,3 @@
-import expect from 'expect';
 import * as flashcardACtions from './flashcardActions';
 import * as types from './actionTypes';
 

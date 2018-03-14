@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 
-const flashcards = (state = [], action) => {
+const flashcardReducer = (state = [], action) => {
   // switch (action.type) {
   //   default:
   //     return state
@@ -16,7 +16,7 @@ const flashcards = (state = [], action) => {
 };
 
 export default combineReducers({
-  flashcards
+  flashcards: flashcardReducer
 })
 
 export const getFlashcards = state => state;

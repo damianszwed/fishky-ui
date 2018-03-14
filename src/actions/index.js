@@ -1,5 +1,4 @@
 import shop from '../api/shop'
-import flashcards from '../api/flashcards'
 import * as types from './actionTypes'
 
 const receiveProducts = products => ({
@@ -10,17 +9,6 @@ const receiveProducts = products => ({
 export const getAllProducts = () => dispatch => {
   shop.getProducts(products => {
     dispatch(receiveProducts(products))
-  })
-};
-
-const receiveFlashcards = flashcards => ({
-  type: types.RECEIVE_FLASHCARDS,
-  flashcards
-});
-
-export const getAllFlashcards = () => dispatch => {
-  flashcards.getFlashcards(flashcards => {
-    dispatch(receiveFlashcards(flashcards))
   })
 };
 

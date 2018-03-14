@@ -18,5 +18,4 @@ FlashcardList.propTypes = {
   flashcards: PropTypes.array,
 };
 
-
 export default FlashcardList;

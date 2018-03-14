@@ -20,7 +20,7 @@ FlashcardsContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  flashcards: state.flashcards.flashcards
+  flashcards: state.flashcards
 });
 
 export default connect(

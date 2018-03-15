@@ -11,6 +11,7 @@ import App from './containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
+import 'toastr/build/toastr.min.css';
 import './components/sticky-footer-navbar.css';
 import './components/styles.css';
 import 'jquery';

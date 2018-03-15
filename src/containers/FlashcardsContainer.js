@@ -13,7 +13,7 @@ class FlashcardsContainer extends React.Component {
     super(props, context);
 
     this.state = {
-      flashcard: Object.assign({}, props.flashcard),
+      newFlashcard: Object.assign({}, props.newFlashcard),
       errors: {},
       saving: false
     };
@@ -24,16 +24,16 @@ class FlashcardsContainer extends React.Component {
 
   updateFlashcardState(event) {
     const field = event.target.name;
-    let flashcard = Object.assign({}, this.state.flashcard);
-    flashcard[field] = event.target.value;
-    return this.setState({flashcard: flashcard});
+    let newFlashcard = Object.assign({}, this.state.newFlashcard);
+    newFlashcard[field] = event.target.value;
+    return this.setState({newFlashcard: newFlashcard});
   }
 
   saveFlashcard(event) {
     event.preventDefault();
 
-    this.props.actions.saveFlashcard(this.state.flashcard);//TODO rename to newFlashcard
-    toastr.info("Fishky saved!");
+    this.props.actions.saveFlashcard(this.state.newFlashcard);
+    toastr.success("Fishky saved!");
   }
 
   render() {

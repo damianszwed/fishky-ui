@@ -14,12 +14,19 @@ class FlashcardsContainer extends React.Component {
 
     this.state = {
       newFlashcard: Object.assign({}, props.newFlashcard),
-      errors: {},
       saving: false
     };
 
     this.updateFlashcardState = this.updateFlashcardState.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
+  }
+
+  newFlashcardIsValid() {
+    if (!this.state.newFlashcard.question || !this.state.newFlashcard.answer) {
+      toastr.warning("You cannot add empty flashcard");
+      return false;
+    }
+    return true;
   }
 
   updateFlashcardState(event) {
@@ -31,6 +38,10 @@ class FlashcardsContainer extends React.Component {
 
   saveFlashcard(event) {
     event.preventDefault();
+
+    if (!this.newFlashcardIsValid()) {
+      return;
+    }
 
     this.props.actions.saveFlashcard(this.state.newFlashcard);
     toastr.success("Fishky saved!");

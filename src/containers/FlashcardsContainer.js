@@ -49,11 +49,9 @@ class FlashcardsContainer extends React.Component {
   }
 
   deleteFlashcard(flashcard) {
-
     this.props.actions.deleteFlashcard(flashcard);
     toastr.success("Flashcard has been removed");
   }
-
 
   render() {
     const {flashcards} = this.props;
@@ -76,7 +74,7 @@ FlashcardsContainer.propTypes = {
   flashcards: PropTypes.arrayOf(PropTypes.shape({
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
-  })).isRequired,
+  })).isRequired
 };
 
 const mapStateToProps = state => ({

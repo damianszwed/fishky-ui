@@ -51,8 +51,8 @@ const Flashcard = ({question, answer, flashcard, onDelete}) => (
             Delete flashcard {question}?
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" className="btn btn-danger" data-dismiss="modal"
+            <button type="button" className="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-outline-danger" data-dismiss="modal"
                     onClick={() => onDelete(flashcard)}>Save changes
             </button>
           </div>

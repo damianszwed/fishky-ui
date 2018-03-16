@@ -53,6 +53,18 @@ class FlashcardApi {
       }, delay);
     });
   }
+
+  static deleteFlashcard(flashcardId) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const indexOfFlashcardToDelete = flashcards.findIndex(flashcard => {
+          return flashcard.id === flashcardId;
+        });
+        flashcards.splice(indexOfFlashcardToDelete, 1);
+        resolve();
+      }, delay);
+    });
+  }
 }
 
 export default FlashcardApi;

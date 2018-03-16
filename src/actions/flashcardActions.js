@@ -11,9 +11,8 @@ export function saveFlashcard(flashcard) {
     dispatch(createFlashcardSuccess(flashcard));
     dispatch(beginAjaxCall());
     return flashcardApi.saveFlashcard(flashcard).then(flashcard => {
-      // flashcard.id ? dispatch(updateFlashcardSuccess(flashcard)) :
-
     }).catch(error => {
+      //TODO you can dispatch here rollback operation
       dispatch(ajaxCallError(error));
       throw(error);
     });
@@ -32,3 +31,21 @@ export const loadFlashcards = () => dispatch => {
     throw(error);
   });
 };
+
+const deleteFlashcardSuccess = flashcard => ({
+  type: types.DELETE_FLASHCARD_SUCCESS,
+  flashcard
+});
+
+export function deleteFlashcard(flashcard) {
+  return function (dispatch, getState) {
+    dispatch(deleteFlashcardSuccess(flashcard));
+    dispatch(beginAjaxCall());
+    return flashcardApi.deleteFlashcard(flashcard.id).then(() => {
+    }).catch(error => {
+      //TODO you can dispatch here rollback operation
+      dispatch(ajaxCallError(error));
+      throw(error);
+    });
+  };
+}

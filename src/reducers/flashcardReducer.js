@@ -17,6 +17,11 @@ export default function flashcardReducer(state = [], action) {
         Object.assign({}, action.flashcard)
       ];
 
+    case types.DELETE_FLASHCARD_SUCCESS:
+      return [
+        ...state.filter(flashcard => flashcard.id !== action.flashcard.id)
+      ];
+
     default:
       return state;
   }

@@ -10,7 +10,7 @@ function replaceAll(str, find, replace) {
 
 //This would be performed on the server in a real app. Just stubbing in.
 const generateId = (flashcard) => {
-  return "user1-" + replaceAll(flashcard.question, ' ', '-');
+  return "user1@example.com-" + replaceAll(flashcard.question, ' ', '-');
 };
 
 const flashcards = _flashcards;

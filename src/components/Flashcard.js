@@ -37,7 +37,7 @@ const Flashcard = ({question, answer, flashcard, onDelete}) => (
       </div>
     </div>
     {/*modal for delete */}
-    <div className="modal fade" id="deleteFlashcardModalDataTarger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div className="modal fade" id="deleteFlashcardModalDataTarger" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
       <div className="modal-dialog" role="document">
         <div className="modal-content">

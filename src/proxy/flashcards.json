@@ -1,11 +1,11 @@
 [
   {
-    "id": "user1-questiona",
+    "id": "user1@example.com-questiona",
     "question": "questionA",
     "answer": "answerA"
   },
   {
-    "id": "user1-questionb",
+    "id": "user1@example.com-questionb",
     "question": "questionB",
     "answer": "answerB"
   }

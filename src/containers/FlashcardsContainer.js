@@ -19,6 +19,7 @@ class FlashcardsContainer extends React.Component {
 
     this.updateFlashcardState = this.updateFlashcardState.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
+    this.deleteFlashcard = this.deleteFlashcard.bind(this);
   }
 
   newFlashcardIsValid() {
@@ -47,6 +48,13 @@ class FlashcardsContainer extends React.Component {
     toastr.success("Fishky saved!");
   }
 
+  deleteFlashcard(flashcard) {
+
+    this.props.actions.deleteFlashcard(flashcard);
+    toastr.success("Flashcard has been removed");
+  }
+
+
   render() {
     const {flashcards} = this.props;
 
@@ -56,7 +64,9 @@ class FlashcardsContainer extends React.Component {
           onSave={this.saveFlashcard}
           onChange={this.updateFlashcardState}
         />
-        <FlashcardList flashcards={flashcards}/>
+        <FlashcardList
+          flashcards={flashcards}
+          onDelete={this.deleteFlashcard}/>
       </div>
     )
   }

@@ -6,7 +6,7 @@ class FlashcardApi {
   }
 
   static saveFlashcard(flashcard) {
-    return null;
+    return restHelper.post('http://localhost:8080/flashcard', flashcard);
   }
 
   static deleteFlashcard(flashcardId) {

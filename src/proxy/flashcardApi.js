@@ -10,7 +10,7 @@ class FlashcardApi {
   }
 
   static deleteFlashcard(flashcardId) {
-    return null;
+    return restHelper.delete('http://localhost:8080/flashcard/' + flashcardId);
   }
 }
 

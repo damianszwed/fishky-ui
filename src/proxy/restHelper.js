@@ -16,10 +16,18 @@ export default {
     return new Promise(function (success, error) {
       $.ajax({
         url: url,
+        contentType: "application/json",
         type: "POST",
-        data: data,
+        data: JSON.stringify(data),
         success: success,
-        error: error
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('jqXHR:');
+          console.log(jqXHR);
+          console.log('textStatus:');
+          console.log(textStatus);
+          console.log('errorThrown:');
+          console.log(errorThrown);
+        }
       })
     })
   },
@@ -40,7 +48,14 @@ export default {
         url: url,
         type: "DELETE",
         success: success,
-        error: error
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('jqXHR:');
+          console.log(jqXHR);
+          console.log('textStatus:');
+          console.log(textStatus);
+          console.log('errorThrown:');
+          console.log(errorThrown);
+        }
       })
     })
   }

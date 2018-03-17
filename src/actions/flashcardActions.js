@@ -1,10 +1,8 @@
 import * as types from './actionTypes';
-import mockFlashcardApi from '../proxy/mockFlashcardApi';
 import flashcardApi from '../proxy/flashcardApi'
-import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
+import {ajaxCallError, beginAjaxCall} from './ajaxStatusActions';
 
-// const api = flashcardApi;
-const api = mockFlashcardApi;
+const api = flashcardApi;
 
 export function createFlashcardSuccess(flashcard) {
   return {type: types.CREATE_FLASHCARD_SUCCESS, flashcard};

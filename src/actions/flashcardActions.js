@@ -1,8 +1,6 @@
 import * as types from './actionTypes';
-import flashcardApi from '../proxy/flashcardApi'
-import {ajaxCallError, beginAjaxCall} from './ajaxStatusActions';
-
-const api = flashcardApi;
+import flashcardApi from '../proxy/mockFlashcardApi'
+import {beginAjaxCall, endAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 export function createFlashcardSuccess(flashcard) {
   return {type: types.CREATE_FLASHCARD_SUCCESS, flashcard};
@@ -11,11 +9,9 @@ export function createFlashcardSuccess(flashcard) {
 export function saveFlashcard(flashcard) {
   return function (dispatch, getState) {
     dispatch(createFlashcardSuccess(flashcard));
-    dispatch(beginAjaxCall());
-    return api.saveFlashcard(flashcard).then(flashcard => {
+    return flashcardApi.saveFlashcard(flashcard).then(flashcard => {
     }).catch(error => {
       //TODO you can dispatch here rollback operation
-      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -27,9 +23,12 @@ const loadFlashcardsSuccess = flashcards => ({
 });
 
 export const loadFlashcards = () => dispatch => {
-  api.getFlashcards().then(flashcards => {
+  dispatch(beginAjaxCall());
+  flashcardApi.getFlashcards().then(flashcards => {
+    dispatch(endAjaxCall());
     dispatch(loadFlashcardsSuccess(flashcards))
   }).catch(error => {
+    dispatch(ajaxCallError(error));
     console.log(error);
     throw(error);
   });
@@ -43,11 +42,9 @@ const deleteFlashcardSuccess = flashcard => ({
 export function deleteFlashcard(flashcard) {
   return function (dispatch, getState) {
     dispatch(deleteFlashcardSuccess(flashcard));
-    dispatch(beginAjaxCall());
-    return api.deleteFlashcard(flashcard.id).then(() => {
+    return flashcardApi.deleteFlashcard(flashcard.id).then(() => {
     }).catch(error => {
       //TODO you can dispatch here rollback operation
-      dispatch(ajaxCallError(error));
       throw(error);
     });
   };

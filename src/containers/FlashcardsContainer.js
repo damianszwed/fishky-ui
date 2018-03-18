@@ -7,6 +7,7 @@ import toastr from 'toastr';
 
 import FlashcardList from '../components/FlashcardList';
 import NewFlashcard from '../components/NewFlashcard';
+import LoadingBar from '../components/LoadingBar';
 
 class FlashcardsContainer extends React.Component {
   constructor(props, context) {
@@ -14,7 +15,6 @@ class FlashcardsContainer extends React.Component {
 
     this.state = {
       newFlashcard: Object.assign({}, props.newFlashcard),
-      saving: false
     };
 
     this.updateFlashcardState = this.updateFlashcardState.bind(this);
@@ -54,7 +54,7 @@ class FlashcardsContainer extends React.Component {
   }
 
   render() {
-    const {flashcards} = this.props;
+    const {flashcards, loadingFlashcards} = this.props;
 
     return (
       <div>
@@ -65,6 +65,7 @@ class FlashcardsContainer extends React.Component {
         <FlashcardList
           flashcards={flashcards}
           onDelete={this.deleteFlashcard}/>
+        {loadingFlashcards && <LoadingBar/>}
       </div>
     )
   }
@@ -74,12 +75,14 @@ FlashcardsContainer.propTypes = {
   flashcards: PropTypes.arrayOf(PropTypes.shape({
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
-  })).isRequired
+  })).isRequired,
+  loadingFlashcards: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   flashcards: state.flashcards,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  loadingFlashcards: state.loadingFlashcards
 });
 
 function mapDispatchToProps(dispatch) {

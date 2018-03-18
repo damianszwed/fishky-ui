@@ -2,11 +2,13 @@ import { combineReducers } from 'redux'
 import cart, * as fromCart from './cart'
 import products, * as fromProducts from './products'
 import flashcards from './flashcardReducer'
+import loadingFlashcards from './ajaxStatusReducer'
 
 export default combineReducers({
   cart,
   products,
-  flashcards
+  flashcards,
+  loadingFlashcards
 })
 
 const getAddedIds = state => fromCart.getAddedIds(state.cart);

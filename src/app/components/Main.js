@@ -2,6 +2,7 @@ import React from 'react'
 import Home from './Home'
 import {Route, Switch} from "react-router-dom";
 import FlashcardsContainer from '../../flashcard/containers/FlashcardsContainer'
+import LearningContainer from '../../learning/containers/LearningContainer'
 import NotFoundPage from './NotFoundPage'
 import NotImplementedYet from './NotImplementedYet'
 
@@ -12,7 +13,7 @@ const Main = () => {
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/flashcards" component={FlashcardsContainer}/>
-          {/*<Route path="/learning" component={LearningContainer}/>*/}
+          <Route path="/learning" component={LearningContainer}/>
           <Route path="/not-implemented" component={NotImplementedYet}/>
           <Route path="*" exact={true} component={NotFoundPage}/>
         </Switch>

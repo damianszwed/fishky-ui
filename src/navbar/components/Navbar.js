@@ -17,8 +17,8 @@ const Navbar = () => {
           <li className="nav-item active">
             <Link to="/flashcards" className="nav-link">My flashcards</Link>
           </li>
-          <li className="nav-item">
-            <Link to="/not-implemented" className="nav-link disabled">Learning</Link>
+          <li className="nav-item active">
+            <Link to="/learning" className="nav-link">Learning</Link>
           </li>
         </ul>
         <form className="form-inline mt-2 mt-md-0">

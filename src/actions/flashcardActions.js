@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import flashcardApi from '../proxy/mockFlashcardApi'
-import {beginAjaxCall, endAjaxCall, ajaxCallError} from './ajaxStatusActions';
+import {beginFlashcardLoadingAjaxCall, endFlashcardLoadingAjaxCall, flashcardLoadingAjaxCallError} from './flashcardLoadingStatusActions';
 
 export function createFlashcardSuccess(flashcard) {
   return {type: types.CREATE_FLASHCARD_SUCCESS, flashcard};
@@ -23,12 +23,12 @@ const loadFlashcardsSuccess = flashcards => ({
 });
 
 export const loadFlashcards = () => dispatch => {
-  dispatch(beginAjaxCall());
+  dispatch(beginFlashcardLoadingAjaxCall());
   flashcardApi.getFlashcards().then(flashcards => {
-    dispatch(endAjaxCall());
+    dispatch(endFlashcardLoadingAjaxCall());
     dispatch(loadFlashcardsSuccess(flashcards))
   }).catch(error => {
-    dispatch(ajaxCallError(error));
+    dispatch(flashcardLoadingAjaxCallError(error));
     console.log(error);
     throw(error);
   });

@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from '../../actions/actionTypes';
 
 export function beginFlashcardLoadingAjaxCall() {
   return {type: types.BEGIN_FLASHCARD_LOADING_AJAX_CALL};

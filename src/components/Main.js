@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from '../components/Home'
 import {Route, Switch} from "react-router-dom";
-import FlashcardsContainer from '../containers/FlashcardsContainer'
+import FlashcardsContainer from '../flashcard/containers/FlashcardsContainer'
 import NotFoundPage from '../components/NotFoundPage'
 import NotImplementedYet from '../components/NotImplementedYet'
 
@@ -12,6 +12,7 @@ const Main = () => {
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/flashcards" component={FlashcardsContainer}/>
+          {/*<Route path="/learning" component={LearningContainer}/>*/}
           <Route path="/not-implemented" component={NotImplementedYet}/>
           <Route path="*" exact={true} component={NotFoundPage}/>
         </Switch>

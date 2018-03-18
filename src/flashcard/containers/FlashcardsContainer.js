@@ -7,7 +7,7 @@ import toastr from 'toastr';
 
 import FlashcardList from '../components/FlashcardList';
 import NewFlashcard from '../components/NewFlashcard';
-import LoadingBar from '../components/LoadingBar';
+import LoadingBar from '../../app/components/LoadingBar';
 
 class FlashcardsContainer extends React.Component {
   constructor(props, context) {

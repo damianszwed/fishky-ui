@@ -1,23 +1,23 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-// import * as flashcardActions from '../actions/flashcardActions';
 import toastr from 'toastr';
 
-// import FlashcardList from '../components/FlashcardList';
-// import NewFlashcard from '../components/NewFlashcard';
+import LearningQuestion from '../components/LearningQuestion';
 import LoadingBar from '../../app/components/LoadingBar';
 
 class LearningContainer extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-
-    };
-
+    this.state = {};
+    this.handleSubmit = this.handleSubmit.bind(this);//TODO is this needed???
   }
+
+  handleSubmit(answer) {
+    toastr.error("Joke, bad answer");
+    toastr.success("Correct!");
+  };
 
   render() {
     const {flashcards, loadingFlashcards} = this.props;
@@ -25,17 +25,10 @@ class LearningContainer extends React.Component {
     return (
       <div>
         {loadingFlashcards && <LoadingBar/>}
-        <form>
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">here-will-be-question</label>
-            <input className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter answer" type="email" />
-            <small id="emailHelp" className="form-text text-muted">Answer to question</small>
-          </div>
-          <button type="submit" className="btn btn-outline-primary">Submit</button>
-        </form>
-        {/*<FlashcardList*/}
-        {/*flashcards={flashcards}*/}
-        {/*onDelete={this.deleteFlashcard}/>*/}
+        {!loadingFlashcards && <LearningQuestion
+          actualQuestion={"actual question"}
+          onSubmit={this.handleSubmit}
+        />}
       </div>
     )
   }
@@ -55,10 +48,4 @@ const mapStateToProps = state => ({
   loadingFlashcards: state.loadingFlashcards
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    // actions: bindActionCreators(flashcardActions, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, /*mapDispatchToProps*/)(LearningContainer)
+export default connect(mapStateToProps)(LearningContainer)

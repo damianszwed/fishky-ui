@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Flashcard from '../components/Flashcard'
+import Flashcard from './Flashcard'
 
 const FlashcardList = ({flashcards, onDelete}) => {
   return (

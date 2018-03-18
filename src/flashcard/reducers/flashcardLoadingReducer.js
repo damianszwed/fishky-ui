@@ -1,4 +1,4 @@
-import * as types from '../actions/actionTypes';
+import * as types from '../../actions/actionTypes';
 
 export default function flashcardLoadingReducer(state = false, action) {
   if (action.type === types.BEGIN_FLASHCARD_LOADING_AJAX_CALL) {

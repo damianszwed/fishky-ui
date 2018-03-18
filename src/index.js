@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
-import {loadFlashcards} from "./actions/flashcardActions";
+import {loadFlashcards} from "./flashcard/actions/flashcardActions";
 import App from './containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';

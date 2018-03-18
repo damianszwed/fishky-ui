@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from '../../actions/actionTypes';
 import flashcardApi from '../proxy/mockFlashcardApi'
 import {beginFlashcardLoadingAjaxCall, endFlashcardLoadingAjaxCall, flashcardLoadingAjaxCallError} from './flashcardLoadingStatusActions';
 

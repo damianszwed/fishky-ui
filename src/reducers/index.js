@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import cart, * as fromCart from './cart'
 import products, * as fromProducts from './products'
 import flashcards from './flashcardReducer'
-import loadingFlashcards from './ajaxStatusReducer'
+import loadingFlashcards from './flashcardLoadingReducer'
 
 export default combineReducers({
   cart,

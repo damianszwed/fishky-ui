@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import cart, * as fromCart from './cart'
-import products, * as fromProducts from './products'
+import cart, * as fromCart from '../example/reducers/cart'
+import products, * as fromProducts from '../example/reducers/products'
 import flashcards from '../flashcard/reducers/flashcardReducer'
 import loadingFlashcards from '../flashcard/reducers/flashcardLoadingReducer'
 

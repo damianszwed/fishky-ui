@@ -1,5 +1,5 @@
 import * as flashcardACtions from './flashcardActions';
-import * as types from '../../actions/actionTypes';
+import * as types from '../../app/actions/actionTypes';
 
 // Test a sync action
 describe('Flashcard Actions', () => {

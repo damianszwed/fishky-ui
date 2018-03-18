@@ -1,9 +1,9 @@
 import React from 'react'
-import Home from '../components/Home'
+import Home from './Home'
 import {Route, Switch} from "react-router-dom";
-import FlashcardsContainer from '../flashcard/containers/FlashcardsContainer'
-import NotFoundPage from '../components/NotFoundPage'
-import NotImplementedYet from '../components/NotImplementedYet'
+import FlashcardsContainer from '../../flashcard/containers/FlashcardsContainer'
+import NotFoundPage from './NotFoundPage'
+import NotImplementedYet from './NotImplementedYet'
 
 const Main = () => {
   return (

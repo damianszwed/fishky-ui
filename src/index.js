@@ -5,9 +5,9 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
-import reducer from './reducers'
+import reducer from './app/reducers'
 import {loadFlashcards} from "./flashcard/actions/flashcardActions";
-import App from './containers/App'
+import App from './app/containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';

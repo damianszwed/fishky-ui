@@ -1,4 +1,4 @@
-import restHelper from '../../proxy/restHelper';
+import restHelper from '../../app/proxy/restHelper';
 
 class FlashcardApi {
   static getFlashcards() {

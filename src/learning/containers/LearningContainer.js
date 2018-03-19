@@ -10,13 +10,26 @@ class LearningContainer extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {};
+    this.state = {
+      actualAnswer: Object.assign({}, props.actualAnswer),
+      actualQuestion: Object.assign({}, props.actualQuestion),
+      expectedAnswer: Object.assign({}, props.expectedAnswer)
+    };
     this.handleSubmit = this.handleSubmit.bind(this);//TODO is this needed???
+    this.updateAnswerState = this.updateAnswerState.bind(this);//TODO is this needed???
   }
 
-  handleSubmit(answer) {
+  updateAnswerState(event) {
+    const field = event.target.name;
+    if (field === "answer") {
+      return this.setState({actualAnswer: event.target.value});
+    }
+    return this.state;
+  };
+
+  handleSubmit() {
     toastr.error("Joke, bad answer");
-    toastr.success("Correct!");
+    toastr.success("Correct!" + (this.state.actualAnswer));
   };
 
   render() {
@@ -28,6 +41,7 @@ class LearningContainer extends React.Component {
         {!loadingFlashcards && <LearningQuestion
           actualQuestion={"actual question"}
           onSubmit={this.handleSubmit}
+          onChange={this.updateAnswerState}
         />}
       </div>
     )

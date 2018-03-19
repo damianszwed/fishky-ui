@@ -29,7 +29,6 @@ export const loadFlashcards = () => dispatch => {
     dispatch(loadFlashcardsSuccess(flashcards))
   }).catch(error => {
     dispatch(flashcardLoadingAjaxCallError(error));
-    console.log(error);
     throw(error);
   });
 };

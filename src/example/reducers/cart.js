@@ -2,7 +2,7 @@ import {
   ADD_TO_CART,
   CHECKOUT_REQUEST,
   CHECKOUT_FAILURE
-} from '../../app/actions/actionTypes'
+} from '../actions/actionTypes'
 
 const initialState = {
   addedIds: [],

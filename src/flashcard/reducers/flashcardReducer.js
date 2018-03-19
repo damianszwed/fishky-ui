@@ -1,4 +1,4 @@
-import * as types from '../../app/actions/actionTypes';
+import * as types from '../actions/actionTypes';
 
 export default function flashcardReducer(state = [], action) {
   switch (action.type) {

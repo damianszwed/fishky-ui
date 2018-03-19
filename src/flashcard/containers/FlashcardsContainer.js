@@ -15,6 +15,7 @@ class FlashcardsContainer extends React.Component {
 
     this.state = {
       newFlashcard: Object.assign({}, props.newFlashcard),
+      resetNewFlashcardKey: 0
     };
 
     this.updateFlashcardState = this.updateFlashcardState.bind(this);
@@ -45,6 +46,7 @@ class FlashcardsContainer extends React.Component {
     }
 
     this.props.actions.saveFlashcard(this.state.newFlashcard);
+    this.setState({resetNewFlashcardKey: ++this.state.resetNewFlashcardKey});
     toastr.success("Fishky saved!");
   }
 
@@ -58,10 +60,12 @@ class FlashcardsContainer extends React.Component {
 
     return (
       <div>
-        <NewFlashcard
-          onSave={this.saveFlashcard}
-          onChange={this.updateFlashcardState}
-        />
+        <div key={this.state.resetNewFlashcardKey}>
+          <NewFlashcard
+            onSave={this.saveFlashcard}
+            onChange={this.updateFlashcardState}
+          />
+        </div>
         <FlashcardList
           flashcards={flashcards}
           onDelete={this.deleteFlashcard}/>

@@ -1,5 +1,5 @@
 import * as types from '../../app/actions/actionTypes';
-import flashcardApi from '../proxy/mockFlashcardApi'
+import flashcardApi from '../proxy/flashcardApi'
 import {beginFlashcardLoadingAjaxCall, endFlashcardLoadingAjaxCall, flashcardLoadingAjaxCallError} from './flashcardLoadingStatusActions';
 
 export function createFlashcardSuccess(flashcard) {

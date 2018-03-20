@@ -1,6 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
+  learningProcessEnabled: false,
   actualQuestion: "",
   actualFlashcardId: "",
   expectedAnswer: "",
@@ -12,6 +13,7 @@ export default function learningReducer(state = initialState, action) {
     case types.START_LEARNING:
       return {
         ...initialState,
+        learningProcessEnabled: true,
         otherFlashcardsToLearn: Object.assign({}, action.flashcard)
       };
 

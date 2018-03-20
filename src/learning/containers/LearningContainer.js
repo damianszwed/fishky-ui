@@ -29,7 +29,7 @@ class LearningContainer extends React.Component {
 
   handleSubmit() {
     toastr.error("Joke, bad answer");
-    toastr.success("Correct!" + (this.state.actualAnswer));
+    toastr.success("Correct!");// + (this.state.actualAnswer)
   };
 
   render() {
@@ -39,7 +39,7 @@ class LearningContainer extends React.Component {
       <div>
         {loadingFlashcards && <LoadingBar/>}
         {!loadingFlashcards && <LearningQuestion
-          actualQuestion={"actual question"}
+          actualQuestion={"here will be a question"}
           onSubmit={this.handleSubmit}
           onChange={this.updateAnswerState}
         />}

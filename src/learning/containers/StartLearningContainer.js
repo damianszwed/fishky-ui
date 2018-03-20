@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
 
 import LoadingBar from '../../app/components/LoadingBar';
+import LearningContainer from './LearningContainer'
 import * as learningActions from "../actions/learningActions";
 
 class StartLearningContainer extends React.Component {
@@ -15,33 +16,32 @@ class StartLearningContainer extends React.Component {
   }
 
   handleSubmit() {
-    toastr.error("..."+this.props.flashcards.length);
+    this.props.actions.learn();
+    toastr.info("Learning process started!");
   };
 
   render() {
-    const {loadingFlashcards} = this.props;
+    const {loadingFlashcards, learning} = this.props;
 
     return (
       <div>
         {loadingFlashcards && <LoadingBar/>}
-        {!loadingFlashcards && <button className="btn btn-outline-primary" onClick={this.handleSubmit}>Submit</button>}
+        {!learning.learningProcessEnabled && !loadingFlashcards && <button className="btn btn-outline-primary btn-block" onClick={this.handleSubmit}>Time to Learn!</button>}
+        {learning.learningProcessEnabled && <LearningContainer/>}
       </div>
     )
   }
 }
 
 StartLearningContainer.propTypes = {
-  flashcards: PropTypes.arrayOf(PropTypes.shape({
-    question: PropTypes.string.isRequired,
-    answer: PropTypes.string.isRequired,
-  })).isRequired,
-  loadingFlashcards: PropTypes.bool.isRequired
+  loadingFlashcards: PropTypes.bool.isRequired,
+  learningProcessEnabled: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  flashcards: state.flashcards,
   actions: PropTypes.object.isRequired,
-  loadingFlashcards: state.loadingFlashcards
+  loadingFlashcards: state.loadingFlashcards,
+  learning: state.learning
 });
 
 function mapDispatchToProps(dispatch) {

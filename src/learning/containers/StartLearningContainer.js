@@ -15,11 +15,11 @@ class StartLearningContainer extends React.Component {
   }
 
   handleSubmit() {
-    toastr.error("...");
+    toastr.error("..."+this.props.flashcards.length);
   };
 
   render() {
-    const {flashcards, loadingFlashcards} = this.props;
+    const {loadingFlashcards} = this.props;
 
     return (
       <div>
@@ -50,4 +50,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps)(StartLearningContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(StartLearningContainer)

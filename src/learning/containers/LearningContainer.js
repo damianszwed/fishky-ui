@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
 
 import LearningQuestion from '../components/LearningQuestion';
-import LoadingBar from '../../app/components/LoadingBar';
+import * as learningActions from '../actions/learningActions';
 
 class LearningContainer extends React.Component {
   constructor(props, context) {
@@ -12,11 +13,9 @@ class LearningContainer extends React.Component {
 
     this.state = {
       actualAnswer: Object.assign({}, props.actualAnswer),
-      actualQuestion: Object.assign({}, props.actualQuestion),
-      expectedAnswer: Object.assign({}, props.expectedAnswer)
     };
-    this.handleSubmit = this.handleSubmit.bind(this);//TODO is this needed???
-    this.updateAnswerState = this.updateAnswerState.bind(this);//TODO is this needed???
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateAnswerState = this.updateAnswerState.bind(this);
   }
 
   updateAnswerState(event) {
@@ -28,38 +27,43 @@ class LearningContainer extends React.Component {
   };
 
   handleSubmit() {
+
     toastr.error("Joke, bad answer");
     toastr.success("Correct!");// + (this.state.actualAnswer)
   };
 
   render() {
-    const {flashcards, loadingFlashcards} = this.props;
+    const {learning} = this.props;
 
     return (
       <div>
-        {loadingFlashcards && <LoadingBar/>}
-        {!loadingFlashcards && <LearningQuestion
-          actualQuestion={"here will be a question"}
+        {!learning.learningProcessFinished && <LearningQuestion
+          actualQuestion={learning.actualQuestion}
           onSubmit={this.handleSubmit}
           onChange={this.updateAnswerState}
         />}
+        {/*TODO summary when learningProcessFinished is true*/}
       </div>
     )
   }
 }
 
 LearningContainer.propTypes = {
-  flashcards: PropTypes.arrayOf(PropTypes.shape({
-    question: PropTypes.string.isRequired,
-    answer: PropTypes.string.isRequired,
-  })).isRequired,
-  loadingFlashcards: PropTypes.bool.isRequired
+  actions: PropTypes.object.isRequired,
+  loadingFlashcards: PropTypes.bool.isRequired,
+  learning: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  flashcards: state.flashcards,
   actions: PropTypes.object.isRequired,
-  loadingFlashcards: state.loadingFlashcards
+  loadingFlashcards: state.loadingFlashcards,
+  learning: state.learning
 });
 
-export default connect(mapStateToProps)(LearningContainer)
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(learningActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LearningContainer)

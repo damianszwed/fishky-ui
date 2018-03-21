@@ -12,7 +12,7 @@ class StartLearningContainer extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleSubmit = this.handleSubmit.bind(this);//TODO is this needed???
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit() {
@@ -26,7 +26,8 @@ class StartLearningContainer extends React.Component {
     return (
       <div>
         {loadingFlashcards && <LoadingBar/>}
-        {!learning.learningProcessEnabled && !loadingFlashcards && <button className="btn btn-outline-primary btn-block" onClick={this.handleSubmit}>Time to Learn!</button>}
+        {!learning.learningProcessEnabled && !loadingFlashcards &&
+        <button className="btn btn-outline-primary btn-block" onClick={this.handleSubmit}>Time to Learn!</button>}
         {learning.learningProcessEnabled && <LearningContainer/>}
       </div>
     )
@@ -34,8 +35,9 @@ class StartLearningContainer extends React.Component {
 }
 
 StartLearningContainer.propTypes = {
+  actions: PropTypes.object.isRequired,
   loadingFlashcards: PropTypes.bool.isRequired,
-  learningProcessEnabled: PropTypes.bool.isRequired
+  learning: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

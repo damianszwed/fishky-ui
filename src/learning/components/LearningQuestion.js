@@ -8,7 +8,7 @@ const LearningQuestion = ({actualQuestion, onSubmit, onChange}) => {
         <label htmlFor="answer">{actualQuestion}</label>
         <input className="form-control" id="answer" name="answer" aria-describedby="answer"
                placeholder="Enter answer" type="text" onChange={onChange}/>
-        <small id="emailHelp" className="form-text text-muted">Answer to question</small>
+        <small id="answerHelp" className="form-text text-muted">Answer the question</small>
       </div>
       <button className="btn btn-outline-primary" onClick={onSubmit}>Submit</button>
     </div>

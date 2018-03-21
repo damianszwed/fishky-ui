@@ -19,9 +19,9 @@ export default function learningReducer(state = initialState, action) {
       let array2 = shuffle(
         array1.map(flashcard => (
           {
-            id: "other-id",
-            question: "inverted",
-            answer: "inverted"
+            id: flashcard.id+"-inverted",
+            question: flashcard.answer,
+            answer: flashcard.question
           }
         ))
       );
@@ -32,8 +32,25 @@ export default function learningReducer(state = initialState, action) {
         actualQuestionId: array1[0].id,
         expectedAnswer: array1[0].answer,
         learningProcessEnabled: true,
-        flashcardsToLearn: [...array1.splice(1), array2]
+        flashcardsToLearn: [...array1.splice(1), ...array2]
       };
+
+    case types.SUBMIT_ANSWER:
+      if(state.flashcardsToLearn.length > 0) {
+        return {
+          ...state,
+          actualQuestion: state.flashcardsToLearn[0].question,
+          actualQuestionId: state.flashcardsToLearn[0].id,
+          expectedAnswer: state.flashcardsToLearn[0].answer,
+          flashcardsToLearn: [...state.flashcardsToLearn.splice(1)]
+        };
+      } else {
+        return {
+          ...state,
+          flashcardsToLearn: [],
+          learningProcessFinished: true
+        };
+      }
 
     default:
       return state;

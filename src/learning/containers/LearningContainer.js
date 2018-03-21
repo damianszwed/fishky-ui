@@ -12,7 +12,7 @@ class LearningContainer extends React.Component {
     super(props, context);
 
     this.state = {
-      actualAnswer: Object.assign({}, props.actualAnswer),
+      actualAnswer: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateAnswerState = this.updateAnswerState.bind(this);
@@ -27,9 +27,13 @@ class LearningContainer extends React.Component {
   };
 
   handleSubmit() {
-
-    toastr.error("Joke, bad answer");
-    toastr.success("Correct!");// + (this.state.actualAnswer)
+    if (this.state.actualAnswer && this.props.learning.expectedAnswer.toLocaleLowerCase() === this.state.actualAnswer.toLowerCase()) {
+      toastr.success("Correct!");
+    } else {
+      toastr.error("Bad answer, expected answer is: " + this.props.learning.expectedAnswer);
+    }
+    this.props.actions.submitLearningAnswer({});
+    return this.setState({actualAnswer: ""});
   };
 
   render() {

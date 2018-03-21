@@ -9,3 +9,13 @@ export function learn() {
     dispatch(startLearning(getState().flashcards));
   }
 }
+
+export function submitAnswer(someObject) {
+  return {type: types.SUBMIT_ANSWER, someObject};
+}
+
+export function submitLearningAnswer(someObject) {
+  return function (dispatch, getState) {
+    dispatch(submitAnswer(someObject));
+  }
+}

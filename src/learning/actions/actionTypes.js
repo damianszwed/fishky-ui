@@ -1,1 +1,3 @@
 export const START_LEARNING = 'START_LEARNING';
+export const SUBMIT_ANSWER = "SUBMIT_ANSWER";
+export const LEARN_AGAIN = "LEARN_AGAIN";

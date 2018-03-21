@@ -34,7 +34,10 @@ class LearningContainer extends React.Component {
     } else {
       toastr.error("Bad answer, expected answer is: " + this.props.learning.expectedAnswer);
     }
-    this.setState({resetLearningQuestionKey: this.state.resetLearningQuestionKey+1});
+    this.setState({
+      resetLearningQuestionKey: this.state.resetLearningQuestionKey+1,
+      actualAnswer: ""
+    });
     this.props.actions.submitLearningAnswer({});
   };
 

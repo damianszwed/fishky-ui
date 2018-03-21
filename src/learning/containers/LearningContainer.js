@@ -13,8 +13,10 @@ class LearningContainer extends React.Component {
 
     this.state = {
       actualAnswer: "",
+      resetLearningQuestionKey: 0
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.tryAgain = this.tryAgain.bind(this);
     this.updateAnswerState = this.updateAnswerState.bind(this);
   }
 
@@ -32,8 +34,13 @@ class LearningContainer extends React.Component {
     } else {
       toastr.error("Bad answer, expected answer is: " + this.props.learning.expectedAnswer);
     }
+    this.setState({resetLearningQuestionKey: this.state.resetLearningQuestionKey+1});
     this.props.actions.submitLearningAnswer({});
-    return this.setState({actualAnswer: ""});
+  };
+
+  tryAgain() {
+    this.props.actions.learn();
+    toastr.info("Learning process started!");
   };
 
   render() {
@@ -41,12 +48,18 @@ class LearningContainer extends React.Component {
 
     return (
       <div>
+        <div key={this.state.resetLearningQuestionKey}>
         {!learning.learningProcessFinished && <LearningQuestion
           actualQuestion={learning.actualQuestion}
           onSubmit={this.handleSubmit}
           onChange={this.updateAnswerState}
         />}
-        {/*TODO summary when learningProcessFinished is true*/}
+        </div>
+        {
+          //TODO statistic will be nice!
+          learning.learningProcessFinished &&
+          <button className="btn btn-outline-primary btn-block" onClick={this.tryAgain}>Try again!</button>
+        }
       </div>
     )
   }

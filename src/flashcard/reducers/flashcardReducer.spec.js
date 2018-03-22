@@ -1,5 +1,5 @@
 import reducer from './flashcardReducer'
-import * as types from '../../example/actions/actionTypes';
+import * as types from '../actions/actionTypes';
 import * as actions from '../actions/flashcardActions'
 
 describe('flashcardReducer', () => {

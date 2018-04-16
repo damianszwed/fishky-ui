@@ -17,7 +17,7 @@ export function saveFlashcard(flashcard) {
   };
 }
 
-const loadFlashcardsSuccess = flashcards => ({
+export const loadFlashcardsSuccess = flashcards => ({
   type: types.LOAD_FLASHCARDS,
   flashcards
 });

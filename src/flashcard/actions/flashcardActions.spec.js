@@ -1,4 +1,4 @@
-import * as flashcardACtions from './flashcardActions';
+import * as flashcardActions from './flashcardActions';
 import * as types from './actionTypes';
 
 // Test a sync action
@@ -13,7 +13,24 @@ describe('Flashcard Actions', () => {
       };
 
       //WHEN
-      const action = flashcardACtions.createFlashcardSuccess(flashcard);
+      const action = flashcardActions.createFlashcardSuccess(flashcard);
+
+      //THEN
+      expect(action).toEqual(expectedAction);
+    });
+  });
+
+  describe('loadFlashcardsSuccess', () => {
+    it('should create a LOAD_FLASHCARDS action', () => {
+      //GIVEN
+      const flashcards = [{question: 'theQuestion', answer: 'theAnswer'}];
+      const expectedAction = {
+        type: types.LOAD_FLASHCARDS,
+        flashcards: flashcards
+      };
+
+      //WHEN
+      const action = flashcardActions.loadFlashcardsSuccess(flashcards);
 
       //THEN
       expect(action).toEqual(expectedAction);

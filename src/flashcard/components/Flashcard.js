@@ -17,7 +17,7 @@ const Flashcard = ({question, answer, flashcard, onDelete}) => {
             <button className="btn btn-outline-primary" type="button">Edit</button>
             <button className="btn btn-outline-danger" type="button"
                     data-toggle="modal"
-                    data-target="#deleteFlashcardModalDataTarget">Delete
+                    data-target={"#deleteFlashcardModalDataTarget" + question}>Delete
             </button>
           </div>
         </div>
@@ -34,13 +34,13 @@ const Flashcard = ({question, answer, flashcard, onDelete}) => {
           </div>
           <div className="col">
             <button className="btn btn-outline-danger btn-block" type="button" data-toggle="modal"
-                    data-target="#deleteFlashcardModalDataTarget">Delete
+                    data-target={"#deleteFlashcardModalDataTarget" + question}>Delete
             </button>
           </div>
         </div>
       </div>
       {/*modal for delete */}
-      <div className="modal fade" id="deleteFlashcardModalDataTarget" tabIndex="-1" role="dialog"
+      <div className="modal fade" id={"deleteFlashcardModalDataTarget" + question} tabIndex="-1" role="dialog"
            aria-labelledby="exampleModalLabel"
            aria-hidden="true">
         <div className="modal-dialog" role="document">

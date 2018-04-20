@@ -24,7 +24,7 @@ export const loadFlashcardsSuccess = flashcards => ({
 
 export const loadFlashcards = () => dispatch => {
   dispatch(beginFlashcardLoadingAjaxCall());
-  flashcardApi.getFlashcards().then(flashcards => {
+  return flashcardApi.getFlashcards().then(flashcards => {
     dispatch(endFlashcardLoadingAjaxCall());
     dispatch(loadFlashcardsSuccess(flashcards))
   }).catch(error => {

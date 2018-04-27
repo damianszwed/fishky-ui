@@ -24,7 +24,7 @@ const NewFlashcard = ({onSave, onChange}) => (
         <input type="text" className="form-control" id="answer" name="answer" placeholder="Answer" onChange={onChange}/>
         <div className="row">
           <div className="col-md-6 offset-md-6">
-            <button className="btn btn-outline-success btn-block" type="submitg" onClick={onSave}>Add flashcard</button>
+            <button className="btn btn-outline-success btn-block" type="submit" onClick={onSave}>Add flashcard</button>
           </div>
         </div>
       </div>

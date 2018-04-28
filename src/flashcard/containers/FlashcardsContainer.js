@@ -9,7 +9,7 @@ import FlashcardList from '../components/FlashcardList';
 import NewFlashcard from '../components/NewFlashcard';
 import LoadingBar from '../../app/components/LoadingBar';
 
-class FlashcardsContainer extends React.Component {
+export class FlashcardsContainer extends React.Component {
   constructor(props, context) {
     super(props, context);
 

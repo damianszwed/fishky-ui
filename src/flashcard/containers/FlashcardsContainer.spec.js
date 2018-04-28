@@ -21,8 +21,7 @@ function setup() {
   const props = {
     flashcards: [],
     actions: { saveFlashcard: () => { return Promise.resolve(); }},
-    loadingFlashcards: false,
-    course: {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''}
+    loadingFlashcards: false
   };
 
   return mount(<FlashcardsContainer {...props} />);

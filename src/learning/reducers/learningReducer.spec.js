@@ -1,5 +1,4 @@
 import reducer from './learningReducer'
-import * as types from '../actions/actionTypes';
 import * as actions from '../actions/learningActions'
 
 describe('flashcardReducer', () => {
@@ -40,11 +39,29 @@ describe('flashcardReducer', () => {
     const newState = reducer(givenState, submitAnswerAction);
     //then
     console.log(newState);
-    // /*expect(newState.learningProcessEnabled).toBeTruthy();
-    // expect(newState.learningProcessFinished).toBeFalsy();
+    expect(newState.learningProcessEnabled).toBeTruthy();
+    expect(newState.learningProcessFinished).toBeFalsy();
     expect(newState.actualQuestion).toBe("someAnswer");
     expect(newState.actualQuestionId).toBe("someId-inverted");
     expect(newState.expectedAnswer).toBe("someQuestion");
     expect(newState.flashcardsToLearn).toEqual([]);
+  });
+
+  it('should end learning process on SUBMIT_ANSWER action given last question', () => {
+    //given
+    const flashcards = [{
+      id: "someId",
+      answer: "someAnswer",
+      question: "someQuestion"
+    }];
+    const submitAnswerAction = actions.submitAnswer();
+    const givenState = reducer(reducer({}, actions.startLearning(flashcards)), submitAnswerAction);
+    //when
+    const newState = reducer(givenState, submitAnswerAction);
+    //then
+    expect(newState.learningProcessEnabled).toBeTruthy();
+    expect(newState.learningProcessFinished).toBeTruthy();
+    expect(newState.flashcardsToLearn).toEqual([]);
   })
+
 });

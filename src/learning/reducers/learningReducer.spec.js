@@ -25,4 +25,26 @@ describe('flashcardReducer', () => {
       answer: 'someQuestion'
     }])
   });
+
+  it('should give next question on SUBMIT_ANSWER action', () => {
+    //given
+    const flashcards = [{
+      id: "someId",
+      answer: "someAnswer",
+      question: "someQuestion"
+    }];
+    const startLearningAction = actions.startLearning(flashcards);
+    const givenState = reducer({}, startLearningAction);
+    const submitAnswerAction = actions.submitAnswer();
+    //when
+    const newState = reducer(givenState, submitAnswerAction);
+    //then
+    console.log(newState);
+    // /*expect(newState.learningProcessEnabled).toBeTruthy();
+    // expect(newState.learningProcessFinished).toBeFalsy();
+    expect(newState.actualQuestion).toBe("someAnswer");
+    expect(newState.actualQuestionId).toBe("someId-inverted");
+    expect(newState.expectedAnswer).toBe("someQuestion");
+    expect(newState.flashcardsToLearn).toEqual([]);
+  })
 });

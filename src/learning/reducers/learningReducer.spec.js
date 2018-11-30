@@ -38,7 +38,6 @@ describe('flashcardReducer', () => {
     //when
     const newState = reducer(givenState, submitAnswerAction);
     //then
-    console.log(newState);
     expect(newState.learningProcessEnabled).toBeTruthy();
     expect(newState.learningProcessFinished).toBeFalsy();
     expect(newState.actualQuestion).toBe("someAnswer");

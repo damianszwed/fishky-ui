@@ -10,8 +10,8 @@ import NewFlashcard from '../components/NewFlashcard';
 import LoadingBar from '../../app/components/LoadingBar';
 
 export class FlashcardsContainer extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       newFlashcard: Object.assign({}, props.newFlashcard),

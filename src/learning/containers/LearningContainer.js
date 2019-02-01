@@ -8,8 +8,8 @@ import LearningQuestion from '../components/LearningQuestion';
 import * as learningActions from '../actions/learningActions';
 
 class LearningContainer extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       actualAnswer: "",

@@ -9,8 +9,8 @@ import LearningContainer from './LearningContainer'
 import * as learningActions from "../actions/learningActions";
 
 class StartLearningContainer extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }

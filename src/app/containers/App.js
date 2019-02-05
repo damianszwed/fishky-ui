@@ -4,7 +4,7 @@ import Footer from '../../navbar/components/Footer'
 import Navbar from '../../navbar/components/Navbar'
 import Main from '../components/Main'
 import {Security} from '@okta/okta-react';
-import config from '../../security/localhostConfiguration';
+import securityConfig from '../../security/securityConfiguration';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
@@ -14,9 +14,9 @@ class App extends React.Component {
     return (
       <div>
         <Security
-          issuer={config.oidc.issuer}
-          client_id={config.oidc.clientId}
-          redirect_uri={config.oidc.redirectUri}
+          issuer={securityConfig.oidc.issuer}
+          client_id={securityConfig.oidc.clientId}
+          redirect_uri={securityConfig.oidc.redirectUri}
         >
           <header><Navbar authenticated={this.props.authenticated}/></header>
           <Main/>

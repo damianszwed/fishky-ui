@@ -1,14 +1,12 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 import Footer from '../../navbar/components/Footer'
 import Navbar from '../../navbar/components/Navbar'
 import Main from '../components/Main'
 import {Security} from '@okta/okta-react';
 import securityConfig from '../../security/securityConfiguration';
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
 
-class App extends React.Component {
+export default class App extends Component {
 
   render() {
     return (
@@ -18,7 +16,7 @@ class App extends React.Component {
           client_id={securityConfig.oidc.clientId}
           redirect_uri={securityConfig.oidc.redirectUri}
         >
-          <header><Navbar authenticated={this.props.authenticated}/></header>
+          <header><Navbar/></header>
           <Main/>
           <Footer/>
         </Security>
@@ -26,17 +24,3 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  authenticated: PropTypes.bool.isRequired
-};
-
-const mapStateToProps = state => ({
-  authenticated: state.security.authenticated
-});
-
-function mapDispatchToProps(dispatch) {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)

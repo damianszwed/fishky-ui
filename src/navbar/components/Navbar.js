@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import SecurityButton from '../../security/containers/SecurityButton'
 
-const Navbar = ({authenticated}) => {
+const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <Link to="/" className="navbar-brand">Fishky</Link>
@@ -15,7 +15,6 @@ const Navbar = ({authenticated}) => {
           <li className="nav-item active">
             <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
           </li>
-          {/*TODO(damian.szwed) with authenticated variable pelase disable most links*/}
           <li className="nav-item active">
             <Link to="/flashcards" className="nav-link">My flashcards</Link>
           </li>

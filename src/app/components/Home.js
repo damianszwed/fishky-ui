@@ -9,10 +9,7 @@ const Home = () => (
       <hr className="my-4"/>
       <p>Do you find that memorizing a list of topics, definitions or concepts is not effective after a long day? Do you
         need more time to study? </p>
-      <p className="lead">
-        <SecurityButton className="btn btn-primary btn-lg" signInText="Sign up!"/>
-        <br/>
-      </p>
+      <SecurityButton className="lead btn btn-primary btn-lg" signInText="Sign up!"/>
     </div>
   </div>
 );

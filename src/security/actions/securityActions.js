@@ -9,3 +9,13 @@ export function setAuthenticated(authenticated) {
     dispatch(updateAuthenticatedStatus(authenticated));
   }
 }
+
+export function updateAccessToken(accessToken) {
+  return {type: types.UPDATE_ACCESS_TOKEN, accessToken};
+}
+
+export function setAccessToken(accessToken) {
+  return function (dispatch, getState) {
+    dispatch(updateAccessToken(accessToken));
+  }
+}

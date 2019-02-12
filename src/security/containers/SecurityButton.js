@@ -31,6 +31,8 @@ export class SecurityButton extends React.Component {
   async checkAuthentication() {
     const authenticated = await this.props.auth.isAuthenticated();
     this.props.actions.setAuthenticated(authenticated);
+    const accessToken = await this.props.auth.getAccessToken();
+    this.props.actions.setAccessToken(accessToken);
   }
 
   async componentDidMount() {

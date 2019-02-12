@@ -1,10 +1,9 @@
 import React from 'react';
-import { withAuth } from '@okta/okta-react';
+import {withAuth} from '@okta/okta-react';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as securityActions from '../actions/securityActions';
-import delay from '../securityDelay';
 
 export class SecurityButton extends React.Component {
   constructor(props) {
@@ -23,30 +22,25 @@ export class SecurityButton extends React.Component {
 
   async logout() {
     this.props.auth.logout('/');
-    setTimeout(function() {
-      this.checkAuthentication();
-    }.bind(this), delay);
+    this.checkAuthentication();
   }
 
   async checkAuthentication() {
-    const authenticated = await this.props.auth.isAuthenticated();
-    this.props.actions.setAuthenticated(authenticated);
-    const accessToken = await this.props.auth.getAccessToken();
-    this.props.actions.setAccessToken(accessToken);
+    this.props.auth.isAuthenticated().then(authenticated => {
+      this.props.actions.setAuthenticated(authenticated);
+    });
+
+    this.props.auth.getAccessToken().then(accessToken => {
+      this.props.actions.setAccessToken(accessToken);
+    });
   }
 
   async componentDidMount() {
     this.checkAuthentication();
-    setTimeout(function() {
-      this.checkAuthentication();
-    }.bind(this), delay);
   }
 
   async componentDidUpdate() {
     this.checkAuthentication();
-    setTimeout(function() {
-      this.checkAuthentication();
-    }.bind(this), delay);
   }
 
   render() {

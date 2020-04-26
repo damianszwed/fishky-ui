@@ -24,7 +24,7 @@
     "redux-logger": "3.0.6",
     "redux-thunk": "2.2.0",
     "redux-mock-store": "1.5.1",
-    "@okta/okta-react": "1.0.3"
+    "@okta/okta-react": "1.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

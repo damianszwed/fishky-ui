@@ -6,6 +6,7 @@ export default function flashcardReducer(state = [], action) {
       return action.flashcards;
 
     case types.CREATE_FLASHCARD_SUCCESS:
+      action.flashcard.id = "tmp-placeholder";//TODO(Damian.Szwed) id generation
       return [
         ...state,
         Object.assign({}, action.flashcard)

@@ -38,7 +38,9 @@ function startPolling(dispatch) {
 export const loadFlashcards = () => dispatch => {
   dispatch(beginFlashcardLoadingAjaxCall());
   return flashcardApi.getFlashcards().then(flashcards => {
-    startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
+    if (process.env.NODE_ENV !== 'test') {
+      startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
+    }
     dispatch(endFlashcardLoadingAjaxCall());
     dispatch(loadFlashcardsSuccess(flashcards))
   }).catch(error => {

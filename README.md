@@ -3,3 +3,9 @@
 
 # fishky-ui
 Frontend for fishky
+
+## node --version
+v8.17.0
+
+## npm --version
+6.13.4

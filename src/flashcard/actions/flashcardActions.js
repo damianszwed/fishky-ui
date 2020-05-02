@@ -22,9 +22,23 @@ export const loadFlashcardsSuccess = flashcards => ({
   flashcards
 });
 
+function pollingGetFlashcards(dispatch) {
+  flashcardApi.getFlashcards().then(flashcards => {
+    dispatch(loadFlashcardsSuccess(flashcards))
+  }).catch(error => {
+    dispatch(flashcardLoadingAjaxCallError(error));
+    throw(error);
+  });
+}
+
+function startPolling(dispatch) {
+  setInterval(()=> pollingGetFlashcards(dispatch), 3000);
+}
+
 export const loadFlashcards = () => dispatch => {
   dispatch(beginFlashcardLoadingAjaxCall());
   return flashcardApi.getFlashcards().then(flashcards => {
+    startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
     dispatch(endFlashcardLoadingAjaxCall());
     dispatch(loadFlashcardsSuccess(flashcards))
   }).catch(error => {

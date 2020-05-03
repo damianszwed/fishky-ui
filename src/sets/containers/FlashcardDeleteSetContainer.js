@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as flashcardSetsActions from '../actions/flashcardSetsActions';
+import findFlashcardSetById from '../proxy/findFlashcardSetById';
 
 import toastr from "toastr";
 import LoadingBar from "../../app/components/LoadingBar";
@@ -16,6 +17,7 @@ export class FlashcardDeleteSetContainer extends React.Component {
     };
 
     this.deleteFlashcardSet = this.deleteFlashcardSet.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   deleteFlashcardSet(flashcardSet) {
@@ -28,15 +30,9 @@ export class FlashcardDeleteSetContainer extends React.Component {
     this.state.goBack();
   }
 
-  findArrayElementById(array, id) {
-    return array.find((element) => {
-      return element.id === id;
-    })
-  }
-
   render() {
     const {flashcardSets, loadingFlashcardSets} = this.props;
-    let flashcardSet = this.findArrayElementById(flashcardSets,
+    const flashcardSet = findFlashcardSetById(flashcardSets,
       this.state.flashcardSetId);
 
     return (

@@ -12,7 +12,23 @@ export function saveFlashcardSet(flashcardSet) {
     flashcardSet.id = "placeholder";
     dispatch(createFlashcardSetSuccess(flashcardSet));
     return flashcardSetsApi.saveFlashcardSet(flashcardSet).then(flashcardSet => {
-      console.log("flashcardSet " + flashcardSet.name + " save command has been accepted.");
+      console.log("Flashcard set " + flashcardSet.name + " save command has been accepted.");
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function saveFlashcardInSetSuccess(flashcard) {
+  return {type: types.CREATE_FLASHCARD_SET_SUCCESS, flashcard: flashcard};
+}
+
+export function saveFlashcardInSet(flashcard, flashcardSetId) {
+  return function (dispatch, getState) {
+    flashcard.id = "placeholder";
+    dispatch(saveFlashcardInSetSuccess(flashcard));
+    return flashcardSetsApi.saveFlashcardInSet(flashcard, flashcardSetId).then(flashcard => {
+      console.log("Flashcard " + flashcard.question + " save command has been accepted.");
     }).catch(error => {
       throw(error);
     });

@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
   return (
     <div>
+      {/*TODO(Damian.Szwed) could be a component FlashcardSetsListItem*/}
       <ul className="list-group">
         {flashcardSets.map(flashcardSet => (
           <li className="list-group-item list-group-item-action">
@@ -24,6 +25,7 @@ const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
                   className="btn btn-outline-danger col-3">Delete</Link>
           </li>
         ))}
+        {/*TODO(Damian.Szwed) could be a component*/}
         <li className="list-group-item list-group-item-action">
           <form className="form-inline">
             <div className="form-group col-9">

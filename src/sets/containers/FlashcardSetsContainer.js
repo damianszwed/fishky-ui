@@ -13,13 +13,11 @@ export class FlashcardSetsContainer extends React.Component {
     super(props);
 
     this.state = {
-      newFlashcardSet: Object.assign({}, props.newFlashcardSet),
-      resetNewFlashcardSetKey: 0//TODO(Damian.Szwed) bedzie to potrzebne?
+      newFlashcardSet: Object.assign({}, props.newFlashcardSet)
     };
 
     this.updateFlashcardSetState = this.updateFlashcardSetState.bind(this);
     this.saveFlashcardSet = this.saveFlashcardSet.bind(this);
-    this.deleteFlashcardSet = this.deleteFlashcardSet.bind(this);
   }
 
   newFlashcardSetIsValid() {
@@ -45,13 +43,7 @@ export class FlashcardSetsContainer extends React.Component {
     }
 
     this.props.actions.saveFlashcardSet(this.state.newFlashcardSet);
-    this.setState({resetNewFlashcardSetKey: this.state.resetNewFlashcardSetKey+1});
-    toastr.success("Fishky set saved!");
-  }
-
-  deleteFlashcardSet(flashcard) {
-    this.props.actions.deleteFlashcard(flashcard);
-    toastr.success("Flashcard set has been removed");
+    toastr.success("Fishky set has been saved!");
   }
 
   render() {

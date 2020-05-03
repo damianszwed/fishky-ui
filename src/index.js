@@ -7,6 +7,7 @@ import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 import reducer from './app/reducers'
 import {loadFlashcards} from "./flashcard/actions/flashcardActions";
+import {loadFlashcardSets} from "./sets/actions/flashcardSetsActions";
 import App from './app/containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
@@ -27,6 +28,7 @@ const store = createStore(
 );
 
 store.dispatch(loadFlashcards());
+store.dispatch(loadFlashcardSets());
 
 render(
     <Router>

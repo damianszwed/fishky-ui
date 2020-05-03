@@ -38,9 +38,11 @@ function startPolling(dispatch) {
 export const loadFlashcardSets = () => dispatch => {
   dispatch(beginFlashcardSetsLoadingAjaxCall());
   return flashcardSetsApi.getFlashcardSets().then(flashcardSets => {
-    startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
-    dispatch(endFlashcardSetsLoadingAjaxCall());
-    dispatch(loadFlashcardSetsSuccess(flashcardSets))
+    setTimeout(function() {
+      startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
+      dispatch(endFlashcardSetsLoadingAjaxCall());
+      dispatch(loadFlashcardSetsSuccess(flashcardSets))
+    }, 50);//TODO(Damian.Szwed) delay for testing purpose. Remember to remove it.
   }).catch(error => {
     dispatch(flashcardSetsLoadingAjaxCallError(error));
     throw(error);

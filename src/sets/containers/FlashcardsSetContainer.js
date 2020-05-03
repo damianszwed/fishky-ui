@@ -50,7 +50,7 @@ export class FlashcardSetContainer extends React.Component {
       return;
     }
 
-    this.props.actions.saveFlashcard(this.state.newFlashcard);
+    this.props.actions.saveFlashcardInSet(this.state.newFlashcard, this.state.flashcardSetId);
     this.setState({resetNewFlashcardKey: this.state.resetNewFlashcardKey + 1});
     toastr.success("Fishky saved!");
   }

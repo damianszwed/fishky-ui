@@ -13,6 +13,10 @@ class FlashcardSetsApi {
   static deleteFlashcardSet(flashcardSetId) {
     return restHelper.delete(url + '/flashcardGroups/' + flashcardSetId);
   }
+
+  static saveFlashcardInSet(flashcard, flashcardSetId) {
+    return restHelper.post(url + '/flashcardGroups/' + flashcardSetId + '/flashcards', flashcard);
+  }
 }
 
 export default FlashcardSetsApi;

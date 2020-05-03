@@ -56,7 +56,7 @@ export class FlashcardSetContainer extends React.Component {
   }
 
   deleteFlashcard(flashcard) {
-    this.props.actions.deleteFlashcard(flashcard);
+    this.props.actions.deleteFlashcardFromSet(flashcard, this.state.flashcardSetId);
     toastr.success("Flashcard has been removed");
   }
 

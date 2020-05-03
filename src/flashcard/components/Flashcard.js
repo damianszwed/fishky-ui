@@ -14,7 +14,7 @@ const Flashcard = ({question, answer, flashcard, onDelete}) => {
           <input type="text" className="form-control col-md-4" placeholder="Answer" aria-label="Answer"
                  aria-describedby="basic-addon2" value={answer} disabled/>
           <div className="input-group-append">
-            <button className="btn btn-outline-primary" type="button">Edit</button>
+            <button className="btn btn-outline-secondary disabled" type="button">Edit</button>
             <button className="btn btn-outline-danger" type="button"
                     data-toggle="modal"
                     data-target={"#deleteFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Delete
@@ -30,7 +30,7 @@ const Flashcard = ({question, answer, flashcard, onDelete}) => {
                disabled/>
         <div className="row">
           <div className="col">
-            <button className="btn btn-outline-secondary btn-block" type="button">Edit</button>
+            <button className="btn btn-outline-secondary btn-block disabled" type="button">Edit</button>
           </div>
           <div className="col">
             <button className="btn btn-outline-danger btn-block" type="button" data-toggle="modal"

@@ -2,7 +2,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import * as flashcardActions from '../actions/flashcardSetsActions';
+import * as flashcardSetsActions from '../actions/flashcardSetsActions';
 
 import LoadingBar from '../../app/components/LoadingBar';
 import FlashcardSetsList from "../components/FlashcardSetsList";
@@ -79,7 +79,7 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(flashcardActions, dispatch)
+    actions: bindActionCreators(flashcardSetsActions, dispatch)
   };
 }
 

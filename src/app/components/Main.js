@@ -3,6 +3,7 @@ import Home from './Home'
 import {Route, Switch} from "react-router-dom";
 import FlashcardsContainer from '../../flashcard/containers/FlashcardsContainer'
 import FlashcardSetsContainer from '../../sets/containers/FlashcardSetsContainer'
+import FlashcardDeleteSetContainer from '../../sets/containers/FlashcardDeleteSetContainer'
 import StartLearningContainer from '../../learning/containers/StartLearningContainer'
 import {ImplicitCallback, SecureRoute} from '@okta/okta-react';
 import NotFoundPage from './NotFoundPage'
@@ -17,8 +18,8 @@ const Main = () => {
           <Route path="/implicit/callback" component={ImplicitCallback} />
           <SecureRoute path="/flashcards" component={FlashcardsContainer}/>
           <SecureRoute exact={true} path="/flashcardSets" component={FlashcardSetsContainer}/>
-          <SecureRoute path="/flashcardSets/:id/delete" component={NotFoundPage}/>
-          <SecureRoute path="/flashcardSets/:id" component={NotImplementedYet}/>
+          <SecureRoute path="/flashcardSets/:flashcardSetId/delete" component={FlashcardDeleteSetContainer}/>
+          <SecureRoute path="/flashcardSets/:flashcardSetId" component={NotImplementedYet}/>
           <SecureRoute path="/learning" component={StartLearningContainer}/>
           <Route path="/not-implemented" component={NotImplementedYet}/>
           <Route path="*" exact={true} component={NotFoundPage}/>

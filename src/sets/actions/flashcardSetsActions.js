@@ -56,10 +56,10 @@ const deleteFlashcardSetSuccess = flashcardSet => ({
   flashcardSet: flashcardSet
 });
 
-export function deleteFlashcardSet(flashcardSetId) {
+export function deleteFlashcardSet(flashcardSet) {
   return function (dispatch, getState) {
-    dispatch(deleteFlashcardSetSuccess(flashcardSetId));
-    return flashcardSetsApi.deleteFlashcardSet(flashcardSetId).then(() => {
+    dispatch(deleteFlashcardSetSuccess(flashcardSet));
+    return flashcardSetsApi.deleteFlashcardSet(flashcardSet.id).then(() => {
     }).catch(error => {
       throw(error);
     });

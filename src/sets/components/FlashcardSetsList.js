@@ -5,6 +5,9 @@ import {Link} from "react-router-dom";
 const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
   return (
     <div>
+      <nav className="navbar navbar-light bg-light">
+        <span className="navbar-brand mb-0 h1">Your fishky sets</span>
+      </nav>
       {/*TODO(Damian.Szwed) could be a component FlashcardSetsListItem*/}
       <ul className="list-group">
         {flashcardSets.map(flashcardSet => (

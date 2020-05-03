@@ -3,23 +3,28 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as flashcardActions from '../actions/flashcardSetsActions';
-import toastr from 'toastr';
 
 import LoadingBar from '../../app/components/LoadingBar';
+import FlashcardSetsList from "../components/FlashcardSetsList";
 
 export class FlashcardSetsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    // this.state = {
+    // };
   }
 
   render() {
-    const {} = this.props;
+    const {flashcardSets, loadingFlashcardSets} = this.props;
 
     return (
       <div>
+        {!loadingFlashcardSets && <FlashcardSetsList
+          flashcardSets={flashcardSets}
+        />
+        }
+        {loadingFlashcardSets && <LoadingBar/>}
       </div>
     )
   }

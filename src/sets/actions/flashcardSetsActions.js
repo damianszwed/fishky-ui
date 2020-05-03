@@ -8,8 +8,10 @@ export function createFlashcardSetSuccess(flashcardSet) {
 
 export function saveFlashcardSet(flashcardSet) {
   return function (dispatch, getState) {
+    flashcardSet.flashcards = [];
+    flashcardSet.id = "placeholder";
     dispatch(createFlashcardSetSuccess(flashcardSet));
-    return flashcardSetsApi.saveFlashcard(flashcardSet).then(flashcardSet => {
+    return flashcardSetsApi.saveFlashcardSet(flashcardSet).then(flashcardSet => {
       console.log("flashcardSet " + flashcardSet.name + " save command has been accepted.");
     }).catch(error => {
       throw(error);

@@ -7,6 +7,7 @@ import toastr from 'toastr';
 import LoadingBar from '../../app/components/LoadingBar';
 import LearningContainer from './LearningContainer'
 import * as learningActions from "../actions/learningActions";
+import FlashcardSetsToLearn from "../components/FlashcardSetsToLearn";
 
 class StartLearningContainer extends React.Component {
   constructor(props) {
@@ -15,19 +16,24 @@ class StartLearningContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
-    this.props.actions.learn();
+  handleSubmit(flashcardSet) {
+    if(flashcardSet.flashcards.length === 0) {
+      toastr.warning("Chosen empty fishky set.");
+      return;
+    }
+    this.props.actions.learn(flashcardSet.flashcards);
     toastr.info("Learning process started!");
   };
 
   render() {
-    const {loadingFlashcards, learning} = this.props;
+    const {loadingFlashcardSets, flashcardSets, learning} = this.props;
 
     return (
       <div>
-        {loadingFlashcards && <LoadingBar/>}
-        {!learning.learningProcessEnabled && !loadingFlashcards &&
-        <button className="btn btn-outline-primary btn-block" onClick={this.handleSubmit}>Time to Learn!</button>}
+        {loadingFlashcardSets && <LoadingBar/>}
+        {!learning.learningProcessEnabled && !loadingFlashcardSets &&
+        <FlashcardSetsToLearn onSubmit={this.handleSubmit} flashcardSets={flashcardSets}/>
+        }
         {learning.learningProcessEnabled && <LearningContainer/>}
       </div>
     )
@@ -36,14 +42,19 @@ class StartLearningContainer extends React.Component {
 
 StartLearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  loadingFlashcards: PropTypes.bool.isRequired,
-  learning: PropTypes.object.isRequired
+  learning: PropTypes.object.isRequired,
+  loadingFlashcardSets: PropTypes.bool.isRequired,
+  flashcardSets: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  })).isRequired,
 };
 
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
-  loadingFlashcards: state.loadingFlashcards,
-  learning: state.learning
+  learning: state.learning,
+  loadingFlashcardSets: state.loadingFlashcardSets,
+  flashcardSets: state.flashcardSets
 });
 
 function mapDispatchToProps(dispatch) {

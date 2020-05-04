@@ -4,9 +4,9 @@ export function startLearning(flashcards) {
   return {type: types.START_LEARNING, flashcards};
 }
 
-export function learn() {
+export function learn(flashcards) {
   return function (dispatch, getState) {
-    dispatch(startLearning(getState().flashcards));
+    dispatch(startLearning(flashcards));
   }
 }
 

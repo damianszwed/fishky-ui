@@ -19,9 +19,6 @@ const Navbar = () => {
             <Link to="/flashcardSets" className="nav-link">My flashcards</Link>
           </li>
           <li className="nav-item active">
-            <Link to="/flashcards" className="nav-link">My flashcards (deprecated)</Link>
-          </li>
-          <li className="nav-item active">
             <Link to="/learning" className="nav-link">Learning</Link>
           </li>
         </ul>

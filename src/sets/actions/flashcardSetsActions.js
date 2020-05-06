@@ -76,7 +76,7 @@ export const loadFlashcardSets = () => dispatch => {
       startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
       dispatch(endFlashcardSetsLoadingAjaxCall());
       dispatch(loadFlashcardSetsSuccess(flashcardSets))
-    }, 50);//TODO(Damian.Szwed) delay for testing purpose. Remember to remove it.
+    }, 2000);//TODO(Damian.Szwed) delay for testing purpose. Remember to remove it.
   }).catch(error => {
     dispatch(flashcardSetsLoadingAjaxCallError(error));
     throw(error);

@@ -12,6 +12,8 @@ class LearningContainer extends React.Component {
     super(props);
 
     this.state = {
+      flashcardSet: props.flashcardSet,
+      mode: props.mode,
       actualAnswer: "",
       resetLearningQuestionKey: 0
     };
@@ -35,14 +37,14 @@ class LearningContainer extends React.Component {
       toastr.error("Bad answer, expected answer is: " + this.props.learning.expectedAnswer);
     }
     this.setState({
-      resetLearningQuestionKey: this.state.resetLearningQuestionKey+1,
+      resetLearningQuestionKey: this.state.resetLearningQuestionKey + 1,
       actualAnswer: ""
     });
     this.props.actions.submitLearningAnswer({});
   };
 
   tryAgain() {
-    this.props.actions.learn();
+    this.props.actions.learn(this.state.flashcardSet.flashcards, this.state.mode);
     toastr.info("Learning process started!");
   };
 
@@ -52,16 +54,17 @@ class LearningContainer extends React.Component {
     return (
       <div>
         <div key={this.state.resetLearningQuestionKey}>
-        {!learning.learningProcessFinished && <LearningQuestion
-          actualQuestion={learning.actualQuestion}
-          onSubmit={this.handleSubmit}
-          onChange={this.updateAnswerState}
-        />}
+          {!learning.learningProcessFinished && <LearningQuestion
+            actualQuestion={learning.actualQuestion}
+            onSubmit={this.handleSubmit}
+            onChange={this.updateAnswerState}/>
+          }
         </div>
         {
           //TODO statistic will be nice!
           learning.learningProcessFinished &&
-          <button className="btn btn-outline-primary btn-block" onClick={this.tryAgain}>Try again!</button>
+          <button className="btn btn-outline-primary btn-block" onClick={() => this.tryAgain()}>Try
+            again!</button>
         }
       </div>
     )
@@ -71,13 +74,18 @@ class LearningContainer extends React.Component {
 LearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   loadingFlashcards: PropTypes.bool.isRequired,
-  learning: PropTypes.object.isRequired
+  learning: PropTypes.object.isRequired,
+  flashcardSets: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  })).isRequired
 };
 
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
   loadingFlashcards: state.loadingFlashcards,
-  learning: state.learning
+  learning: state.learning,
+  flashcardSets: state.flashcardSets
 });
 
 function mapDispatchToProps(dispatch) {

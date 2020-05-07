@@ -9,7 +9,7 @@ describe('flashcardReducer', () => {
       answer: "someAnswer",
       question: "someQuestion"
     }];
-    const action = actions.startLearning(flashcards);
+    const action = actions.startLearningShuffled(flashcards);
     //when
     const newState = reducer({}, action);
     //then
@@ -32,7 +32,7 @@ describe('flashcardReducer', () => {
       answer: "someAnswer",
       question: "someQuestion"
     }];
-    const startLearningAction = actions.startLearning(flashcards);
+    const startLearningAction = actions.startLearningShuffled(flashcards);
     const givenState = reducer({}, startLearningAction);
     const submitAnswerAction = actions.submitAnswer();
     //when
@@ -54,7 +54,7 @@ describe('flashcardReducer', () => {
       question: "someQuestion"
     }];
     const submitAnswerAction = actions.submitAnswer();
-    const givenState = reducer(reducer({}, actions.startLearning(flashcards)), submitAnswerAction);
+    const givenState = reducer(reducer({}, actions.startLearningShuffled(flashcards)), submitAnswerAction);
     //when
     const newState = reducer(givenState, submitAnswerAction);
     //then

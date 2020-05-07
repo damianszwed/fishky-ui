@@ -11,7 +11,7 @@ const initialState = {
 
 export default function learningReducer(state = initialState, action) {
   switch (action.type) {
-    case types.START_LEARNING:
+    case types.START_LEARNING_SHUFFLED:
       //1) Copy, Randomize array order and save to array1
       //2) Copy, map and randomize again, save to array1
 
@@ -19,7 +19,7 @@ export default function learningReducer(state = initialState, action) {
       let array2 = shuffle(
         array1.map(flashcard => (
           {
-            id: flashcard.id+"-inverted",
+            id: flashcard.id + "-inverted",
             question: flashcard.answer,
             answer: flashcard.question
           }
@@ -35,8 +35,40 @@ export default function learningReducer(state = initialState, action) {
         flashcardsToLearn: [...array1.splice(1), ...array2]
       };
 
+    case types.START_LEARNING_A_TO_B:
+      let aToBArray = shuffle([...action.flashcards]);
+
+      return {
+        ...initialState,
+        actualQuestion: aToBArray[0].question,
+        actualQuestionId: aToBArray[0].id,
+        expectedAnswer: aToBArray[0].answer,
+        learningProcessEnabled: true,
+        flashcardsToLearn: [...aToBArray.splice(1)]
+      };
+
+    case types.START_LEARNING_B_TO_A:
+      let bToAArray = shuffle(
+        action.flashcards.map(flashcard => (
+          {
+            id: flashcard.id + "-inverted",
+            question: flashcard.answer,
+            answer: flashcard.question
+          }
+        ))
+      );
+
+      return {
+        ...initialState,
+        actualQuestion: bToAArray[0].question,
+        actualQuestionId: bToAArray[0].id,
+        expectedAnswer: bToAArray[0].answer,
+        learningProcessEnabled: true,
+        flashcardsToLearn: [...bToAArray.splice(1)]
+      };
+
     case types.SUBMIT_ANSWER:
-      if(state.flashcardsToLearn.length > 0) {
+      if (state.flashcardsToLearn.length > 0) {
         return {
           ...state,
           actualQuestion: state.flashcardsToLearn[0].question,
@@ -51,6 +83,11 @@ export default function learningReducer(state = initialState, action) {
           learningProcessFinished: true
         };
       }
+
+    case types.RESTART_STATE:
+      return {
+        ...initialState
+      };
 
     default:
       return state;

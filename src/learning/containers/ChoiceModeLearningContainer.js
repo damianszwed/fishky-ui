@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import findFlashcardSetById from "../../sets/proxy/findFlashcardSetById";
+import * as learningActions from "../actions/learningActions";
 import LoadingBar from "../../app/components/LoadingBar";
-import MODES from "../reducers/modes";
+import MODES from "../reducers/modesArray";
 import {Link} from "react-router-dom";
+import {bindActionCreators} from "redux";
 
 class ChoiceModeLearningContainer extends React.Component {
   constructor(props) {
@@ -16,10 +18,15 @@ class ChoiceModeLearningContainer extends React.Component {
     };
 
     this.goBack = this.goBack.bind(this);
+    this.restartLearningState = this.restartLearningState.bind(this);
   }
 
   goBack() {
     this.state.goBack();
+  }
+
+  restartLearningState() {
+    this.props.actions.restartLearningState();
   }
 
   render() {
@@ -38,6 +45,7 @@ class ChoiceModeLearningContainer extends React.Component {
           {MODES.map(mode => (
             <Link to={`/learning/${this.state.flashcardSetId}/mode/${mode.mode}`}
                   className="btn btn-outline-primary btn-block"
+                  onClick={() => this.restartLearningState()}
                   key={mode.mode}>
               {mode.value}
             </Link>
@@ -59,6 +67,7 @@ class ChoiceModeLearningContainer extends React.Component {
 }
 
 ChoiceModeLearningContainer.propTypes = {
+  actions: PropTypes.object.isRequired,
   flashcardSets: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
@@ -67,12 +76,15 @@ ChoiceModeLearningContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  actions: PropTypes.object.isRequired,
   flashcardSets: state.flashcardSets,
   loadingFlashcardSets: state.loadingFlashcardSets
 });
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    actions: bindActionCreators(learningActions, dispatch)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChoiceModeLearningContainer)

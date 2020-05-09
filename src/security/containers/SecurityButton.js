@@ -1,9 +1,20 @@
 import React from 'react';
-import {withAuth} from '@okta/okta-react';
+import {withOktaAuth} from '@okta/okta-react';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as securityActions from '../actions/securityActions';
+
+async function checkUser() {
+  if (this.props.authState.isAuthenticated && !this.state.userInfo) {
+    const accessToken = await this.props.authService.getAccessToken();
+    this.props.actions.setAuthenticated(true);
+    this.props.actions.setAccessToken(accessToken);
+  } else {
+    this.props.actions.setAuthenticated(false);
+    this.props.actions.setAccessToken('');
+  }
+}
 
 export class SecurityButton extends React.Component {
   constructor(props) {
@@ -11,36 +22,24 @@ export class SecurityButton extends React.Component {
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.checkAuthentication = this.checkAuthentication.bind(this);
-    this.checkAuthentication();
+    this.state = { userInfo: null };
+    this.checkUser = checkUser.bind(this);
   }
 
-
   async login() {
-    this.props.auth.login('/');
+    await this.props.authService.login('/');
   }
 
   async logout() {
-    this.props.auth.logout('/');
-    this.checkAuthentication();
-  }
-
-  async checkAuthentication() {
-    this.props.auth.isAuthenticated().then(authenticated => {
-      this.props.actions.setAuthenticated(authenticated);
-    });
-
-    this.props.auth.getAccessToken().then(accessToken => {
-      this.props.actions.setAccessToken(accessToken);
-    });
+    await this.props.authService.logout('/');
   }
 
   async componentDidMount() {
-    this.checkAuthentication();
+    this.checkUser();
   }
 
   async componentDidUpdate() {
-    this.checkAuthentication();
+    this.checkUser();
   }
 
   render() {
@@ -75,4 +74,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuth(SecurityButton))
+export default connect(mapStateToProps, mapDispatchToProps)(withOktaAuth(SecurityButton))

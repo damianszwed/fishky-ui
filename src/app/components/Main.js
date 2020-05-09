@@ -8,7 +8,7 @@ import FlashcardDeleteSetContainer from '../../sets/containers/FlashcardDeleteSe
 import ChoiceFlashcardSetLearningContainer from "../../learning/containers/ChoiceFlashcardSetLearningContainer";
 import ChoiceModeLearningContainer from "../../learning/containers/ChoiceModeLearningContainer";
 import StartLearningContainer from '../../learning/containers/StartLearningContainer'
-import {ImplicitCallback, SecureRoute} from '@okta/okta-react';
+import {LoginCallback, SecureRoute} from '@okta/okta-react';
 import NotFoundPage from './NotFoundPage'
 import NotImplementedYet from './NotImplementedYet'
 
@@ -18,7 +18,7 @@ const Main = () => {
       <main role="main" className="container">
         <Switch>
           <Route path="/" exact component={Home}/>
-          <Route path="/implicit/callback" component={ImplicitCallback} />
+          <Route path="/implicit/callback" component={LoginCallback} />
           <SecureRoute path="/flashcards" component={FlashcardsContainer}/>
           <SecureRoute exact={true} path="/flashcardSets" component={FlashcardSetsContainer}/>
           <SecureRoute path="/flashcardSets/:flashcardSetId/delete" component={FlashcardDeleteSetContainer}/>

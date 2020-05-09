@@ -11,7 +11,7 @@ const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
       {/*TODO(Damian.Szwed) could be a component FlashcardSetsListItem*/}
       <ul className="list-group">
         {flashcardSets.map(flashcardSet => (
-          <li className="list-group-item list-group-item-action">
+          <li className="list-group-item list-group-item-action" key={flashcardSet.id}>
             <Link to={`/flashcardSets/${flashcardSet.id}`}
                   className=" btn btn-outline-primary col-9">
               <div className="row">

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
+import {withRouter} from 'react-router-dom';
 
 import LearningQuestion from '../components/LearningQuestion';
 import * as learningActions from '../actions/learningActions';
@@ -94,4 +95,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LearningContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LearningContainer))

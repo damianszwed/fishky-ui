@@ -10,6 +10,7 @@ import FlashcardList from '../../flashcard/components/FlashcardList';
 import NewFlashcard from '../../flashcard/components/NewFlashcard';
 import LoadingBar from '../../app/components/LoadingBar';
 import findFlashcardSetById from "../proxy/findFlashcardSetById";
+import {withRouter} from 'react-router-dom';
 
 export class FlashcardSetContainer extends React.Component {
   constructor(props) {
@@ -111,5 +112,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FlashcardSetContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FlashcardSetContainer))

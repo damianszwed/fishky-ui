@@ -5,7 +5,7 @@ import findFlashcardSetById from "../../sets/proxy/findFlashcardSetById";
 import * as learningActions from "../actions/learningActions";
 import LoadingBar from "../../app/components/LoadingBar";
 import MODES from "../reducers/modesArray";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {bindActionCreators} from "redux";
 
 class ChoiceModeLearningContainer extends React.Component {
@@ -87,4 +87,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChoiceModeLearningContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ChoiceModeLearningContainer))

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import LoadingBar from '../../app/components/LoadingBar';
 import FlashcardSetsToLearn from "../components/FlashcardSetsToLearn";
@@ -38,4 +39,4 @@ function mapDispatchToProps(dispatch) {
   return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChoiceFlashcardSetLearningContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ChoiceFlashcardSetLearningContainer))

@@ -7,6 +7,7 @@ import findFlashcardSetById from '../proxy/findFlashcardSetById';
 
 import toastr from "toastr";
 import LoadingBar from "../../app/components/LoadingBar";
+import {withRouter} from 'react-router-dom';
 
 export class FlashcardDeleteSetContainer extends React.Component {
   constructor(props) {
@@ -86,5 +87,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FlashcardDeleteSetContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FlashcardDeleteSetContainer))

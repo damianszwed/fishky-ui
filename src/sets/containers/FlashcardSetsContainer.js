@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as flashcardSetsActions from '../actions/flashcardSetsActions';
+import {withRouter} from 'react-router-dom';
 
 import LoadingBar from '../../app/components/LoadingBar';
 import FlashcardSetsList from "../components/FlashcardSetsList";
@@ -83,4 +84,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlashcardSetsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FlashcardSetsContainer))

@@ -7,6 +7,7 @@ import * as learningActions from "../actions/learningActions";
 import findFlashcardSetById from "../../sets/proxy/findFlashcardSetById";
 import LoadingBar from "../../app/components/LoadingBar";
 import LearningContainer from "./LearningContainer";
+import {withRouter} from 'react-router-dom';
 
 class StartLearningContainer extends React.Component {
   constructor(props) {
@@ -84,4 +85,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartLearningContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(StartLearningContainer))

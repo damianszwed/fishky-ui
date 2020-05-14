@@ -54,9 +54,10 @@ export class SecurityButton extends React.Component {
     return (
       <div>
         {!authenticated &&
-        <button className={this.props.className} onClick={this.login}>Sign in</button>}
+        <button className={this.props.className} onClick={this.login}>{this.props.signInText}</button>}
         {authenticated &&
-        <button className="btn btn-outline-danger" onClick={this.logout}>Sign out</button>}
+        this.props.signOutText &&
+        <button className={this.props.className} onClick={this.logout}>{this.props.signOutText}</button>}
       </div>
     )
   }

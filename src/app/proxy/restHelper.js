@@ -2,9 +2,12 @@
 const $ = require('jquery');
 
 export default {
-  get: function (url) {
+  get: function (accessToken, url) {
     return new Promise(function (success, error) {
       $.ajax({
+        headers: {
+          Authorization : 'Bearer ' + accessToken
+        },
         url: url,
         dataType: "json",
         success: success,
@@ -12,9 +15,12 @@ export default {
       })
     })
   },
-  post: function (url, data) {
+  post: function (accessToken, url, data) {
     return new Promise(function (success, error) {
       $.ajax({
+        headers: {
+          Authorization : 'Bearer ' + accessToken
+        },
         url: url,
         contentType: "application/json",
         type: "POST",
@@ -31,9 +37,12 @@ export default {
       })
     })
   },
-  patch: function (url, data) {
+  patch: function (accessToken, url, data) {
     return new Promise(function (success, error) {
       $.ajax({
+        headers: {
+          Authorization : 'Bearer ' + accessToken
+        },
         url: url,
         type: "PATCH",
         data: data,
@@ -42,9 +51,12 @@ export default {
       })
     })
   },
-  delete: function (url) {
+  delete: function (accessToken, url) {
     return new Promise(function (success, error) {
       $.ajax({
+        headers: {
+          Authorization : 'Bearer ' + accessToken
+        },
         url: url,
         type: "DELETE",
         success: success,

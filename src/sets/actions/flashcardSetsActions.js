@@ -15,7 +15,7 @@ export function saveFlashcardSet(flashcardSet) {
     flashcardSet.flashcards = [];
     flashcardSet.id = "placeholder";
     dispatch(createFlashcardSetSuccess(flashcardSet));
-    return flashcardSetsApi.saveFlashcardSet(flashcardSet).then(flashcardSet => {
+    return flashcardSetsApi.saveFlashcardSet(getState().security.accessToken, flashcardSet).then(flashcardSet => {
       console.log("Flashcard set " + flashcardSet.name + " save command has been accepted.");
     }).catch(error => {
       throw(error);
@@ -30,7 +30,7 @@ export function saveFlashcardInSetSuccess(flashcard) {
 export function saveFlashcardInSet(flashcard, flashcardSetId) {
   return function (dispatch, getState) {
     dispatch(saveFlashcardInSetSuccess(flashcard));
-    return flashcardSetsApi.saveFlashcardInSet(flashcard, flashcardSetId).then(flashcard => {
+    return flashcardSetsApi.saveFlashcardInSet(getState().security.accessToken, flashcard, flashcardSetId).then(flashcard => {
       console.log("Flashcard " + flashcard.question + " save command has been accepted.");
     }).catch(error => {
       throw(error);
@@ -45,7 +45,7 @@ export function deleteFlashcardFromSetSuccess(flashcard) {
 export function deleteFlashcardFromSet(flashcard, flashcardSetId) {
   return function (dispatch, getState) {
     dispatch(deleteFlashcardFromSetSuccess(flashcard));
-    return flashcardSetsApi.deleteFlashcardFromSet(flashcard.id,
+    return flashcardSetsApi.deleteFlashcardFromSet(getState().security.accessToken, flashcard.id,
       flashcardSetId).then(flashcard => {
       console.log("Flashcard " + flashcard.question
         + " delete command has been accepted.");
@@ -60,8 +60,8 @@ export const loadFlashcardSetsSuccess = flashcardSets => ({
   flashcardSets: flashcardSets
 });
 
-function pollingFlashcardSets(dispatch) {
-  flashcardSetsApi.getFlashcardSets().then(flashcardSets => {
+function pollingFlashcardSets(dispatch, getState) {
+  flashcardSetsApi.getFlashcardSets(getState().security.accessToken).then(flashcardSets => {
     dispatch(loadFlashcardSetsSuccess(flashcardSets))
   }).catch(error => {
     dispatch(flashcardSetsLoadingAjaxCallError(error));
@@ -69,16 +69,16 @@ function pollingFlashcardSets(dispatch) {
   });
 }
 
-function startPolling(dispatch) {
-  setInterval(() => pollingFlashcardSets(dispatch), 3000);
+function startPolling(dispatch, getState) {
+  setInterval(() => pollingFlashcardSets(dispatch, getState), 3000);
 }
 
-export const loadFlashcardSets = () => dispatch => {
+export const loadFlashcardSets = () => (dispatch, getState) => {
   dispatch(beginFlashcardSetsLoadingAjaxCall());
-  return flashcardSetsApi.getFlashcardSets().then(flashcardSets => {
+  return flashcardSetsApi.getFlashcardSets(getState().security.accessToken).then(flashcardSets => {
     setTimeout(function () {
-      if (process.env.NODE_ENV !== 'test' && process.env.SOME_ENV ==='temporally-enabled') {
-        startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
+      if (process.env.NODE_ENV !== 'test' && process.env.SOME_ENV === 'temporally-enabled') {
+        startPolling(dispatch, getState);//TODO(Damian.Szwed) change to SSE in future
       }
       dispatch(endFlashcardSetsLoadingAjaxCall());
       dispatch(loadFlashcardSetsSuccess(flashcardSets))
@@ -97,7 +97,7 @@ const deleteFlashcardSetSuccess = flashcardSet => ({
 export function deleteFlashcardSet(flashcardSet) {
   return function (dispatch, getState) {
     dispatch(deleteFlashcardSetSuccess(flashcardSet));
-    return flashcardSetsApi.deleteFlashcardSet(flashcardSet.id).then(() => {
+    return flashcardSetsApi.deleteFlashcardSet(getState().security.accessToken, flashcardSet.id).then(() => {
     }).catch(error => {
       throw(error);
     });

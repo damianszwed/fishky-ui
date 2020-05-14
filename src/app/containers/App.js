@@ -2,25 +2,38 @@ import React, {Component} from 'react'
 
 import Footer from '../../navbar/components/Footer'
 import Navbar from '../../navbar/components/Navbar'
-import Main from '../components/Main'
+import Router from '../components/Router'
 import {Security} from '@okta/okta-react';
 import securityConfig from '../../security/securityConfiguration';
+import {withRouter} from "react-router-dom";
 
-export default class App extends Component {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.onAuthRequired = this.onAuthRequired.bind(this);
+  }
+
+  onAuthRequired() {
+    this.props.history.push('/login')
+  }
 
   render() {
     return (
       <div>
         <Security
           issuer={securityConfig.oidc.issuer}
-          client_id={securityConfig.oidc.clientId}
-          redirect_uri={securityConfig.oidc.redirectUri}
+          clientId={securityConfig.oidc.clientId}
+          redirectUri={securityConfig.oidc.redirectUri}
+          onAuthRequired={this.onAuthRequired}
+          pkce={true}
         >
           <header><Navbar/></header>
-          <Main/>
+          <Router/>
           <Footer/>
         </Security>
       </div>
     );
   }
 }
+
+export default withRouter(App);

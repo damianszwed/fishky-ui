@@ -45,13 +45,18 @@ export class SecurityButton extends React.Component {
   render() {
     const {authenticated} = this.props;
 
+    if (this.props.authState.isPending) return (
+      <div>
+        <button className="btn btn-outline-secondary">Pending</button>}
+      </div>
+    );
+
     return (
       <div>
         {!authenticated &&
-        <button className={this.props.className} onClick={this.login}>{this.props.signInText}</button>}
+        <button className={this.props.className} onClick={this.login}>Sign in</button>}
         {authenticated &&
-        this.props.signOutText &&
-        <button className={this.props.className} onClick={this.logout}>{this.props.signOutText}</button>}
+        <button className="btn btn-outline-danger" onClick={this.logout}>Sign out</button>}
       </div>
     )
   }

@@ -1,6 +1,10 @@
 import * as types from './actionTypes';
 import flashcardSetsApi from '../proxy/flashcardSetsApi'
-import {beginFlashcardSetsLoadingAjaxCall, endFlashcardSetsLoadingAjaxCall, flashcardSetsLoadingAjaxCallError} from './flashcardSetsLoadingStatusActions';
+import {
+  beginFlashcardSetsLoadingAjaxCall,
+  endFlashcardSetsLoadingAjaxCall,
+  flashcardSetsLoadingAjaxCallError
+} from './flashcardSetsLoadingStatusActions';
 
 export function createFlashcardSetSuccess(flashcardSet) {
   return {type: types.CREATE_FLASHCARD_SET_SUCCESS, flashcardSet: flashcardSet};
@@ -66,14 +70,16 @@ function pollingFlashcardSets(dispatch) {
 }
 
 function startPolling(dispatch) {
-  setInterval(()=> pollingFlashcardSets(dispatch), 3000);
+  setInterval(() => pollingFlashcardSets(dispatch), 3000);
 }
 
 export const loadFlashcardSets = () => dispatch => {
   dispatch(beginFlashcardSetsLoadingAjaxCall());
   return flashcardSetsApi.getFlashcardSets().then(flashcardSets => {
-    setTimeout(function() {
-      startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
+    setTimeout(function () {
+      if (process.env.NODE_ENV !== 'test' && process.env.SOME_ENV ==='temporally-enabled') {
+        startPolling(dispatch);//TODO(Damian.Szwed) change to SSE in future
+      }
       dispatch(endFlashcardSetsLoadingAjaxCall());
       dispatch(loadFlashcardSetsSuccess(flashcardSets))
     }, 20);//TODO(Damian.Szwed) delay for testing purpose. Remember to remove it.

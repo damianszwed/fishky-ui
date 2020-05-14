@@ -27,7 +27,7 @@ const Navbar = () => {
                  type="text"/>
           <Link to="/not-implemented" className="btn btn-outline-primary my-2 my-sm-1 mr-sm-2">Search</Link>
         </form>
-        <SecurityButton className="btn btn-outline-danger" signInText="Sign in" signOutText="Sign out"/>
+        <SecurityButton className="btn btn-outline-danger"/>
       </div>
     </nav>
   )

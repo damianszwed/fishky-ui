@@ -1,6 +1,6 @@
 import React from 'react'
 import Home from './Home'
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import FlashcardsContainer from '../../flashcard/containers/FlashcardsContainer'
 import FlashcardSetsContainer from '../../sets/containers/FlashcardSetsContainer'
 import FlashcardSetContainer from "../../sets/containers/FlashcardsSetContainer";
@@ -8,17 +8,20 @@ import FlashcardDeleteSetContainer from '../../sets/containers/FlashcardDeleteSe
 import ChoiceFlashcardSetLearningContainer from "../../learning/containers/ChoiceFlashcardSetLearningContainer";
 import ChoiceModeLearningContainer from "../../learning/containers/ChoiceModeLearningContainer";
 import StartLearningContainer from '../../learning/containers/StartLearningContainer'
+import Login from "../../security/containers/Login";
+import securityConfig from '../../security/securityConfiguration';
 import {LoginCallback, SecureRoute} from '@okta/okta-react';
 import NotFoundPage from './NotFoundPage'
 import NotImplementedYet from './NotImplementedYet'
 
-const Main = () => {
+const Router = () => {
   return (
     <div className="mt-5 pt-5">
       <main role="main" className="container">
         <Switch>
           <Route path="/" exact component={Home}/>
-          <Route path="/implicit/callback" component={LoginCallback} />
+          <Route path='/login' render={() => <Login securityConfiguration={securityConfig}/>}/>
+          <Route path="/implicit/callback" component={LoginCallback}/>
           <SecureRoute path="/flashcards" component={FlashcardsContainer}/>
           <SecureRoute exact={true} path="/flashcardSets" component={FlashcardSetsContainer}/>
           <SecureRoute path="/flashcardSets/:flashcardSetId/delete" component={FlashcardDeleteSetContainer}/>
@@ -34,4 +37,4 @@ const Main = () => {
   )
 };
 
-export default Main;
+export default withRouter(Router);

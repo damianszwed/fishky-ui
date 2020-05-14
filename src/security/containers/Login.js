@@ -33,7 +33,7 @@ export class Login extends Component {
   onSuccess(res) {
     if (res.status === 'SUCCESS') {
       return this.props.authService.redirect({
-        sessionToken: res.session.token
+        sessionToken: res.idToken
       });
     } else {
       // The user can be in another authentication state that requires further action.
@@ -52,6 +52,7 @@ export class Login extends Component {
       <Redirect to={{pathname: '/'}}/> :
       <OktaSignInWidget
         baseUrl={this.props.securityConfiguration.oidc.oktaDomain}
+        issuer={this.props.securityConfiguration.oidc.issuer}
         idps={this.props.securityConfiguration.oidc.idps}
         redirectUri={this.props.securityConfiguration.oidc.redirectUri}
         clientId={this.props.securityConfiguration.oidc.clientId}

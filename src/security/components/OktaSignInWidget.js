@@ -9,7 +9,13 @@ export default class OktaSignInWidget extends Component {
     this.widget = new OktaSignIn({
       baseUrl: this.props.baseUrl,
       authParams: {
-        pkce: true
+        pkce: true,
+        responseMode: 'query',
+        issuer: this.props.issuer,
+        scope: [
+          'openid',
+          'email'
+        ]
       },
       redirectUri: this.props.redirectUri,
       clientId: this.props.clientId,

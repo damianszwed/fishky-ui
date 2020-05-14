@@ -12,6 +12,10 @@ export default {
       {
         type: "FACEBOOK",
         id: "0oaripeglyAwpSriK0h7"
+      },
+      {
+        type: "GOOGLE",
+        id: "0oarjdwkwb3dmewEW0h7"
       }
     ]
   }

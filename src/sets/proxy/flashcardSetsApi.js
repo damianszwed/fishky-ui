@@ -2,24 +2,24 @@ import restHelper from '../../app/proxy/restHelper';
 import url from '../../app/proxy/url';
 
 class FlashcardSetsApi {
-  static getFlashcardSets() {
-    return restHelper.get(url+ '/flashcardSets');
+  static getFlashcardSets(accessToken) {
+    return restHelper.get(accessToken, url+ '/flashcardSets');
   }
 
-  static saveFlashcardSet(flashcardSet) {
-    return restHelper.post(url + '/flashcardSets', flashcardSet);
+  static saveFlashcardSet(accessToken, flashcardSet) {
+    return restHelper.post(accessToken, url + '/flashcardSets', flashcardSet);
   }
 
-  static deleteFlashcardSet(flashcardSetId) {
-    return restHelper.delete(url + '/flashcardSets/' + flashcardSetId);
+  static deleteFlashcardSet(accessToken, flashcardSetId) {
+    return restHelper.delete(accessToken, url + '/flashcardSets/' + flashcardSetId);
   }
 
-  static saveFlashcardInSet(flashcard, flashcardSetId) {
-    return restHelper.post(url + '/flashcardSets/' + flashcardSetId + '/flashcards', flashcard);
+  static saveFlashcardInSet(accessToken, flashcard, flashcardSetId) {
+    return restHelper.post(accessToken, url + '/flashcardSets/' + flashcardSetId + '/flashcards', flashcard);
   }
 
-  static deleteFlashcardFromSet(flashcardId, flashcardSetId) {
-    return restHelper.delete(url + '/flashcardSets/' + flashcardSetId + '/flashcards/'+ flashcardId);
+  static deleteFlashcardFromSet(accessToken, flashcardId, flashcardSetId) {
+    return restHelper.delete(accessToken, url + '/flashcardSets/' + flashcardSetId + '/flashcards/'+ flashcardId);
   }
 }
 

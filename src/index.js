@@ -1,13 +1,11 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import { createLogger } from 'redux-logger'
+import {render} from 'react-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
+import {applyMiddleware, createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {createLogger} from 'redux-logger'
 import thunk from 'redux-thunk'
 import reducer from './app/reducers'
-import {loadFlashcards} from "./flashcard/actions/flashcardActions";
-import {loadFlashcardSets} from "./sets/actions/flashcardSetsActions";
 import App from './app/containers/App'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
@@ -17,7 +15,7 @@ import './navbar/sticky-footer-navbar.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
-const middleware = [ thunk ];
+const middleware = [thunk];
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
@@ -27,14 +25,11 @@ const store = createStore(
   applyMiddleware(...middleware)
 );
 
-store.dispatch(loadFlashcards());
-store.dispatch(loadFlashcardSets());
-
 render(
-    <Router>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </Router>,
+  <Router>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </Router>,
   document.getElementById('root')
 );

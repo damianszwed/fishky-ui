@@ -17,6 +17,9 @@ export default class OktaSignInWidget extends Component {
           'email'
         ]
       },
+      features: {
+        registration: true
+      },
       redirectUri: this.props.redirectUri,
       clientId: this.props.clientId,
       idps: this.props.idps,

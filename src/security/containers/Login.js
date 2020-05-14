@@ -63,11 +63,13 @@ export class Login extends Component {
 
 Login.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  securityConfiguration: PropTypes.object.isRequired
+  securityConfiguration: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  authenticated: state.security.authenticated
+  authenticated: state.security.authenticated,
+  actions: PropTypes.object.isRequired
 });
 
 function mapDispatchToProps(dispatch) {

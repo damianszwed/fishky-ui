@@ -4,12 +4,14 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as securityActions from '../actions/securityActions';
+import {loadFlashcardSets} from '../../sets/actions/flashcardSetsActions';
 
 async function checkUser() {
   if (this.props.authState.isAuthenticated && !this.state.userInfo) {
     const accessToken = await this.props.authService.getAccessToken();
     this.props.actions.setAuthenticated(true);
     this.props.actions.setAccessToken(accessToken);
+    this.props.actions.loadFlashcardSets();
   } else {
     this.props.actions.setAuthenticated(false);
     this.props.actions.setAccessToken('');
@@ -22,7 +24,7 @@ export class SecurityButton extends React.Component {
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.state = { userInfo: null };
+    this.state = {userInfo: null};
     this.checkUser = checkUser.bind(this);
   }
 
@@ -47,7 +49,8 @@ export class SecurityButton extends React.Component {
 
     if (this.props.authState.isPending) return (
       <div>
-        <button className="btn btn-outline-secondary">Pending</button>}
+        <button className="btn btn-outline-secondary">Pending</button>
+        }
       </div>
     );
 
@@ -68,15 +71,17 @@ SecurityButton.propTypes = {
   className: PropTypes.string.isRequired,
   signInText: PropTypes.string.isRequired,
   signOutText: PropTypes.string,
+  actions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  authenticated: state.security.authenticated
+  authenticated: state.security.authenticated,
+  actions: PropTypes.object.isRequired,
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(securityActions, dispatch)
+    actions: bindActionCreators({...securityActions, loadFlashcardSets}, dispatch)
   };
 }
 

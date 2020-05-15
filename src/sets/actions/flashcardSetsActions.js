@@ -77,7 +77,7 @@ export const loadFlashcardSets = () => (dispatch, getState) => {
   dispatch(beginFlashcardSetsLoadingAjaxCall());
   return flashcardSetsApi.getFlashcardSets(getState().security.accessToken).then(flashcardSets => {
     setTimeout(function () {
-      if (process.env.NODE_ENV !== 'test' && process.env.SOME_ENV === 'temporally-enabled') {
+      if (process.env.NODE_ENV !== 'test') {
         startPolling(dispatch, getState);//TODO(Damian.Szwed) change to SSE in future
       }
       dispatch(endFlashcardSetsLoadingAjaxCall());

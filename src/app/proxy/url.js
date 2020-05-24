@@ -1,1 +1,1 @@
-export default 'http://127.0.0.1:30508';
+export default 'https://fishky-proxy.damianszwed.usw1.kubesail.io';

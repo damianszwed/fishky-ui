@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const FlashcardSetNavbar = ({goBack, flashcardSetName}) => (
   <div>
-    <div className="card col-5 mb-5">
+    <div className="card col-7 mb-5">
       <div className="card-body">
         <h5 className="card-title">Flaschard set</h5>
         <p className="card-text">{flashcardSetName}</p>

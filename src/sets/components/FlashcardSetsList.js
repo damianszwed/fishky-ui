@@ -19,7 +19,7 @@ const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
                   {flashcardSet.name === 'default' ? "Your default fishky set"
                     : flashcardSet.name}
                 </div>
-                <div className="col-1"><span
+                <div className="col-1 d-none d-sm-block"><span
                   className="badge badge-primary badge-pill">{flashcardSet.flashcards.length}</span>
                 </div>
               </div>

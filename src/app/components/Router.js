@@ -13,6 +13,7 @@ import securityConfig from '../../security/securityConfiguration';
 import {LoginCallback, SecureRoute} from '@okta/okta-react';
 import NotFoundPage from './NotFoundPage'
 import NotImplementedYet from './NotImplementedYet'
+import About from "./About";
 
 const Router = () => {
   return (
@@ -30,6 +31,7 @@ const Router = () => {
           <SecureRoute path="/learning/:flashcardSetId" component={ChoiceModeLearningContainer}/>
           <SecureRoute path="/learning" component={ChoiceFlashcardSetLearningContainer}/>
           <Route path="/not-implemented" component={NotImplementedYet}/>
+          <Route path="/about" component={About}/>
           <Route path="*" exact={true} component={NotFoundPage}/>
         </Switch>
       </main>

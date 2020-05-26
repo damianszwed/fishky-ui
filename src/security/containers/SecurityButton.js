@@ -50,7 +50,6 @@ export class SecurityButton extends React.Component {
     if (this.props.authState.isPending) return (
       <div>
         <button className="btn btn-outline-secondary">Pending</button>
-        }
       </div>
     );
 

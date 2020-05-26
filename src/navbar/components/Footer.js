@@ -6,9 +6,9 @@ const Footer = () => {
     <div>
       <footer className="footer">
         <div className="container">
-          <span className="text-muted">Author Damian Szwed</span>
+          <span className="text-muted">Fishky - let's learn!</span>
           <div className="float-right">
-            <Link to="not-implemented" className="text-muted">About</Link>
+            <Link to="/about" className="text-muted">About</Link>
           </div>
         </div>
       </footer>

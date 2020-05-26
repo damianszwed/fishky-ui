@@ -13,7 +13,7 @@ const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
         {flashcardSets.map(flashcardSet => (
           <li className="list-group-item list-group-item-action" key={flashcardSet.id}>
             <Link to={`/flashcardSets/${flashcardSet.id}`}
-                  className=" btn btn-outline-primary col-9">
+                  className=" btn btn-outline-primary col-lg-9 col-sm-12">
               <div className="row">
                 <div className="col-11 text-left">
                   {flashcardSet.name === 'default' ? "Your default fishky set"
@@ -25,13 +25,13 @@ const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
               </div>
             </Link>
             <Link to={`/flashcardSets/${flashcardSet.id}/delete`}
-                  className="btn btn-outline-danger col-3">Delete</Link>
+                  className="btn btn-outline-danger col-lg-3 col-sm-12">Delete</Link>
           </li>
         ))}
         {/*TODO(Damian.Szwed) could be a component FlashcardSetsListNewItem*/}
         <li className="list-group-item list-group-item-action">
           <form className="form-inline">
-            <div className="form-group col-9">
+            <div className="form-group col-lg-9 col-sm-12">
               <label htmlFor="name"
                      className="sr-only">New flashcard set</label>
               <input type="text" className="form-control col-12"
@@ -41,7 +41,7 @@ const FlashcardSetsList = ({flashcardSets, onSave, onChange}) => {
                      onChange={onChange}/>
             </div>
             <button type="submit"
-                    className="btn btn-outline-primary col-3"
+                    className="btn btn-outline-primary col-lg-3 col-sm-12"
                     onClick={onSave}>
               Add new set
             </button>

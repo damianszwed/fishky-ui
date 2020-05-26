@@ -12,22 +12,26 @@ const Navbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
+          <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
             <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
           </li>
-          <li className="nav-item active">
+          <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
             <Link to="/flashcardSets" className="nav-link">My flashcards</Link>
           </li>
-          <li className="nav-item active">
+          <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
             <Link to="/learning" className="nav-link">Learning</Link>
           </li>
         </ul>
         <form className="form-inline mt-2 mt-md-0">
           <input className="form-control mr-sm-2" placeholder="Search in my flashcards" aria-label="Search"
                  type="text"/>
-          <Link to="/not-implemented" className="btn btn-outline-primary my-2 my-sm-1 mr-sm-2">Search</Link>
+          <div data-toggle="collapse" data-target=".navbar-collapse.show">
+            <Link to="/not-implemented" className="btn btn-outline-primary my-2 my-sm-1 mr-sm-2">Search</Link>
+          </div>
         </form>
-        <SecurityButton className="btn btn-outline-danger" signInText="Sign in" signOutText="Sign out"/>
+        <div data-toggle="collapse" data-target=".navbar-collapse.show">
+          <SecurityButton className="btn btn-outline-danger" signInText="Sign in" signOutText="Sign out"/>
+        </div>
       </div>
     </nav>
   )

@@ -11,11 +11,29 @@ export const loadFlashcardFoldersSuccess = flashcardFolders => ({
   flashcardFolders: flashcardFolders
 });
 
+function pollingFlashcardFolders(dispatch, getState) {
+  flashcardFoldersApi.getFlashcardFolders(getState().security.accessToken).then(flashcardFolders => {
+    dispatch(loadFlashcardFoldersSuccess(flashcardFolders))
+  }).catch(error => {
+    dispatch(flashcardFoldersLoadingAjaxCallError(error));
+    throw(error);
+  });
+}
+
+function startPolling(dispatch, getState) {
+  setInterval(() => pollingFlashcardFolders(dispatch, getState), 3000);
+}
+
 export const loadFlashcardFolders = () => (dispatch, getState) => {
   dispatch(beginFlashcardFoldersLoadingAjaxCall());
   return flashcardFoldersApi.getFlashcardFolders(getState().security.accessToken).then(flashcardFolders => {
-    dispatch(endFlashcardFoldersLoadingAjaxCall());
-    dispatch(loadFlashcardFoldersSuccess(flashcardFolders))
+    setTimeout(function () {
+      if (process.env.NODE_ENV !== 'test') {
+        startPolling(dispatch, getState);//TODO(Damian.Szwed) change to SSE in future
+      }
+      dispatch(endFlashcardFoldersLoadingAjaxCall());
+      dispatch(loadFlashcardFoldersSuccess(flashcardFolders))
+    }, 20);//TODO(Damian.Szwed) delay for testing purpose. Remember to remove it.
   }).catch(error => {
     dispatch(flashcardFoldersLoadingAjaxCallError(error));
     throw(error);

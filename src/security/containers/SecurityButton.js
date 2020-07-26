@@ -4,14 +4,14 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as securityActions from '../actions/securityActions';
-import {loadFlashcardSets} from '../../sets/actions/flashcardSetsActions';
+import {loadFlashcardFolders} from '../../folders/actions/flashcardFoldersActions';
 
 async function checkUser() {
   if (this.props.authState.isAuthenticated && !this.state.userInfo) {
     const accessToken = await this.props.authService.getAccessToken();
     this.props.actions.setAuthenticated(true);
     this.props.actions.setAccessToken(accessToken);
-    this.props.actions.loadFlashcardSets();
+    this.props.actions.loadFlashcardFolders();
   } else {
     this.props.actions.setAuthenticated(false);
     this.props.actions.setAccessToken('');
@@ -80,7 +80,7 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({...securityActions, loadFlashcardSets}, dispatch)
+    actions: bindActionCreators({...securityActions, loadFlashcardFolders: loadFlashcardFolders}, dispatch)
   };
 }
 

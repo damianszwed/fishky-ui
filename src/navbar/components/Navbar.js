@@ -16,7 +16,7 @@ const Navbar = () => {
             <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
           </li>
           <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <Link to="/flashcardSets" className="nav-link">My flashcards</Link>
+            <Link to="/flashcardFolders" className="nav-link">My flashcards</Link>
           </li>
           <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
             <Link to="/learning" className="nav-link">Learning</Link>

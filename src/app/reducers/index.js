@@ -9,8 +9,8 @@ import security from '../../security/reducers/securityReducer'
 export default combineReducers({
   flashcards,
   loadingFlashcards,
-  flashcardFolders: flashcardFolders,
-  loadingFlashcardFolders: loadingFlashcardFolders,
+  flashcardFolders,
+  loadingFlashcardFolders,
   learning,
   security
 })

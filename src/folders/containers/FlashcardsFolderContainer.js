@@ -51,13 +51,13 @@ export class FlashcardFolderContainer extends React.Component {
       return;
     }
 
-    this.props.actions.saveFlashcardInSet(this.state.newFlashcard, this.state.flashcardFolderId);
+    this.props.actions.saveFlashcardInFolder(this.state.newFlashcard, this.state.flashcardFolderId);
     this.setState({resetNewFlashcardKey: this.state.resetNewFlashcardKey + 1});
     toastr.success("Fishky saved!");
   }
 
   deleteFlashcard(flashcard) {
-    this.props.actions.deleteFlashcardFromSet(flashcard, this.state.flashcardFolderId);
+    this.props.actions.deleteFlashcardFromFolder(flashcard, this.state.flashcardFolderId);
     toastr.success("Flashcard has been removed");
   }
 

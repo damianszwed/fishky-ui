@@ -44,13 +44,13 @@ export class FlashcardDeleteFolderContainer extends React.Component {
             <h5 className="card-title">{flashcardFolder.name}</h5>
             <h6 className="card-subtitle mb-2 text-muted">Fishky folder removal
               operation</h6>
-            <p className="card-text">Are you sure to remove fishky folder? This
-              operation cannot be undone. All flshkies in this folder will be also
+            <p className="card-text">Are you sure to remove the fishky folder? This
+              operation cannot be undone. All the flshkies in this folder will be also
               removed.</p>
             <button type="button"
                     className="btn btn-outline-danger col-3 mr-1"
                     onClick={() => this.deleteFlashcardFolder(flashcardFolder)}>
-              Delete this folder
+              Delete thisg folder
             </button>
             <button type="button"
                     className="btn btn-outline-primary col-3"

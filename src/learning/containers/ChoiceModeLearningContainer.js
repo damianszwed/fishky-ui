@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import findFlashcardSetById from "../../sets/proxy/findFlashcardSetById";
+import findFlashcardFolderById from "../../folders/proxy/findFlashcardFolderById";
 import * as learningActions from "../actions/learningActions";
 import LoadingBar from "../../app/components/LoadingBar";
 import MODES from "../reducers/modesArray";
@@ -13,7 +13,7 @@ class ChoiceModeLearningContainer extends React.Component {
     super(props);
 
     this.state = {
-      flashcardSetId: this.props.match.params.flashcardSetId,
+      flashcardFolderId: this.props.match.params.flashcardFolderId,
       goBack: this.props.history.goBack
     };
 
@@ -30,20 +30,20 @@ class ChoiceModeLearningContainer extends React.Component {
   }
 
   render() {
-    const {flashcardSets, loadingFlashcardSets} = this.props;
-    const flashcardSet = findFlashcardSetById(flashcardSets,
-      this.state.flashcardSetId);
+    const {flashcardFolders, loadingFlashcardFolders} = this.props;
+    const flashcardFolder = findFlashcardFolderById(flashcardFolders,
+      this.state.flashcardFolderId);
 
     return (
       <div>
-        {loadingFlashcardSets && <LoadingBar/>}
-        {!loadingFlashcardSets && flashcardSet && flashcardSet.flashcards.length !== 0 &&
+        {loadingFlashcardFolders && <LoadingBar/>}
+        {!loadingFlashcardFolders && flashcardFolder && flashcardFolder.flashcards.length !== 0 &&
         <div>
           <nav className="navbar navbar-light bg-light mb-3">
             <span className="navbar-brand mb-0 h1">How do you want to learn?</span>
           </nav>
           {MODES.map(mode => (
-            <Link to={`/learning/${this.state.flashcardSetId}/mode/${mode.mode}`}
+            <Link to={`/learning/${this.state.flashcardFolderId}/mode/${mode.mode}`}
                   className="btn btn-outline-primary btn-block"
                   onClick={() => this.restartLearningState()}
                   key={mode.mode}>
@@ -53,10 +53,10 @@ class ChoiceModeLearningContainer extends React.Component {
           <button className="btn btn-outline-danger btn-block" onClick={this.goBack}>Go back</button>
         </div>
         }
-        {!loadingFlashcardSets && flashcardSet && flashcardSet.flashcards.length === 0 &&
+        {!loadingFlashcardFolders && flashcardFolder && flashcardFolder.flashcards.length === 0 &&
         <div>
           <nav className="navbar navbar-light bg-light mb-3">
-            <span className="navbar-brand mb-0 h1">Chosen empty fishky set.</span>
+            <span className="navbar-brand mb-0 h1">Chosen empty fishky folder.</span>
           </nav>
           <button className="btn btn-outline-danger btn-block" onClick={this.goBack}>Go back</button>
         </div>
@@ -68,17 +68,17 @@ class ChoiceModeLearningContainer extends React.Component {
 
 ChoiceModeLearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  flashcardSets: PropTypes.arrayOf(PropTypes.shape({
+  flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })).isRequired,
-  loadingFlashcardSets: PropTypes.bool.isRequired
+  loadingFlashcardFolders: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
-  flashcardSets: state.flashcardSets,
-  loadingFlashcardSets: state.loadingFlashcardSets
+  flashcardFolders: state.flashcardFolders,
+  loadingFlashcardFolders: state.loadingFlashcardFolders
 });
 
 function mapDispatchToProps(dispatch) {

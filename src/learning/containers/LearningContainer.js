@@ -13,7 +13,7 @@ class LearningContainer extends React.Component {
     super(props);
 
     this.state = {
-      flashcardSet: props.flashcardSet,
+      flashcardFolder: props.flashcardFolder,
       mode: props.mode,
       actualAnswer: "",
       resetLearningQuestionKey: 0
@@ -45,7 +45,7 @@ class LearningContainer extends React.Component {
   };
 
   tryAgain() {
-    this.props.actions.learn(this.state.flashcardSet.flashcards, this.state.mode);
+    this.props.actions.learn(this.state.flashcardFolder.flashcards, this.state.mode);
     toastr.info("Learning process started!");
   };
 
@@ -76,7 +76,7 @@ LearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   loadingFlashcards: PropTypes.bool.isRequired,
   learning: PropTypes.object.isRequired,
-  flashcardSets: PropTypes.arrayOf(PropTypes.shape({
+  flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })).isRequired
@@ -86,7 +86,7 @@ const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
   loadingFlashcards: state.loadingFlashcards,
   learning: state.learning,
-  flashcardSets: state.flashcardSets
+  flashcardFolders: state.flashcardFolders
 });
 
 function mapDispatchToProps(dispatch) {

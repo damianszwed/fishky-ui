@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
 import * as learningActions from "../actions/learningActions";
-import findFlashcardSetById from "../../sets/proxy/findFlashcardSetById";
+import findFlashcardFolderById from "../../folders/proxy/findFlashcardFolderById";
 import LoadingBar from "../../app/components/LoadingBar";
 import LearningContainer from "./LearningContainer";
 import {withRouter} from 'react-router-dom';
@@ -13,7 +13,7 @@ class StartLearningContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      flashcardSetId: this.props.match.params.flashcardSetId,
+      flashcardFolderId: this.props.match.params.flashcardFolderId,
       mode: this.props.match.params.mode,
       goBack: this.props.history.goBack
     };
@@ -26,35 +26,35 @@ class StartLearningContainer extends React.Component {
     this.state.goBack();
   }
 
-  handleSubmit(flashcardSet) {
-    if (flashcardSet.flashcards.length === 0) {
-      toastr.warning("Chosen empty fishky set.");
+  handleSubmit(flashcardFolder) {
+    if (flashcardFolder.flashcards.length === 0) {
+      toastr.warning("Chosen empty fishky folder.");
       return;
     }
-    this.props.actions.learn(flashcardSet.flashcards, this.state.mode);
+    this.props.actions.learn(flashcardFolder.flashcards, this.state.mode);
     toastr.info("Learning process started!");
   };
 
   render() {
-    const {loadingFlashcardSets, flashcardSets, learning} = this.props;
-    const flashcardSet = findFlashcardSetById(flashcardSets, this.state.flashcardSetId);
+    const {loadingFlashcardFolders, flashcardFolders, learning} = this.props;
+    const flashcardFolder = findFlashcardFolderById(flashcardFolders, this.state.flashcardFolderId);
 
     return (
       <div>
-        {loadingFlashcardSets && <LoadingBar/>}
-        {!learning.learningProcessEnabled && !loadingFlashcardSets && flashcardSet &&
+        {loadingFlashcardFolders && <LoadingBar/>}
+        {!learning.learningProcessEnabled && !loadingFlashcardFolders && flashcardFolder &&
         <div>
           <nav className="navbar navbar-light bg-light mb-3">
-            <span className="navbar-brand mb-0 h1">{flashcardSet.name}</span>
+            <span className="navbar-brand mb-0 h1">{flashcardFolder.name}</span>
           </nav>
-          <button className="btn btn-outline-primary btn-block" onClick={() => this.handleSubmit(flashcardSet)}>Start
+          <button className="btn btn-outline-primary btn-block" onClick={() => this.handleSubmit(flashcardFolder)}>Start
             learning
           </button>
           <button className="btn btn-outline-danger btn-block" onClick={() => this.goBack()}>Go back</button>
         </div>
         }
         {learning.learningProcessEnabled && <LearningContainer
-          flashcardSet={flashcardSet}
+          flashcardFolder={flashcardFolder}
           mode={this.state.mode}
         />}
       </div>
@@ -65,8 +65,8 @@ class StartLearningContainer extends React.Component {
 StartLearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   learning: PropTypes.object.isRequired,
-  loadingFlashcardSets: PropTypes.bool.isRequired,
-  flashcardSets: PropTypes.arrayOf(PropTypes.shape({
+  loadingFlashcardFolders: PropTypes.bool.isRequired,
+  flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })).isRequired
@@ -75,8 +75,8 @@ StartLearningContainer.propTypes = {
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
   learning: state.learning,
-  loadingFlashcardSets: state.loadingFlashcardSets,
-  flashcardSets: state.flashcardSets
+  loadingFlashcardFolders: state.loadingFlashcardFolders,
+  flashcardFolders: state.flashcardFolders
 });
 
 function mapDispatchToProps(dispatch) {

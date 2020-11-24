@@ -1,1 +1,1 @@
-export default 'https://fishky-proxy.damianszwed.usw1.kubesail.io';
+export default 'https://api.fishky.pl';

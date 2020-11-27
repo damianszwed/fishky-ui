@@ -12,6 +12,7 @@ import LoadingBar from '../../app/components/LoadingBar';
 import findFlashcardFolderById from "../proxy/findFlashcardFolderById";
 import {withRouter} from 'react-router-dom';
 
+//TODO(Damian.Szwed) rename file of this class.
 export class FlashcardFolderContainer extends React.Component {
   constructor(props) {
     super(props);

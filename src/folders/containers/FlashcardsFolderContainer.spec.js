@@ -1,6 +1,6 @@
 import React from 'react';
 import expect from 'expect';
-import {FlashcardsContainer} from './FlashcardsContainer';
+import {FlashcardFolderContainer} from './FlashcardsFolderContainer';
 
 import {mount} from "enzyme";
 import Enzyme from 'enzyme';
@@ -12,21 +12,28 @@ jest.mock('toastr');
 Enzyme.configure({adapter: new Adapter()});
 
 import jsdom from 'jsdom'
+
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.document = doc;
 global.window = doc.defaultView;
 
 function setup() {
   const props = {
-    flashcards: [],
-    actions: { saveFlashcard: () => { return Promise.resolve(); }},
-    loadingFlashcards: false
+    flashcardFolders: [],
+    actions: {
+      saveFlashcard: () => {
+        return Promise.resolve();
+      }
+    },
+    loadingFlashcardFolders: false,
+    match: {params: {}},
+    history: {}
   };
 
-  return mount(<FlashcardsContainer {...props} />);
+  return mount(<FlashcardFolderContainer {...props} />);
 }
 
-describe ('Flashcard Container Page', () => {
+describe('Flashcards Folder Container Page', () => {
   it('doesnt change flashcard key', () => {
 
     const wrapper = setup();

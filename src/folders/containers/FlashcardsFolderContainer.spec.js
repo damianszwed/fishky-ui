@@ -2,16 +2,14 @@ import React from 'react';
 import expect from 'expect';
 import {FlashcardFolderContainer} from './FlashcardsFolderContainer';
 
-import {mount} from "enzyme";
-import Enzyme from 'enzyme';
+import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import toastr from 'toastr';
+import jsdom from 'jsdom'
 
 jest.mock('toastr');
 
 Enzyme.configure({adapter: new Adapter()});
-
-import jsdom from 'jsdom'
 
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.document = doc;

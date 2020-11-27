@@ -5,22 +5,23 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({adapter: new Adapter()});
-import NewFlashcard from './NewFlashcard';
+import FlashcardFoldersList from './FlashcardFoldersList';
 
 function setup() {
   const props = {
+    flashcardFolders: [],
     onSave: () => {
     },
     onChange: () => {
     }
   };
 
-  return shallow(<NewFlashcard {...props} />);
+  return shallow(<FlashcardFoldersList {...props} />);
 }
 
-describe('NewFlashcard', () => {
-  it('save button is labeled "Add flashcard"', () => {
+describe('FlashcardFoldersList', () => {
+  it('save button is labeled "Add new folder"', () => {
     const wrapper = setup();
-    expect(wrapper.find('button').last().text()).toBe('Add flashcard');
+    expect(wrapper.find('button').last().text()).toBe('Add new folder');
   });
 });

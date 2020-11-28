@@ -6,13 +6,12 @@ import * as flashcardFoldersActions from '../actions/flashcardFoldersActions';
 import toastr from 'toastr';
 
 import FlashcardFolderNavbar from "../components/FlashcardFolderNavbar";
-import FlashcardList from '../../flashcard/components/FlashcardList';
-import NewFlashcard from '../../flashcard/components/NewFlashcard';
+import FlashcardList from '../components/FlashcardList';
+import NewFlashcard from '../components/NewFlashcard';
 import LoadingBar from '../../app/components/LoadingBar';
 import findFlashcardFolderById from "../proxy/findFlashcardFolderById";
 import {withRouter} from 'react-router-dom';
 
-//TODO(Damian.Szwed) rename file of this class.
 export class FlashcardFolderContainer extends React.Component {
   constructor(props) {
     super(props);

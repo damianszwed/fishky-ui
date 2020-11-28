@@ -1,6 +1,6 @@
 import React from 'react';
 import expect from 'expect';
-import {FlashcardFolderContainer} from './FlashcardsFolderContainer';
+import {FlashcardFolderContainer} from './FlashcardFolderContainer';
 
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';

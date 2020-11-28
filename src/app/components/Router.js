@@ -1,9 +1,8 @@
 import React from 'react'
 import Home from './Home'
 import {Route, Switch, withRouter} from "react-router-dom";
-import FlashcardsContainer from '../../flashcard/containers/FlashcardsContainer'
 import FlashcardFoldersContainer from '../../folders/containers/FlashcardFoldersContainer'
-import FlashcardFolderContainer from "../../folders/containers/FlashcardsFolderContainer";
+import FlashcardFolderContainer from "../../folders/containers/FlashcardFolderContainer";
 import FlashcardDeleteFolderContainer from '../../folders/containers/FlashcardDeleteFolderContainer'
 import ChoiceFlashcardFolderLearningContainer from "../../learning/containers/ChoiceFlashcardFolderLearningContainer";
 import ChoiceModeLearningContainer from "../../learning/containers/ChoiceModeLearningContainer";
@@ -23,7 +22,6 @@ const Router = () => {
           <Route path="/" exact component={Home}/>
           <Route path='/login' render={() => <Login securityConfiguration={securityConfig}/>}/>
           <Route path="/implicit/callback" component={LoginCallback}/>
-          <SecureRoute path="/flashcards" component={FlashcardsContainer}/>
           <SecureRoute exact={true} path="/flashcardFolders" component={FlashcardFoldersContainer}/>
           <SecureRoute path="/flashcardFolders/:flashcardFolderId/delete" component={FlashcardDeleteFolderContainer}/>
           <SecureRoute path="/flashcardFolders/:flashcardFolderId" component={FlashcardFolderContainer}/>

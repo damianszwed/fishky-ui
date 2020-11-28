@@ -1,18 +1,18 @@
-import reducer from './flashcardReducer'
+import reducer from './flashcardFoldersReducer'
 import * as types from '../actions/actionTypes';
-import * as actions from '../actions/flashcardActions'
+import * as actions from '../actions/flashcardFoldersActions'
 
-describe('flashcardReducer', () => {
-  it('should add flashcard when passed CREATE_FLASHCARD_SUCCESS', () => {
+describe('flashcardFoldersReducer', () => {
+  it('should add flashcard folder when passed CREATE_FLASHCARD_FOLDER_SUCCESS', () => {
     // arrange
     const initialState = [
       {whatever: 'whateverA'},
       {whatever: 'whateverB'}
     ];
 
-    const newFlashcard = {whatever: 'whateverC'};
+    const newFlashcardFolder = {whatever: 'whateverC'};
 
-    const action = actions.createFlashcardSuccess(newFlashcard);
+    const action = actions.createFlashcardFolderSuccess(newFlashcardFolder);
 
     //act
     const newState = reducer(initialState, action);
@@ -24,19 +24,17 @@ describe('flashcardReducer', () => {
     expect(newState[2].whatever).toEqual('whateverC');
   });
 
-  describe('when flashcards are loaded', () => {
+  describe('when flashcard folders are loaded', () => {
     let state;
     beforeEach(() => {
       state = reducer({}, {
-        type: types.LOAD_FLASHCARDS,
-        flashcards: [
+        type: types.LOAD_FLASHCARD_FOLDERS,
+        flashcardFolders: [
           {
-            question: 'questionA',
-            answer: 'answerA'
+            id: 'a'
           },
           {
-            question: 'questionB',
-            answer: 'answerB'
+            id: 'b'
           }
         ]
       })
@@ -46,13 +44,12 @@ describe('flashcardReducer', () => {
       expect(state).toEqual(
         [
           {
-            question: 'questionA',
-            answer: 'answerA'
+            id: 'a'
           },
           {
-            question: 'questionB',
-            answer: 'answerB'
-          }]
+            id: 'b'
+          }
+        ]
       )
     });
   })

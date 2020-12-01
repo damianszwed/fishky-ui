@@ -28,6 +28,8 @@ const NewFlashcard = ({onSave, onChange}) => (
           </div>
         </div>
       </div>
+      <br />
+      <br />
     </form>
   </div>
 );

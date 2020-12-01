@@ -4,7 +4,7 @@ import Flashcard from './Flashcard'
 
 const FlashcardList = ({flashcards, onDelete}) => {
   return (
-    <div>
+    <div className="card-deck">
       {flashcards.map(flashcard => (
         <div key={flashcard.question}>
           <Flashcard

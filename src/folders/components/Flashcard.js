@@ -4,39 +4,14 @@ import PropTypes from 'prop-types'
 const Flashcard = ({question, answer, flashcard, onDelete}) => {
   return (
     <div>
-      <div className="d-none d-lg-block">
-        <div className="input-group form-row">
-          <input type="text" className="form-control col-md-4" placeholder="Question" aria-label="Question"
-                 aria-describedby="basic-addon2" value={question} disabled/>
-          <div className="input-group-prepend">
-            <span className="input-group-text"><i className="fas fa-arrows-alt-h fa-sm"/></span>
-          </div>
-          <input type="text" className="form-control col-md-4" placeholder="Answer" aria-label="Answer"
-                 aria-describedby="basic-addon2" value={answer} disabled/>
-          <div className="input-group-append">
-            <button className="btn btn-outline-secondary disabled" type="button">Edit</button>
-            <button className="btn btn-outline-danger" type="button"
-                    data-toggle="modal"
-                    data-target={"#deleteFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Delete
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="d-lg-none">
-        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Question"
-               value={question}
-               disabled/>
-        <input type="text" className="form-control" id="exampleFormControlInput2" placeholder="Answer" value={answer}
-               disabled/>
-        <div className="row">
-          <div className="col">
-            <button className="btn btn-outline-secondary btn-block disabled" type="button">Edit</button>
-          </div>
-          <div className="col">
-            <button className="btn btn-outline-danger btn-block" type="button" data-toggle="modal"
-                    data-target={"#deleteFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Delete
-            </button>
-          </div>
+      <div className="card mb-2">
+        <div className="card-body">
+          <h5 className="card-title">{question}</h5>
+          <p className="card-text">{answer}</p>
+          <button className="btn btn-outline-secondary disabled mr-1" type="button">Edit</button>
+          <button className="btn btn-outline-danger" type="button" data-toggle="modal"
+                  data-target={"#deleteFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Delete
+          </button>
         </div>
       </div>
       {/*modal for delete */}

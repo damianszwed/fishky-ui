@@ -7,7 +7,7 @@ import toastr from 'toastr';
 
 import FlashcardFolderNavbar from "../components/FlashcardFolderNavbar";
 import FlashcardList from '../components/FlashcardList';
-import NewFlashcard from '../components/NewFlashcard';
+import FlashcardNewForm from '../components/FlashcardNewForm';
 import LoadingBar from '../../app/components/LoadingBar';
 import findFlashcardFolderById from "../proxy/findFlashcardFolderById";
 import {withRouter} from 'react-router-dom';
@@ -72,16 +72,21 @@ export class FlashcardFolderContainer extends React.Component {
 
     return (
       <div>
-        {flashcardFolder && <FlashcardFolderNavbar
-          flashcardFolderName={flashcardFolder.name}
-          goBack={this.goBack}
-        />
-        }
-        <div key={this.state.resetNewFlashcardKey}>
-          <NewFlashcard
-            onSave={this.saveFlashcard}
-            onChange={this.updateFlashcardState}
+        <div className="row">
+          <div className="col-12 col-lg-6 mb-2">
+          {flashcardFolder && <FlashcardFolderNavbar
+            flashcardFolderName={flashcardFolder.name}
+            goBack={this.goBack}
           />
+          }
+          </div>
+          <div className="col-12 col-lg-6 mb-2">
+            <FlashcardNewForm
+              key={this.state.resetNewFlashcardKey}
+              onSave={this.saveFlashcard}
+              onChange={this.updateFlashcardState}
+            />
+          </div>
         </div>
         {flashcardFolder && <FlashcardList
           flashcards={flashcardFolder.flashcards}

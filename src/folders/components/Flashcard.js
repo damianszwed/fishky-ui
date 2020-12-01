@@ -27,4 +27,4 @@ Flashcard.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-export default Flashcard
+export default Flashcard;

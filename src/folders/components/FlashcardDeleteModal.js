@@ -37,4 +37,4 @@ FlashcardDeleteModal.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-export default FlashcardDeleteModal
+export default FlashcardDeleteModal;

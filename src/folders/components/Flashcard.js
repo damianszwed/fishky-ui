@@ -23,6 +23,8 @@ const Flashcard = ({question, answer, flashcard, onDelete}) => {
 Flashcard.propTypes = {
   question: PropTypes.string.isRequired,
   answer: PropTypes.string.isRequired,
+  flashcard: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Flashcard

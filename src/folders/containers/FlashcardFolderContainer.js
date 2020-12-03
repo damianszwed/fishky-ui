@@ -26,6 +26,7 @@ export class FlashcardFolderContainer extends React.Component {
     this.updateFlashcardState = this.updateFlashcardState.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
     this.deleteFlashcard = this.deleteFlashcard.bind(this);
+    this.modifyFlashcard = this.modifyFlashcard.bind(this);
     this.goBack = this.goBack.bind(this);
   }
 
@@ -58,7 +59,11 @@ export class FlashcardFolderContainer extends React.Component {
 
   deleteFlashcard(flashcard) {
     this.props.actions.deleteFlashcardFromFolder(flashcard, this.state.flashcardFolderId);
-    toastr.success("Flashcard has been removed");
+    toastr.success("The flashcard has been removed.");
+  }
+
+  modifyFlashcard(flashcard) {
+    toastr.success("The flashcard has been modified" + flashcard.id + " " + flashcard.question);
   }
 
   goBack() {
@@ -88,9 +93,11 @@ export class FlashcardFolderContainer extends React.Component {
             />
           </div>
         </div>
-        {flashcardFolder && <FlashcardList
-          flashcards={flashcardFolder.flashcards}
-          onDelete={this.deleteFlashcard}/>}
+    {flashcardFolder && <FlashcardList
+      flashcards={flashcardFolder.flashcards}
+      onDelete={this.deleteFlashcard}
+      onModify={this.modifyFlashcard}
+    />}
         {loadingFlashcardFolders && <LoadingBar/>}
       </div>
     )

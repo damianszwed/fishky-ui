@@ -6,10 +6,10 @@ const FlashcardNewForm = ({onSave, onChange}) => (
     <div className="card-body">
       <form>
         <h5 className="card-title">New flashcard</h5>
-        <input type="text" className="form-control mb-1" placeholder="Question" aria-label="question"
-               name="question" onChange={onChange} aria-describedby="basic-addon2"/>
-        <input type="text" className="form-control mb-1" placeholder="Answer" aria-label="answer"
-               name="answer" onChange={onChange} aria-describedby="basic-addon2"/>
+        <input type="text" className="form-control mb-1" placeholder="Question"
+               name="question" onChange={onChange}/>
+        <input type="text" className="form-control mb-1" placeholder="Answer"
+               name="answer" onChange={onChange}/>
         <button className="btn btn-outline-success" type="submit" onClick={onSave}>Add flashcard</button>
       </form>
     </div>

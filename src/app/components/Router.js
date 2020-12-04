@@ -28,6 +28,7 @@ const Router = () => {
           <SecureRoute path="/learning/:flashcardFolderId/mode/:mode" component={StartLearningContainer}/>
           <SecureRoute path="/learning/:flashcardFolderId" component={ChoiceModeLearningContainer}/>
           <SecureRoute path="/learning" component={ChoiceFlashcardFolderLearningContainer}/>
+          <SecureRoute path="/search" component={FlashcardFoldersContainer}/>
           <Route path="/not-implemented" component={NotImplementedYet}/>
           <Route path="/about" component={About}/>
           <Route path="*" exact={true} component={NotFoundPage}/>

@@ -74,6 +74,21 @@ export function saveFlashcardInFolder(flashcard, flashcardFolderId) {
   };
 }
 
+export function updateFlashcardInFolderSuccess(flashcard) {
+  return {type: types.UPDATE_FLASHCARD_IN_FOLDER_SUCCESS, flashcard: flashcard};
+}
+
+export function modifyFlashcardInFolder(flashcard, flashcardFolderId) {
+  return function (dispatch, getState) {
+    dispatch(updateFlashcardInFolderSuccess(flashcard));
+    return flashcardFoldersApi.updateFlashcardInFolder(getState().security.accessToken, flashcard, flashcardFolderId).then(res => {
+      console.log("Flashcard " + flashcard.question + " update command has been accepted.");
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
 export function deleteFlashcardFromFolderSuccess(flashcard) {
   return {type: types.DELETE_FLASHCARD_FROM_FOLDER_SUCCESS, flashcard: flashcard};
 }

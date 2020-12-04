@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import FlashcardDeleteModal from "./FlashcardDeleteModal";
 import FlashcardModifyModal from "./FlashcardModifyModal";
 
-const Flashcard = ({question, answer, flashcard, onDelete, onModify}) => {
+const Flashcard = ({question, answer, flashcard, onDelete, onModifyChange, onModify}) => {
   return (
     <div>
       <div className="card mb-2">
         <div className="card-body">
           <h5 className="card-title">{question}</h5>
           <p className="card-text">{answer}</p>
-          <button className="btn btn-outline-warning mr-1" type="button" data-toggle="modal"
+          <button className="btn btn-outline-success mr-1" type="button" data-toggle="modal"
                   data-target={"#modifyFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Edit
           </button>
           <button className="btn btn-outline-danger" type="button" data-toggle="modal"
@@ -19,7 +19,7 @@ const Flashcard = ({question, answer, flashcard, onDelete, onModify}) => {
         </div>
       </div>
       <FlashcardDeleteModal question={question} flashcard={flashcard} onDelete={onDelete}/>
-      <FlashcardModifyModal question={question} flashcard={flashcard} onModify={onModify}/>
+      <FlashcardModifyModal flashcard={flashcard} onModifyChange={onModifyChange} onModify={onModify}/>
     </div>
   );
 };
@@ -29,7 +29,8 @@ Flashcard.propTypes = {
   answer: PropTypes.string.isRequired,
   flashcard: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onModify: PropTypes.func.isRequired
+  onModify: PropTypes.func.isRequired,
+  onModifyChange: PropTypes.func.isRequired
 };
 
 export default Flashcard;

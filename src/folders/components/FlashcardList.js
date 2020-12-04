@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Flashcard from './Flashcard'
 
-const FlashcardList = ({flashcards, onDelete, onModify}) => {
+const FlashcardList = ({flashcards, onDelete, onModifyChange, onModify}) => {
   return (
     <div className="card-deck">
       {flashcards.map(flashcard => (
@@ -12,6 +12,7 @@ const FlashcardList = ({flashcards, onDelete, onModify}) => {
             answer={flashcard.answer}
             flashcard={flashcard}
             onDelete={onDelete}
+            onModifyChange={onModifyChange}
             onModify={onModify}
           />
         </div>

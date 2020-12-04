@@ -37,6 +37,28 @@ export default {
       })
     })
   },
+  put: function (accessToken, url, data) {
+    return new Promise(function (success, error) {
+      $.ajax({
+        headers: {
+          Authorization : 'Bearer ' + accessToken
+        },
+        url: url,
+        contentType: "application/json",
+        type: "PUT",
+        data: JSON.stringify(data),
+        success: success,
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('jqXHR:');
+          console.log(jqXHR);
+          console.log('textStatus:');
+          console.log(textStatus);
+          console.log('errorThrown:');
+          console.log(errorThrown);
+        }
+      })
+    })
+  },
   patch: function (accessToken, url, data) {
     return new Promise(function (success, error) {
       $.ajax({

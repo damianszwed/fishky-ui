@@ -18,14 +18,16 @@ export class FlashcardFolderContainer extends React.Component {
 
     this.state = {
       newFlashcard: Object.assign({}, props.newFlashcard),
+      modifiedFlashcard: {},
       resetNewFlashcardKey: 0,
       flashcardFolderId: this.props.match.params.flashcardFolderId,
       goBack: this.props.history.goBack
     };
 
-    this.updateFlashcardState = this.updateFlashcardState.bind(this);
+    this.onFlashcardNewFormChange = this.onFlashcardNewFormChange.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
     this.deleteFlashcard = this.deleteFlashcard.bind(this);
+    this.onModifyChangeFlashcard = this.onModifyChangeFlashcard.bind(this);
     this.modifyFlashcard = this.modifyFlashcard.bind(this);
     this.goBack = this.goBack.bind(this);
   }
@@ -38,7 +40,7 @@ export class FlashcardFolderContainer extends React.Component {
     return true;
   }
 
-  updateFlashcardState(event) {
+  onFlashcardNewFormChange(event) {
     const field = event.target.name;
     let newFlashcard = Object.assign({}, this.state.newFlashcard);
     newFlashcard[field] = event.target.value;
@@ -53,7 +55,10 @@ export class FlashcardFolderContainer extends React.Component {
     }
 
     this.props.actions.saveFlashcardInFolder(this.state.newFlashcard, this.state.flashcardFolderId);
-    this.setState({resetNewFlashcardKey: this.state.resetNewFlashcardKey + 1});
+    this.setState({
+      resetNewFlashcardKey: this.state.resetNewFlashcardKey + 1,
+      newFlashcard: {}
+    });
     toastr.success("Fishky saved!");
   }
 
@@ -62,8 +67,30 @@ export class FlashcardFolderContainer extends React.Component {
     toastr.success("The flashcard has been removed.");
   }
 
-  modifyFlashcard(flashcard) {
-    toastr.success("The flashcard has been modified" + flashcard.id + " " + flashcard.question);
+  onModifyChangeFlashcard(event) {
+    const field = event.target.name;
+    let modifiedFlashcard = Object.assign({}, this.state.modifiedFlashcard);
+    modifiedFlashcard[field] = event.target.value;
+    return this.setState({modifiedFlashcard: modifiedFlashcard});
+  }
+
+  modifyFlashcard(event, flashcard) {
+    event.preventDefault();
+
+    let modifiedFlashcard = Object.assign({}, this.state.modifiedFlashcard);
+    modifiedFlashcard.id = flashcard.id;
+    if(!modifiedFlashcard.question) {
+      modifiedFlashcard.question = flashcard.question;
+    }
+    if(!modifiedFlashcard.answer) {
+      modifiedFlashcard.answer = flashcard.answer;
+    }
+    this.props.actions.modifyFlashcardInFolder(modifiedFlashcard, this.state.flashcardFolderId);
+    this.setState({
+      modifiedFlashcard: {}
+    });
+
+    toastr.success("The flashcard has been modified.");
   }
 
   goBack() {
@@ -79,25 +106,26 @@ export class FlashcardFolderContainer extends React.Component {
       <div>
         <div className="row">
           <div className="col-12 col-lg-6 mb-2">
-          {flashcardFolder && <FlashcardFolderNavbar
-            flashcardFolderName={flashcardFolder.name}
-            goBack={this.goBack}
-          />
-          }
+            {flashcardFolder && <FlashcardFolderNavbar
+              flashcardFolderName={flashcardFolder.name}
+              goBack={this.goBack}
+            />
+            }
           </div>
           <div className="col-12 col-lg-6 mb-2">
             <FlashcardNewForm
               key={this.state.resetNewFlashcardKey}
               onSave={this.saveFlashcard}
-              onChange={this.updateFlashcardState}
+              onChange={this.onFlashcardNewFormChange}
             />
           </div>
         </div>
-    {flashcardFolder && <FlashcardList
-      flashcards={flashcardFolder.flashcards}
-      onDelete={this.deleteFlashcard}
-      onModify={this.modifyFlashcard}
-    />}
+        {flashcardFolder && <FlashcardList
+          flashcards={flashcardFolder.flashcards}
+          onDelete={this.deleteFlashcard}
+          onModifyChange={this.onModifyChangeFlashcard}
+          onModify={this.modifyFlashcard}
+        />}
         {loadingFlashcardFolders && <LoadingBar/>}
       </div>
     )

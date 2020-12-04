@@ -18,6 +18,10 @@ class FlashcardFoldersApi {
     return restHelper.post(accessToken, url + '/flashcardFolders/' + flashcardFolderId + '/flashcards', flashcard);
   }
 
+  static updateFlashcardInFolder(accessToken, flashcard, flashcardFolderId) {
+    return restHelper.put(accessToken, url + '/flashcardFolders/' + flashcardFolderId + '/flashcards', flashcard);
+  }
+
   static deleteFlashcardFromFolder(accessToken, flashcardId, flashcardFolderId) {
     return restHelper.delete(accessToken, url + '/flashcardFolders/' + flashcardFolderId + '/flashcards/'+ flashcardId);
   }

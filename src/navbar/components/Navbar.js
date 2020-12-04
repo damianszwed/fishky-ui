@@ -26,7 +26,7 @@ const Navbar = () => {
           <input className="form-control mr-sm-2" placeholder="Search in my flashcards" aria-label="Search"
                  type="text"/>
           <div data-toggle="collapse" data-target=".navbar-collapse.show">
-            <Link to="/not-implemented" className="btn btn-outline-primary my-2 my-sm-1 mr-sm-2">Search</Link>
+            <Link to="/search" className="btn btn-outline-primary my-2 my-sm-1 mr-sm-2">Search</Link>
           </div>
         </form>
         <div data-toggle="collapse" data-target=".navbar-collapse.show">

@@ -2,6 +2,19 @@ import * as types from '../actions/actionTypes';
 
 export default function flashcardFoldersReducer(state = [], action) {
   switch (action.type) {
+    case types.LOAD_FLASHCARD_FOLDER:
+      const index = state.findIndex((el) => el.id === action.flashcardFolder.id);
+      if (index === -1) {
+        return [
+          ...state,
+          Object.assign({}, action.flashcardFolder)
+        ];
+      } else {
+        let newState = [...state];
+        newState[index] = action.flashcardFolder;
+        return newState;
+      }
+
     case types.LOAD_FLASHCARD_FOLDERS:
       return action.flashcardFolders;
 

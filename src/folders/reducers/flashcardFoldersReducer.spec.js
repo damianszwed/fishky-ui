@@ -24,6 +24,46 @@ describe('flashcardFoldersReducer', () => {
     expect(newState[2].whatever).toEqual('whateverC');
   });
 
+  it('should update concrete folder on event', () => {
+    //given
+    const initialState = [
+      {id: 'a'},
+      {id: 'b'},
+      {id: 'c'},
+    ];
+
+    const newFlashcardFolder = {id: 'b', otherField: 'bb'};
+
+    const action = actions.loadFlashcardFolderSuccess(newFlashcardFolder);
+
+    //when
+    const newState = reducer(initialState, action);
+
+    //then
+    expect(newState.length).toEqual(3);
+    expect(newState[1].otherField).toEqual('bb');
+  });
+
+  it('should add concrete folder on event', () => {
+    //given
+    const initialState = [
+      {id: 'a'},
+      {id: 'b'},
+      {id: 'c'},
+    ];
+
+    const newFlashcardFolder = {id: 'd', otherField: 'dd'};
+
+    const action = actions.loadFlashcardFolderSuccess(newFlashcardFolder);
+
+    //when
+    const newState = reducer(initialState, action);
+
+    //then
+    expect(newState.length).toEqual(4);
+    expect(newState[3].otherField).toEqual('dd');
+  });
+
   describe('when flashcard folders are loaded', () => {
     let state;
     beforeEach(() => {

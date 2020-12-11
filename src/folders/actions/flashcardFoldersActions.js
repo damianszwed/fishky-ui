@@ -6,6 +6,11 @@ import {
   flashcardFoldersLoadingAjaxCallError
 } from './flashcardFoldersLoadingStatusActions';
 
+export const loadFlashcardFolderSuccess = flashcardFolder => ({
+  type: types.LOAD_FLASHCARD_FOLDER,
+  flashcardFolder: flashcardFolder
+});
+
 export const loadFlashcardFoldersSuccess = flashcardFolders => ({
   type: types.LOAD_FLASHCARD_FOLDERS,
   flashcardFolders: flashcardFolders

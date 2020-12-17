@@ -6,6 +6,10 @@ import {
   flashcardFoldersLoadingAjaxCallError
 } from './flashcardFoldersLoadingStatusActions';
 
+export const sseInitialized = () => ({
+  type: types.SSE_INITIALIZED
+});
+
 export const loadFlashcardFolderSuccess = flashcardFolder => ({
   type: types.LOAD_FLASHCARD_FOLDER,
   flashcardFolder: flashcardFolder
@@ -17,6 +21,7 @@ export const loadFlashcardFoldersSuccess = flashcardFolders => ({
 });
 
 function pollingFlashcardFolders(dispatch, getState) {
+  console.log("Polling messages.");
   flashcardFoldersApi.getFlashcardFolders(getState().security.accessToken).then(flashcardFolders => {
     dispatch(loadFlashcardFoldersSuccess(flashcardFolders))
   }).catch(error => {
@@ -25,20 +30,39 @@ function pollingFlashcardFolders(dispatch, getState) {
   });
 }
 
-function startPolling(dispatch, getState) {
-  setInterval(() => pollingFlashcardFolders(dispatch, getState), 3000);
+function startBackupPolling(dispatch, getState) {
+  console.log("Started backup polling.");
+  setInterval(() => pollingFlashcardFolders(dispatch, getState), 30000);
+}
+
+function onFlashcardFolder(dispatch) {
+  return event => {
+    console.log("Received flashcard folder: " + event.data);
+    dispatch(loadFlashcardFolderSuccess(JSON.parse(event.data)));
+  };
+}
+
+function startSseListening(dispatch, getState) {
+  console.log("Started sse listening.");
+  flashcardFoldersApi.flashcardFoldersEventStream(onFlashcardFolder(dispatch), getState().security.accessToken);
 }
 
 export const loadFlashcardFolders = () => (dispatch, getState) => {
+  if(getState().sseInitialized) {
+    console.log("Application already initialized. Returning...");
+    return;
+  }
+  console.log("Invoked a loadFlashcardFolders() method that should be invoked once at the start of the application.");
   dispatch(beginFlashcardFoldersLoadingAjaxCall());
   return flashcardFoldersApi.getFlashcardFolders(getState().security.accessToken).then(flashcardFolders => {
-    setTimeout(function () {
-      if (process.env.NODE_ENV !== 'test') {
-        startPolling(dispatch, getState);//TODO(Damian.Szwed) change to SSE in future
-      }
-      dispatch(endFlashcardFoldersLoadingAjaxCall());
-      dispatch(loadFlashcardFoldersSuccess(flashcardFolders))
-    }, 20);//TODO(Damian.Szwed) delay for testing purpose. Remember to remove it.
+    if (process.env.NODE_ENV !== 'test' && !getState().sseInitialized) {
+      console.log("Will start SSE and backup polling.");
+      dispatch(sseInitialized());
+      startBackupPolling(dispatch, getState);
+      startSseListening(dispatch, getState);
+    }
+    dispatch(endFlashcardFoldersLoadingAjaxCall());
+    dispatch(loadFlashcardFoldersSuccess(flashcardFolders))
   }).catch(error => {
     dispatch(flashcardFoldersLoadingAjaxCallError(error));
     throw(error);
@@ -56,7 +80,6 @@ export function saveFlashcardFolder(flashcardFolder) {
     dispatch(createFlashcardFolderSuccess(flashcardFolder));
     return flashcardFoldersApi.saveFlashcardFolder(getState().security.accessToken, flashcardFolder).then(res => {
       console.log("Flashcard folder " + flashcardFolder.name + " save command has been accepted.");
-      dispatch(loadFlashcardFolders());
     }).catch(error => {
       throw(error);
     });
@@ -72,7 +95,6 @@ export function saveFlashcardInFolder(flashcard, flashcardFolderId) {
     dispatch(saveFlashcardInFolderSuccess(flashcard));
     return flashcardFoldersApi.saveFlashcardInFolder(getState().security.accessToken, flashcard, flashcardFolderId).then(res => {
       console.log("Flashcard " + flashcard.question + " save command has been accepted.");
-      dispatch(loadFlashcardFolders());
     }).catch(error => {
       throw(error);
     });
@@ -104,7 +126,6 @@ export function deleteFlashcardFromFolder(flashcard, flashcardFolderId) {
     return flashcardFoldersApi.deleteFlashcardFromFolder(getState().security.accessToken, flashcard.id,
       flashcardFolderId).then(res => {
       console.log("Flashcard " + flashcard.question + " delete command has been accepted.");
-      dispatch(loadFlashcardFolders());
     }).catch(error => {
       throw(error);
     });
@@ -120,7 +141,6 @@ export function deleteFlashcardFolder(flashcardFolder) {
   return function (dispatch, getState) {
     dispatch(deleteFlashcardFolderSuccess(flashcardFolder));
     return flashcardFoldersApi.deleteFlashcardFolder(getState().security.accessToken, flashcardFolder.id).then(() => {
-      dispatch(loadFlashcardFolders());
     }).catch(error => {
       throw(error);
     });

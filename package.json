@@ -1,6 +1,6 @@
 {
   "name": "fishky-ui",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "private": true,
   "author": "Damian Szwed",
   "devDependencies": {
@@ -25,7 +25,8 @@
     "redux-thunk": "2.3.0",
     "redux-mock-store": "1.5.4",
     "@okta/okta-react": "3.0.1",
-    "@okta/okta-signin-widget": "3.9.2"
+    "@okta/okta-signin-widget": "3.9.2",
+    "event-source-polyfill": "1.0.22"
   },
   "scripts": {
     "start": "react-scripts start",

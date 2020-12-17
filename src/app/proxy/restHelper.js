@@ -1,4 +1,3 @@
-// import jquery from 'jquery'
 const $ = require('jquery');
 
 export default {
@@ -6,7 +5,7 @@ export default {
     return new Promise(function (success, error) {
       $.ajax({
         headers: {
-          Authorization : 'Bearer ' + accessToken
+          Authorization: 'Bearer ' + accessToken
         },
         url: url,
         dataType: "json",
@@ -19,14 +18,14 @@ export default {
     return new Promise(function (success, error) {
       $.ajax({
         headers: {
-          Authorization : 'Bearer ' + accessToken
+          Authorization: 'Bearer ' + accessToken
         },
         url: url,
         contentType: "application/json",
         type: "POST",
         data: JSON.stringify(data),
         success: success,
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
           console.log('jqXHR:');
           console.log(jqXHR);
           console.log('textStatus:');
@@ -41,14 +40,14 @@ export default {
     return new Promise(function (success, error) {
       $.ajax({
         headers: {
-          Authorization : 'Bearer ' + accessToken
+          Authorization: 'Bearer ' + accessToken
         },
         url: url,
         contentType: "application/json",
         type: "PUT",
         data: JSON.stringify(data),
         success: success,
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
           console.log('jqXHR:');
           console.log(jqXHR);
           console.log('textStatus:');
@@ -63,7 +62,7 @@ export default {
     return new Promise(function (success, error) {
       $.ajax({
         headers: {
-          Authorization : 'Bearer ' + accessToken
+          Authorization: 'Bearer ' + accessToken
         },
         url: url,
         type: "PATCH",
@@ -77,12 +76,12 @@ export default {
     return new Promise(function (success, error) {
       $.ajax({
         headers: {
-          Authorization : 'Bearer ' + accessToken
+          Authorization: 'Bearer ' + accessToken
         },
         url: url,
         type: "DELETE",
         success: success,
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
           console.log('jqXHR:');
           console.log(jqXHR);
           console.log('textStatus:');

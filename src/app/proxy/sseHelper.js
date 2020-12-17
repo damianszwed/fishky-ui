@@ -6,7 +6,8 @@ export default {
     let es = new EventSourcePolyfill(url, {
       headers: {
         Authorization: 'Bearer ' + accessToken
-      }
+      },
+      heartbeatTimeout: 4500000
     });
 
     let onOpen = function (event) {

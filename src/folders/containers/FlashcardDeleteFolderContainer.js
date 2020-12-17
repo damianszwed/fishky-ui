@@ -50,7 +50,7 @@ export class FlashcardDeleteFolderContainer extends React.Component {
             <button type="button"
                     className="btn btn-outline-danger col-3 mr-1"
                     onClick={() => this.deleteFlashcardFolder(flashcardFolder)}>
-              Delete thisg folder
+              Delete this folder
             </button>
             <button type="button"
                     className="btn btn-outline-primary col-3"

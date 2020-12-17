@@ -1,9 +1,14 @@
 import restHelper from '../../app/proxy/restHelper';
+import sseHelper from '../../app/proxy/sseHelper';
 import url from '../../app/proxy/url';
 
 class FlashcardFoldersApi {
+  static flashcardFoldersEventStream(onMessage, accessToken) {
+    sseHelper.getEventStream(onMessage, accessToken, url + '/flashcardFoldersEventStream' );
+  }
+
   static getFlashcardFolders(accessToken) {
-    return restHelper.get(accessToken, url+ '/flashcardFolders');
+    return restHelper.get(accessToken, url + '/flashcardFolders');
   }
 
   static saveFlashcardFolder(accessToken, flashcardFolder) {
@@ -23,7 +28,7 @@ class FlashcardFoldersApi {
   }
 
   static deleteFlashcardFromFolder(accessToken, flashcardId, flashcardFolderId) {
-    return restHelper.delete(accessToken, url + '/flashcardFolders/' + flashcardFolderId + '/flashcards/'+ flashcardId);
+    return restHelper.delete(accessToken, url + '/flashcardFolders/' + flashcardFolderId + '/flashcards/' + flashcardId);
   }
 }
 

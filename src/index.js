@@ -16,7 +16,7 @@ import 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 const middleware = [thunk];
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV ==='remove-this-statement') {
   middleware.push(createLogger());
 }
 

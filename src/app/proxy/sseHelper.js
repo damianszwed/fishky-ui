@@ -11,8 +11,7 @@ export default {
     let es = new EventSource(url);
 
     let onOpen = function (event) {
-      console.log("event " + event);
-      console.log("event " + event.type);
+      console.log("EventSource has been opened. Event type is: " + event.type + ".");
     };
     let onError = function (event) {
       console.log("event " + event);

@@ -1,28 +1,34 @@
 import * as types from '../actions/actionTypes';
 
+function matches(onClientSideFlashcardFolder, flashcardFolder) {
+  return (onClientSideFlashcardFolder.id && flashcardFolder.id && onClientSideFlashcardFolder.id === flashcardFolder.id) ||
+    (onClientSideFlashcardFolder.name && flashcardFolder.name && onClientSideFlashcardFolder.name === flashcardFolder.name);
+}
+
+function updateExistingIndexOrAddNew(state, action) {
+  const index = state.findIndex((el) => matches(el, action.flashcardFolder));
+  if (index === -1) {
+    return [
+      ...state,
+      Object.assign({}, action.flashcardFolder)
+    ];
+  } else {
+    let newState = [...state];
+    newState[index] = action.flashcardFolder;
+    return newState;
+  }
+}
+
 export default function flashcardFoldersReducer(state = [], action) {
   switch (action.type) {
     case types.LOAD_FLASHCARD_FOLDER:
-      const index = state.findIndex((el) => el.id === action.flashcardFolder.id);
-      if (index === -1) {
-        return [
-          ...state,
-          Object.assign({}, action.flashcardFolder)
-        ];
-      } else {
-        let newState = [...state];
-        newState[index] = action.flashcardFolder;
-        return newState;
-      }
+      return updateExistingIndexOrAddNew(state, action);
 
     case types.LOAD_FLASHCARD_FOLDERS:
       return action.flashcardFolders;
 
     case types.CREATE_FLASHCARD_FOLDER_SUCCESS:
-      return [
-        ...state,
-        Object.assign({}, action.flashcardFolder)
-      ];
+      return updateExistingIndexOrAddNew(state, action);
 
     case types.UPDATE_FLASHCARD_FOLDER_SUCCESS:
       return [

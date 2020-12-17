@@ -2,30 +2,29 @@ import {EventSourcePolyfill} from 'event-source-polyfill';
 
 export default {
   getEventStream: function (onMessage, accessToken, url) {
-    /*let es = new EventSourcePolyfill(url, {
+    console.log("Will try to connect to " + url);
+    let es = new EventSourcePolyfill(url, {
       headers: {
         Authorization: 'Bearer ' + accessToken
       }
-    });*/
-    console.log("Will try to connect to " + url);
-    let es = new EventSource(url);
+    });
 
     let onOpen = function (event) {
       console.log("EventSource has been opened. Event type is: " + event.type + ".");
     };
     let onError = function (event) {
-      console.log("event " + event);
-      console.log("event " + event.type);
-      console.log("event.target " + event.target);
-      console.log("event.target.readyState " + event.target.readyState);
+      console.log("On error event received: " + event.type + "!");
       switch (event.target.readyState) {
-
         case EventSource.CONNECTING:
-          console.log('Reconnecting...');
+          console.log('Ready state is CONNECTING.');
           break;
 
         case EventSource.CLOSED:
-          console.log('Connection failed, will not reconnect');
+          console.log('Ready state is CLOSED. Will not reconnect. Now rely on the backup polling.');
+          break;
+
+        default:
+          console.log("State is: " + event.target.readyState + ".");
           break;
       }
     };

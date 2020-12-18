@@ -5,13 +5,19 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as securityActions from '../actions/securityActions';
 import {loadFlashcardFolders} from '../../folders/actions/flashcardFoldersActions';
+import toastr from 'toastr';
 
 async function checkUser() {
   if (this.props.authState.isAuthenticated && !this.state.userInfo) {
     const accessToken = await this.props.authService.getAccessToken();
     this.props.actions.setAuthenticated(true);
     this.props.actions.setAccessToken(accessToken);
-    this.props.actions.loadFlashcardFolders();
+    let loadFlashcardFoldersPromise = this.props.actions.loadFlashcardFolders();
+    loadFlashcardFoldersPromise.then(function(message) {
+      console.log(message);
+    }, function(err) {
+      toastr.error("Cannot load flashcard folders. Please contact with the administrator.");
+    });
   } else {
     this.props.actions.setAuthenticated(false);
     this.props.actions.setAccessToken('');

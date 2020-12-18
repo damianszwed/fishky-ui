@@ -50,7 +50,9 @@ function startSseListening(dispatch, getState) {
 export const loadFlashcardFolders = () => (dispatch, getState) => {
   if(getState().sseInitialized) {
     console.log("Application already initialized. Returning...");
-    return;
+    return new Promise(function(resolve, reject) {
+        resolve("Application already initialized. Returned positive promise.");
+    });
   }
   console.log("Invoked a loadFlashcardFolders() method that should be invoked once at the start of the application.");
   dispatch(beginFlashcardFoldersLoadingAjaxCall());
@@ -62,7 +64,8 @@ export const loadFlashcardFolders = () => (dispatch, getState) => {
       startSseListening(dispatch, getState);
     }
     dispatch(endFlashcardFoldersLoadingAjaxCall());
-    dispatch(loadFlashcardFoldersSuccess(flashcardFolders))
+    dispatch(loadFlashcardFoldersSuccess(flashcardFolders));
+    return "Synchronized loaded flashcard folders successfully.";
   }).catch(error => {
     dispatch(flashcardFoldersLoadingAjaxCallError(error));
     throw(error);

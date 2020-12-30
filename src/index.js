@@ -14,9 +14,10 @@ import 'toastr/build/toastr.min.css';
 import './navbar/sticky-footer-navbar.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle';
+import registerServiceWorker from './registerServiceWorker';
 
 const middleware = [thunk];
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV ==='remove-this-statement') {
+if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV === 'remove-this-statement') {
   middleware.push(createLogger());
 }
 
@@ -33,3 +34,5 @@ render(
   </Router>,
   document.getElementById('root')
 );
+
+registerServiceWorker();

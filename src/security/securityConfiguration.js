@@ -16,6 +16,10 @@ export default {
       {
         type: "GOOGLE",
         id: "0oarjdwkwb3dmewEW0h7"
+      },
+      {
+        type: "LINKEDIN",
+        id: "0oawb73id71gmSHu40h7"
       }
     ]
   }

@@ -7,6 +7,7 @@ export default class OktaSignInWidget extends Component {
   componentDidMount() {
     const el = ReactDOM.findDOMNode(this);
     this.widget = new OktaSignIn({
+      language: 'en',
       baseUrl: this.props.baseUrl,
       authParams: {
         pkce: true,

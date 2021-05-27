@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
-import {withRouter} from 'react-router-dom';
+import {withRouter, useHistory} from 'react-router-dom';
 
 import LearningQuestion from '../components/LearningQuestion';
 import * as learningActions from '../actions/learningActions';
@@ -49,6 +49,12 @@ class LearningContainer extends React.Component {
     toastr.info("Learning process started!");
   };
 
+  resign() {
+    // let history = useHistory();
+    // history.push('/learning');
+    toastr.info("Learning stopped");
+  }
+
   render() {
     const {learning} = this.props;
 
@@ -58,7 +64,9 @@ class LearningContainer extends React.Component {
           {!learning.learningProcessFinished && <LearningQuestion
             actualQuestion={learning.actualQuestion}
             onSubmit={this.handleSubmit}
-            onChange={this.updateAnswerState}/>
+            onChange={this.updateAnswerState}
+            onResignation={this.resign}
+          />
           }
         </div>
         {

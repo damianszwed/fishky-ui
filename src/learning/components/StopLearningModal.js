@@ -21,7 +21,6 @@ const StopLearningModal = ({onResignation}) => {
             <div className="modal-footer">
               <button type="button" className="btn btn-outline-secondary" data-dismiss="modal">Close</button>
               <button type="button" className="btn btn-outline-danger" data-dismiss="modal"
-                      // onClick={onResignation}>Stop learning
                       onClick={onResignation}>Stop learning
               </button>
             </div>

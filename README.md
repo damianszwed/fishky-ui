@@ -1,5 +1,5 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/damianszwed/fishky-ui/blob/master/LICENSE)
-[![Build Status](https://travis-ci.com/damianszwed/fishky-ui.svg?branch=master)](https://travis-ci.org/damianszwed/fishky-ui)
+[![Node.js CI](https://github.com/damianszwed/fishky-ui/actions/workflows/node.js.yml/badge.svg)](https://github.com/damianszwed/fishky-ui/actions/workflows/node.js.yml)
 
 # fishky-ui
 Frontend for fishky

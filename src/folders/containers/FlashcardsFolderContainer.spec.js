@@ -41,4 +41,21 @@ describe('Flashcards Folder Container Page', () => {
     saveButton.simulate('click');
     expect(wrapper.state().resetNewFlashcardKey).toBe(0);
   });
+
+  describe('New flashcard', () => {
+    it('should set newFlashcard to empty object', () => {
+      //given
+      const wrapper = setup();
+      //when & then
+      expect(wrapper.state().newFlashcard).toEqual({});
+    });
+
+    it('should return false on validation check given empty flashcard', () => {
+      //given
+      const wrapper = setup();
+      //when & then
+      expect(wrapper.instance().newFlashcardIsValid()).toEqual(false);
+    });
+  });
+
 });

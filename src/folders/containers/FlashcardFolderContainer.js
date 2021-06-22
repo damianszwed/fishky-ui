@@ -17,14 +17,21 @@ export class FlashcardFolderContainer extends React.Component {
     super(props);
 
     this.state = {
-      newFlashcard: Object.assign({}, props.newFlashcard),
+      newFlashcard: Object.assign({
+        question: "",
+        answer: "",
+        answers: [""]
+      }, props.newFlashcard),
       modifiedFlashcard: {},
       resetNewFlashcardKey: 0,
       flashcardFolderId: this.props.match.params.flashcardFolderId,
       goBack: this.props.history.goBack
     };
 
-    this.onFlashcardNewFormChange = this.onFlashcardNewFormChange.bind(this);
+    this.onFlashcardQuestionFormChange = this.onFlashcardQuestionFormChange.bind(this);
+    this.onFlashcardAnswerFormChange = this.onFlashcardAnswerFormChange.bind(this);
+    this.addOneMoreAnswer = this.addOneMoreAnswer.bind(this);
+    this.revokeAnswer = this.revokeAnswer.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
     this.deleteFlashcard = this.deleteFlashcard.bind(this);
     this.onModifyChangeFlashcard = this.onModifyChangeFlashcard.bind(this);
@@ -40,11 +47,26 @@ export class FlashcardFolderContainer extends React.Component {
     return true;
   }
 
-  onFlashcardNewFormChange(event) {
+  onFlashcardQuestionFormChange(event) {
     const field = event.target.name;
     let newFlashcard = Object.assign({}, this.state.newFlashcard);
     newFlashcard[field] = event.target.value;
     return this.setState({newFlashcard: newFlashcard});
+  }
+
+  onFlashcardAnswerFormChange(index, event) {
+    const field = event.target.name;
+    let newFlashcard = Object.assign({}, this.state.newFlashcard);
+    newFlashcard[field] = event.target.value;
+    return this.setState({newFlashcard: newFlashcard});
+  }
+
+  addOneMoreAnswer() {
+
+  }
+
+  revokeAnswer() {
+
   }
 
   saveFlashcard(event) {
@@ -116,7 +138,7 @@ export class FlashcardFolderContainer extends React.Component {
             <FlashcardNewForm
               key={this.state.resetNewFlashcardKey}
               onSave={this.saveFlashcard}
-              onChange={this.onFlashcardNewFormChange}
+              onChange={this.onFlashcardQuestionFormChange}
             />
           </div>
         </div>

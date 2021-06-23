@@ -39,59 +39,95 @@ describe('Flashcards New Form Container Page', () => {
     expect(wrapper.state().resetNewFlashcardKey).toBe(0);
   });
 
-  describe('New flashcard', () => {
-    it('should set newFlashcard to default object', () => {
-      //given
-      const wrapper = setup();
-      //when & then
-      expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": [""], "question": ""});
-    });
+  it('should set newFlashcard to default object', () => {
+    //given
+    const wrapper = setup();
+    //when & then
+    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": [""], "question": ""});
+  });
 
-    it('should return false on validation check given empty flashcard', () => {
-      //given
-      const wrapper = setup();
-      //when & then
-      expect(wrapper.instance().newFlashcardIsValid()).toEqual(false);
-    });
+  it('should set answer on flashcard answer form change', () => {
+    //given
+    const wrapper = setup();
+    //when
+    const answerEvent = {
+      target: {
+        value: "questionValue"
+      }
+    }
+    wrapper.instance().onFlashcardAnswerFormChange(0, answerEvent);
+    //when & then
+    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": ["questionValue"], "question": ""});
+  });
 
-    it('should return false on validation check given empty question', () => {
-      //given
-      const wrapper = setup();
-      const questionEvent = {
-        target: {
-          name: "question",
-          value: "questionValue"
-        }
-      }
-      wrapper.instance().onFlashcardQuestionFormChange(questionEvent);
-      //when
-      let flashcardIsValid = wrapper.instance().newFlashcardIsValid();
-      //then
-      expect(flashcardIsValid).toEqual(false);
-    });
+  it('should add one more answer on demand', () => {
+    //given
+    const wrapper = setup();
+    //when
+    wrapper.instance().addOneMoreAnswer();
+    //when & then
+    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": ["", ""], "question": ""});
+  });
 
-    it('should return true on validation check given correct flashcard', () => {
-      //given
-      const wrapper = setup();
-      const questionEvent = {
-        target: {
-          name: "question",
-          value: "questionValue"
-        }
+  it('should add one more answer on demand given existing answer', () => {
+    //given
+    const wrapper = setup();
+    const answerEvent = {
+      target: {
+        value: "questionValue"
       }
-      wrapper.instance().onFlashcardQuestionFormChange(questionEvent);
-      const answerEvent = {
-        target: {
-          name: "answer",
-          value: "answerValue"
-        }
+    }
+    wrapper.instance().onFlashcardAnswerFormChange(0, answerEvent);
+    //when
+    wrapper.instance().addOneMoreAnswer();
+    //when & then
+    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": ["questionValue", ""], "question": ""});
+  });
+
+  it('should return false on validation check given empty flashcard', () => {
+    //given
+    const wrapper = setup();
+    //when & then
+    expect(wrapper.instance().newFlashcardIsValid()).toEqual(false);
+  });
+
+  it('should return false on validation check given empty question', () => {
+    //given
+    const wrapper = setup();
+    const questionEvent = {
+      target: {
+        name: "question",
+        value: "questionValue"
       }
-      wrapper.instance().onFlashcardQuestionFormChange(answerEvent);
-      //when
-      let flashcardIsValid = wrapper.instance().newFlashcardIsValid();
-      //then
-      expect(flashcardIsValid).toEqual(true);
-    });
+    }
+    wrapper.instance().onFlashcardQuestionFormChange(questionEvent);
+    //when
+    let flashcardIsValid = wrapper.instance().newFlashcardIsValid();
+    //then
+    expect(flashcardIsValid).toEqual(false);
+  });
+
+  it('should return true on validation check given correct flashcard', () => {
+    //given
+    const wrapper = setup();
+    const questionEvent = {
+      target: {
+        name: "question",
+        value: "questionValue"
+      }
+    }
+    wrapper.instance().onFlashcardQuestionFormChange(questionEvent);
+    const answerEvent = {
+      target: {
+        name: "answer",
+        value: "answerValue"
+      }
+    }
+    wrapper.instance().onFlashcardQuestionFormChange(answerEvent);
+    //when
+    let flashcardIsValid = wrapper.instance().newFlashcardIsValid();
+    //then
+    expect(flashcardIsValid).toEqual(true);
   });
 
 });

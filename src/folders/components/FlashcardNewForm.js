@@ -15,6 +15,7 @@ const FlashcardNewForm = ({answers, onSave, onChange, onFlashcardAnswerFormChang
             return (
               <div key={index} className="input-group">
                 <input type="text"
+                       placeholder={"Answer " + (index + 1)}
                        className="form-control mb-1"
                        onChange={onFlashcardAnswerFormChange.bind(this, index)} value={answer}/>
               </div>

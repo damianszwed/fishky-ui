@@ -93,8 +93,12 @@ export class FlashcardNewFormContainer extends React.Component {
       <div className="col-12 col-lg-6 mb-2">
         <FlashcardNewForm
           key={this.state.resetNewFlashcardKey}
+          answers = {this.state.newFlashcard.answers}
           onSave={this.saveFlashcard}
           onChange={this.onFlashcardQuestionFormChange}
+          onFlashcardAnswerFormChange = {this.onFlashcardAnswerFormChange}
+          onAddOneMoreAnswer={this.addOneMoreAnswer}
+          onRevokeAnswer={this.revokeAnswer}
         />
       </div>
     )

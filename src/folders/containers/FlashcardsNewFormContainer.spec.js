@@ -1,6 +1,6 @@
 import React from 'react';
 import expect from 'expect';
-import {FlashcardFolderContainer} from './FlashcardFolderContainer';
+import {FlashcardNewFormContainer} from './FlashcardNewFormContainer';
 
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
@@ -17,21 +17,18 @@ global.window = doc.defaultView;
 
 function setup() {
   const props = {
-    flashcardFolders: [],
     actions: {
       saveFlashcard: () => {
         return Promise.resolve();
       }
     },
-    loadingFlashcardFolders: false,
-    match: {params: {}},
-    history: {}
+    flashcardFolderId: "flashcardFolderIdValue"
   };
 
-  return mount(<FlashcardFolderContainer {...props} />);
+  return mount(<FlashcardNewFormContainer {...props} />);
 }
 
-describe('Flashcards Folder Container Page', () => {
+describe('Flashcards New Form Container Page', () => {
   it('doesnt change flashcard key', () => {
 
     const wrapper = setup();

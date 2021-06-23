@@ -43,7 +43,7 @@ describe('Flashcards New Form Container Page', () => {
     //given
     const wrapper = setup();
     //when & then
-    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": [""], "question": ""});
+    expect(wrapper.state().newFlashcard).toEqual({"answers": [""], "question": ""});
   });
 
   it('should set answer on flashcard answer form change', () => {
@@ -52,12 +52,12 @@ describe('Flashcards New Form Container Page', () => {
     //when
     const answerEvent = {
       target: {
-        value: "questionValue"
+        value: "answerValue"
       }
     }
     wrapper.instance().onFlashcardAnswerFormChange(0, answerEvent);
     //when
-    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": ["questionValue"], "question": ""});
+    expect(wrapper.state().newFlashcard).toEqual({"answers": ["answerValue"], "question": ""});
   });
 
   it('should add one more answer on demand', () => {
@@ -66,7 +66,7 @@ describe('Flashcards New Form Container Page', () => {
     //when
     wrapper.instance().addOneMoreAnswer();
     //when
-    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": ["", ""], "question": ""});
+    expect(wrapper.state().newFlashcard).toEqual({"answers": ["", ""], "question": ""});
   });
 
   it('should add one more answer on demand given existing answer', () => {
@@ -74,14 +74,14 @@ describe('Flashcards New Form Container Page', () => {
     const wrapper = setup();
     const answerEvent = {
       target: {
-        value: "questionValue"
+        value: "answerValue"
       }
     }
     wrapper.instance().onFlashcardAnswerFormChange(0, answerEvent);
     //when
     wrapper.instance().addOneMoreAnswer();
     //when
-    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": ["questionValue", ""], "question": ""});
+    expect(wrapper.state().newFlashcard).toEqual({"answers": ["answerValue", ""], "question": ""});
   });
 
   it('should not revoke first answer given two answers', () => {
@@ -98,7 +98,7 @@ describe('Flashcards New Form Container Page', () => {
     wrapper.instance().revokeAnswer();
     wrapper.instance().revokeAnswer();
     //when & then
-    expect(wrapper.state().newFlashcard).toEqual({"answer": "", "answers": ["questionValue"], "question": ""});
+    expect(wrapper.state().newFlashcard).toEqual({"answers": ["questionValue"], "question": ""});
   });
 
   it('should return false on validation check given empty flashcard', () => {
@@ -108,7 +108,7 @@ describe('Flashcards New Form Container Page', () => {
     expect(wrapper.instance().newFlashcardIsValid()).toEqual(false);
   });
 
-  it('should return false on validation check given empty question', () => {
+  it('should return false on validation check given empty answer', () => {
     //given
     const wrapper = setup();
     const questionEvent = {
@@ -136,11 +136,10 @@ describe('Flashcards New Form Container Page', () => {
     wrapper.instance().onFlashcardQuestionFormChange(questionEvent);
     const answerEvent = {
       target: {
-        name: "answer",
         value: "answerValue"
       }
     }
-    wrapper.instance().onFlashcardQuestionFormChange(answerEvent);
+    wrapper.instance().onFlashcardAnswerFormChange(0, answerEvent);
     //when
     let flashcardIsValid = wrapper.instance().newFlashcardIsValid();
     //then

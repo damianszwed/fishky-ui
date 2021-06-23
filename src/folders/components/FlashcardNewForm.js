@@ -8,8 +8,6 @@ const FlashcardNewForm = ({answers, onSave, onChange, onFlashcardAnswerFormChang
         <h5 className="card-title">New flashcard</h5>
         <input type="text" className="form-control mb-1" placeholder="Question"
                name="question" onChange={onChange}/>
-        <input type="text" className="form-control mb-1" placeholder="Answer"
-               name="answer" onChange={onChange}/>
         {
           answers.map((answer, index) => {
             return (

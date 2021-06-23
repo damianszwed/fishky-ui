@@ -64,7 +64,13 @@ export class FlashcardNewFormContainer extends React.Component {
   }
 
   revokeAnswer() {
-
+    let answers = this.state.newFlashcard.answers.slice();
+    if(answers.length === 1) {
+      return;
+    }
+    let newFlashcard = Object.assign({}, this.state.newFlashcard);
+    newFlashcard.answers = answers.slice(0,-1);
+    return this.setState({newFlashcard: newFlashcard});
   }
 
   saveFlashcard(event) {

@@ -15,7 +15,6 @@ export class FlashcardNewFormContainer extends React.Component {
     this.state = {
       newFlashcard: Object.assign({
         question: "",
-        answer: "",
         answers: [""]
       }, props.newFlashcard),
       resetNewFlashcardKey: 0,
@@ -23,14 +22,13 @@ export class FlashcardNewFormContainer extends React.Component {
     };
 
     this.onFlashcardQuestionFormChange = this.onFlashcardQuestionFormChange.bind(this);
-    this.onFlashcardAnswerFormChange = this.onFlashcardAnswerFormChange.bind(this);
     this.addOneMoreAnswer = this.addOneMoreAnswer.bind(this);
     this.revokeAnswer = this.revokeAnswer.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
   }
 
   newFlashcardIsValid() {
-    if (!this.state.newFlashcard.question || !this.state.newFlashcard.answer) {
+    if (!this.state.newFlashcard.question || !this.state.newFlashcard.answers[0]) {
       toastr.warning("You cannot add empty flashcard");
       return false;
     }

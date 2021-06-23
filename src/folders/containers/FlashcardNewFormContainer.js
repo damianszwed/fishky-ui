@@ -23,6 +23,7 @@ export class FlashcardNewFormContainer extends React.Component {
     };
 
     this.onFlashcardQuestionFormChange = this.onFlashcardQuestionFormChange.bind(this);
+    this.onFlashcardAnswerFormChange = this.onFlashcardAnswerFormChange.bind(this);
     this.addOneMoreAnswer = this.addOneMoreAnswer.bind(this);
     this.revokeAnswer = this.revokeAnswer.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
@@ -44,14 +45,22 @@ export class FlashcardNewFormContainer extends React.Component {
   }
 
   onFlashcardAnswerFormChange(index, event) {
-    const field = event.target.name;
+    let answers = this.state.newFlashcard.answers.slice();
+    answers[index] = event.target.value;
+
     let newFlashcard = Object.assign({}, this.state.newFlashcard);
-    newFlashcard[field] = event.target.value;
+    newFlashcard.answers = answers;
     return this.setState({newFlashcard: newFlashcard});
   }
 
   addOneMoreAnswer() {
-
+    let answers = this.state.newFlashcard.answers.slice();
+    let newFlashcard = Object.assign({}, this.state.newFlashcard);
+    newFlashcard.answers = [
+      ...answers,
+      "",
+    ];
+    return this.setState({newFlashcard: newFlashcard});
   }
 
   revokeAnswer() {

@@ -48,8 +48,8 @@ export class FlashcardFolderContainer extends React.Component {
     if(!modifiedFlashcard.question) {
       modifiedFlashcard.question = flashcard.question;
     }
-    if(!modifiedFlashcard.answer) {
-      modifiedFlashcard.answer = flashcard.answer;
+    if(!modifiedFlashcard.answer[0]) {
+      modifiedFlashcard.answer[0] = flashcard.answer[0];
     }
     this.props.actions.modifyFlashcardInFolder(modifiedFlashcard, this.state.flashcardFolderId);
     this.setState({

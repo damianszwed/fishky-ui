@@ -18,7 +18,7 @@ const FlashcardModifyModal = ({flashcard, onModify, onModifyChange}) => {
               <div className="modal-body">
                 <input type="text" className="form-control mb-1" defaultValue={flashcard.question}
                        placeholder="Question" name="question" onChange={onModifyChange}/>
-                <input type="text" className="form-control mb-1" defaultValue={flashcard.answer}
+                <input type="text" className="form-control mb-1" defaultValue={flashcard.answer[0]}
                        placeholder="Answer" name="answer" onChange={onModifyChange}/>
               </div>
               <div className="modal-footer">

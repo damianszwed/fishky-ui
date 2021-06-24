@@ -6,7 +6,7 @@ describe('flashcardReducer', () => {
     //given
     const flashcards = [{
       id: "someId",
-      answer: "someAnswer",
+      answers: ["someAnswer"],
       question: "someQuestion"
     }];
     const action = actions.startLearningShuffled(flashcards);
@@ -29,7 +29,7 @@ describe('flashcardReducer', () => {
     //given
     const flashcards = [{
       id: "someId",
-      answer: "someAnswer",
+      answers: ["someAnswer"],
       question: "someQuestion"
     }];
     const startLearningAction = actions.startLearningShuffled(flashcards);
@@ -50,7 +50,7 @@ describe('flashcardReducer', () => {
     //given
     const flashcards = [{
       id: "someId",
-      answer: "someAnswer",
+      answers: ["someAnswer"],
       question: "someQuestion"
     }];
     const submitAnswerAction = actions.submitAnswer();

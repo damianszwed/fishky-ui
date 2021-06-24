@@ -9,7 +9,7 @@ const FlashcardList = ({flashcards, onDelete, onModifyChange, onModify}) => {
         <div key={flashcard.question}>
           <Flashcard
             question={flashcard.question}
-            answer={flashcard.answer[0]}
+            answer={flashcard.answers ? flashcard.answers[0] : ""}
             flashcard={flashcard}
             onDelete={onDelete}
             onModifyChange={onModifyChange}

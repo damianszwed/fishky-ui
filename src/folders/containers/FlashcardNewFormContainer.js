@@ -22,6 +22,7 @@ export class FlashcardNewFormContainer extends React.Component {
     };
 
     this.onFlashcardQuestionFormChange = this.onFlashcardQuestionFormChange.bind(this);
+    this.onFlashcardAnswerFormChange = this.onFlashcardAnswerFormChange.bind(this);
     this.addOneMoreAnswer = this.addOneMoreAnswer.bind(this);
     this.revokeAnswer = this.revokeAnswer.bind(this);
     this.saveFlashcard = this.saveFlashcard.bind(this);
@@ -81,7 +82,10 @@ export class FlashcardNewFormContainer extends React.Component {
     this.props.actions.saveFlashcardInFolder(this.state.newFlashcard, this.state.flashcardFolderId);
     this.setState({
       resetNewFlashcardKey: this.state.resetNewFlashcardKey + 1,
-      newFlashcard: {}
+      newFlashcard: {
+        question: "",
+        answers: [""]
+      }
     });
     toastr.success("Fishky saved!");
   }

@@ -20,7 +20,7 @@ export default function learningReducer(state = initialState, action) {
         array1.map(flashcard => (
           {
             id: flashcard.id + "-inverted",
-            question: flashcard.answer,
+            question: flashcard.answers[0],
             answer: flashcard.question
           }
         ))
@@ -30,7 +30,7 @@ export default function learningReducer(state = initialState, action) {
         ...initialState,
         actualQuestion: array1[0].question,
         actualQuestionId: array1[0].id,
-        expectedAnswer: array1[0].answer,
+        expectedAnswer: array1[0].answers[0],
         learningProcessEnabled: true,
         flashcardsToLearn: [...array1.splice(1), ...array2]
       };
@@ -42,7 +42,7 @@ export default function learningReducer(state = initialState, action) {
         ...initialState,
         actualQuestion: aToBArray[0].question,
         actualQuestionId: aToBArray[0].id,
-        expectedAnswer: aToBArray[0].answer,
+        expectedAnswer: aToBArray[0].answers[0],
         learningProcessEnabled: true,
         flashcardsToLearn: [...aToBArray.splice(1)]
       };
@@ -52,7 +52,7 @@ export default function learningReducer(state = initialState, action) {
         action.flashcards.map(flashcard => (
           {
             id: flashcard.id + "-inverted",
-            question: flashcard.answer,
+            question: flashcard.answers[0],
             answer: flashcard.question
           }
         ))

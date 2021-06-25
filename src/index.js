@@ -1,7 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {BrowserRouter as Router} from 'react-router-dom'
-import {applyMiddleware, createStore} from 'redux'
+import {applyMiddleware, createStore, compose} from 'redux'
 import {Provider} from 'react-redux'
 import {createLogger} from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -21,9 +21,11 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV === 'remove-th
   middleware.push(createLogger());
 }
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   reducer,
-  applyMiddleware(...middleware)
+  composeEnhancers(applyMiddleware(...middleware))
 );
 
 render(

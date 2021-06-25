@@ -73,7 +73,7 @@ export default function learningReducer(state = initialState, action) {
           ...state,
           actualQuestion: state.flashcardsToLearn[0].question,
           actualQuestionId: state.flashcardsToLearn[0].id,
-          expectedAnswer: state.flashcardsToLearn[0].answer,
+          expectedAnswer: state.flashcardsToLearn[0].answers ? state.flashcardsToLearn[0].answers[0] : state.flashcardsToLearn[0].answer,
           flashcardsToLearn: [...state.flashcardsToLearn.splice(1)]
         };
       } else {

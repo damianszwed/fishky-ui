@@ -3,13 +3,19 @@ import PropTypes from 'prop-types'
 import FlashcardDeleteModal from "./FlashcardDeleteModal";
 import FlashcardModifyModal from "./FlashcardModifyModal";
 
-const Flashcard = ({question, answer, flashcard, onDelete, onModifyChange, onModify}) => {
+const Flashcard = ({question, answers, flashcard, onDelete, onModifyChange, onModify}) => {
   return (
     <div>
       <div className="card mb-2">
         <div className="card-body">
           <h5 className="card-title">{question}</h5>
-          <p className="card-text">{answer}</p>
+          {
+            answers.map((answer) => {
+              return (
+                <p className="card-text">{answer}</p>
+              );
+            })
+          }
           <button className="btn btn-outline-success mr-1" type="button" data-toggle="modal"
                   data-target={"#modifyFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Edit
           </button>
@@ -26,7 +32,7 @@ const Flashcard = ({question, answer, flashcard, onDelete, onModifyChange, onMod
 
 Flashcard.propTypes = {
   question: PropTypes.string.isRequired,
-  answer: PropTypes.string.isRequired,
+  answers: PropTypes.array,
   flashcard: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,

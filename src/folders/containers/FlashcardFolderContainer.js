@@ -3,10 +3,9 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as flashcardFoldersActions from '../actions/flashcardFoldersActions';
-import toastr from 'toastr';
 
 import FlashcardFolderNavbar from "../components/FlashcardFolderNavbar";
-import FlashcardList from '../components/FlashcardList';
+import FlashcardListContainer from './FlashcardListContainer';
 import FlashcardNewFormContainer from './FlashcardNewFormContainer';
 import LoadingBar from '../../app/components/LoadingBar';
 import findFlashcardFolderById from "../proxy/findFlashcardFolderById";
@@ -17,46 +16,11 @@ export class FlashcardFolderContainer extends React.Component {
     super(props);
 
     this.state = {
-      modifiedFlashcard: {},
       flashcardFolderId: this.props.match.params.flashcardFolderId,
       goBack: this.props.history.goBack
     };
 
-    this.deleteFlashcard = this.deleteFlashcard.bind(this);
-    this.onModifyChangeFlashcard = this.onModifyChangeFlashcard.bind(this);
-    this.modifyFlashcard = this.modifyFlashcard.bind(this);
     this.goBack = this.goBack.bind(this);
-  }
-
-  deleteFlashcard(flashcard) {
-    this.props.actions.deleteFlashcardFromFolder(flashcard, this.state.flashcardFolderId);
-    toastr.success("The flashcard has been removed.");
-  }
-
-  onModifyChangeFlashcard(event) {
-    const field = event.target.name;
-    let modifiedFlashcard = Object.assign({}, this.state.modifiedFlashcard);
-    modifiedFlashcard[field] = event.target.value;
-    return this.setState({modifiedFlashcard: modifiedFlashcard});
-  }
-
-  modifyFlashcard(event, flashcard) {
-    event.preventDefault();
-
-    let modifiedFlashcard = Object.assign({}, this.state.modifiedFlashcard);
-    modifiedFlashcard.id = flashcard.id;
-    if(!modifiedFlashcard.question) {
-      modifiedFlashcard.question = flashcard.question;
-    }
-    if(!modifiedFlashcard.answer[0]) {
-      modifiedFlashcard.answer[0] = flashcard.answer[0];
-    }
-    this.props.actions.modifyFlashcardInFolder(modifiedFlashcard, this.state.flashcardFolderId);
-    this.setState({
-      modifiedFlashcard: {}
-    });
-
-    toastr.success("The flashcard has been modified.");
   }
 
   goBack() {
@@ -82,11 +46,9 @@ export class FlashcardFolderContainer extends React.Component {
             flashcardFolderId={this.state.flashcardFolderId}
           />
         </div>
-        {flashcardFolder && <FlashcardList
+        {flashcardFolder && <FlashcardListContainer
           flashcards={flashcardFolder.flashcards}
-          onDelete={this.deleteFlashcard}
-          onModifyChange={this.onModifyChangeFlashcard}
-          onModify={this.modifyFlashcard}
+          flashcardFolderId={this.state.flashcardFolderId}
         />}
         {loadingFlashcardFolders && <LoadingBar/>}
       </div>

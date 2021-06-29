@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const FlashcardModifyModal = ({flashcard, onModify, onModifyChange}) => {
+const FlashcardModifyModal = ({flashcard, onModify, onModifyChange, onFlashcardAnswerFormChange, onAddOneMoreAnswer, onRevokeAnswer}) => {
   return (
     <div>
       <form>
@@ -38,7 +38,10 @@ const FlashcardModifyModal = ({flashcard, onModify, onModifyChange}) => {
 FlashcardModifyModal.propTypes = {
   flashcard: PropTypes.object.isRequired,
   onModify: PropTypes.func.isRequired,
-  onModifyChange: PropTypes.func.isRequired
+  onModifyChange: PropTypes.func.isRequired,
+  // onFlashcardAnswerFormChange: PropTypes.func.isRequired,
+  // onAddOneMoreAnswer: PropTypes.func.isRequired,
+  // onRevokeAnswer: PropTypes.func.isRequired
 };
 
 export default FlashcardModifyModal;

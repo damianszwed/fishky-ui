@@ -17,8 +17,7 @@ export class FlashcardNewFormContainer extends React.Component {
         question: "",
         answers: [""]
       }, props.newFlashcard),
-      resetNewFlashcardKey: 0,
-      flashcardFolderId: this.props.flashcardFolderId
+      resetNewFlashcardKey: 0
     };
 
     this.onFlashcardQuestionFormChange = this.onFlashcardQuestionFormChange.bind(this);
@@ -79,7 +78,7 @@ export class FlashcardNewFormContainer extends React.Component {
       return;
     }
 
-    this.props.actions.saveFlashcardInFolder(this.state.newFlashcard, this.state.flashcardFolderId);
+    this.props.actions.saveFlashcardInFolder(this.state.newFlashcard, this.props.flashcardFolderId);
     this.setState({
       resetNewFlashcardKey: this.state.resetNewFlashcardKey + 1,
       newFlashcard: {

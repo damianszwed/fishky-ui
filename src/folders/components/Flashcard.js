@@ -10,11 +10,11 @@ const Flashcard = ({question, answers, flashcard, onDelete, onModifyChange, onMo
         <div className="card-body">
           <h5 className="card-title">{question}</h5>
           {
-            answers.map((answer) => {
+            answers ? answers.map((answer) => {
               return (
-                <p className="card-text">{answer}</p>
+                <p key={flashcard.id.replace(/=/g, '-') + answer} className="card-text">{answer}</p>
               );
-            })
+            }) : ""
           }
           <button className="btn btn-outline-success mr-1" type="button" data-toggle="modal"
                   data-target={"#modifyFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Edit

@@ -4,7 +4,8 @@ const initialState = {
   learningProcessEnabled: false,
   actualQuestion: "here-will-be-question",
   actualQuestionId: "here-will-be-actual-question-id",
-  expectedAnswer: "here-will-be-expected-answer",
+  expectedAnswer: "here-will-be-expected-answer",//TODO deprecated
+  expectedAnswers: ["here-will-be-expected-answer"],
   flashcardsToLearn: [],
   learningProcessFinished: false
 };
@@ -21,7 +22,8 @@ export default function learningReducer(state = initialState, action) {
           {
             id: flashcard.id + "-inverted",
             question: flashcard.answers[0],
-            answer: flashcard.question
+            answer: flashcard.question,//TODO deprecated
+            answers: [flashcard.question]
           }
         ))
       );
@@ -30,7 +32,8 @@ export default function learningReducer(state = initialState, action) {
         ...initialState,
         actualQuestion: array1[0].question,
         actualQuestionId: array1[0].id,
-        expectedAnswer: array1[0].answers[0],
+        expectedAnswer: array1[0].answers[0],//TODO deprecated
+        expectedAnswers: array1[0].answers,
         learningProcessEnabled: true,
         flashcardsToLearn: [...array1.splice(1), ...array2]
       };
@@ -42,7 +45,8 @@ export default function learningReducer(state = initialState, action) {
         ...initialState,
         actualQuestion: aToBArray[0].question,
         actualQuestionId: aToBArray[0].id,
-        expectedAnswer: aToBArray[0].answers[0],
+        expectedAnswer: aToBArray[0].answers[0],//TODO deprecated
+        expectedAnswers: aToBArray[0].answers,
         learningProcessEnabled: true,
         flashcardsToLearn: [...aToBArray.splice(1)]
       };
@@ -53,7 +57,8 @@ export default function learningReducer(state = initialState, action) {
           {
             id: flashcard.id + "-inverted",
             question: flashcard.answers[0],
-            answer: flashcard.question
+            answer: flashcard.question,//TODO deprecated
+            answers: [flashcard.question],
           }
         ))
       );
@@ -62,7 +67,8 @@ export default function learningReducer(state = initialState, action) {
         ...initialState,
         actualQuestion: bToAArray[0].question,
         actualQuestionId: bToAArray[0].id,
-        expectedAnswer: bToAArray[0].answer,
+        expectedAnswer: bToAArray[0].answer,//TODO deprecated
+        expectedAnswers: bToAArray[0].answers,
         learningProcessEnabled: true,
         flashcardsToLearn: [...bToAArray.splice(1)]
       };
@@ -73,7 +79,8 @@ export default function learningReducer(state = initialState, action) {
           ...state,
           actualQuestion: state.flashcardsToLearn[0].question,
           actualQuestionId: state.flashcardsToLearn[0].id,
-          expectedAnswer: state.flashcardsToLearn[0].answers ? state.flashcardsToLearn[0].answers[0] : state.flashcardsToLearn[0].answer,
+          expectedAnswer: state.flashcardsToLearn[0].answers ? state.flashcardsToLearn[0].answers[0] : state.flashcardsToLearn[0].answer,//TODO deprecated
+          expectedAnswers: state.flashcardsToLearn[0].answers,
           flashcardsToLearn: [...state.flashcardsToLearn.splice(1)]
         };
       } else {

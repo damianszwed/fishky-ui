@@ -33,7 +33,9 @@ class LearningContainer extends React.Component {
   };
 
   handleSubmit() {
-    if (this.state.actualAnswer && this.props.learning.expectedAnswer.toLocaleLowerCase() === this.state.actualAnswer.toLowerCase()) {
+    //TODO handle multiple answers.
+    if (this.state.actualAnswer &&
+      this.props.learning.expectedAnswer.toLocaleLowerCase().trim() === this.state.actualAnswer.toLowerCase().trim()) {
       toastr.success("Correct!");
     } else {
       toastr.error("Bad answer, expected answer is: " + this.props.learning.expectedAnswer);

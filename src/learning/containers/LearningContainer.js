@@ -32,13 +32,20 @@ class LearningContainer extends React.Component {
     return this.state;
   };
 
+  isAnswerCorrect(actualAnswer, expectedAnswers) {
+    let cleanedActualAnswer = actualAnswer.toLowerCase().trim();
+    let cleanedExpectedAnswers = expectedAnswers.map(function (expectedAnswer) {
+        return expectedAnswer.toLocaleLowerCase().trim();
+      }
+    )
+    return cleanedExpectedAnswers.includes(cleanedActualAnswer);
+  }
+
   handleSubmit() {
-    //TODO handle multiple answers.
-    if (this.state.actualAnswer &&
-      this.props.learning.expectedAnswer.toLocaleLowerCase().trim() === this.state.actualAnswer.toLowerCase().trim()) {
+    if (this.isAnswerCorrect(this.state.actualAnswer, this.props.learning.expectedAnswers)) {
       toastr.success("Correct!");
     } else {
-      toastr.error("Bad answer, expected answer is: " + this.props.learning.expectedAnswer);
+      toastr.error("Bad answer, expected answer is one of: " + this.props.learning.expectedAnswers);
     }
     this.setState({
       resetLearningQuestionKey: this.state.resetLearningQuestionKey + 1,

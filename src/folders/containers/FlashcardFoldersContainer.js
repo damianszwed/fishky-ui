@@ -22,7 +22,7 @@ export class FlashcardFoldersContainer extends React.Component {
   }
 
   newFlashcardFolderIsValid() {
-    if (!this.state.newFlashcardFolder.name) {
+    if (!this.state.newFlashcardFolder.name || /^\s*$/.test(this.state.newFlashcardFolder.name)) {
       toastr.warning("Please specify name of the fishky folder");
       return false;
     }

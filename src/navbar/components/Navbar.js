@@ -19,6 +19,9 @@ const Navbar = () => {
             <Link to="/flashcardFolders" className="nav-link">My flashcards</Link>
           </li>
           <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <Link to="/academy" className="nav-link">Academy</Link>
+          </li>
+          <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
             <Link to="/learning" className="nav-link">Learning</Link>
           </li>
         </ul>

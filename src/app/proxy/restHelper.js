@@ -2,17 +2,30 @@ const $ = require('jquery');
 
 export default {
   get: function (accessToken, url) {
-    return new Promise(function (success, error) {
-      $.ajax({
-        headers: {
-          Authorization: 'Bearer ' + accessToken
-        },
-        url: url,
-        dataType: "json",
-        success: success,
-        error: error
+    if (!accessToken || /^\s*$/.test(accessToken)) {
+      return new Promise(function (success, error) {
+        $.ajax({
+          headers: {
+          },
+          url: url,
+          dataType: "json",
+          success: success,
+          error: error
+        })
       })
-    })
+    } else {
+      return new Promise(function (success, error) {
+        $.ajax({
+          headers: {
+            Authorization: 'Bearer ' + accessToken
+          },
+          url: url,
+          dataType: "json",
+          success: success,
+          error: error
+        })
+      })
+    }
   },
   post: function (accessToken, url, data) {
     return new Promise(function (success, error) {

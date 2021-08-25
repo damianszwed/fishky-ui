@@ -6,6 +6,7 @@ import FlashcardFolderContainer from "../../folders/containers/FlashcardFolderCo
 import FlashcardDeleteFolderContainer from '../../folders/containers/FlashcardDeleteFolderContainer'
 import ChoiceFlashcardFolderLearningContainer from "../../learning/containers/ChoiceFlashcardFolderLearningContainer";
 import ChoiceModeLearningContainer from "../../learning/containers/ChoiceModeLearningContainer";
+import LibraryContainer from "../../library/containers/LibraryContainer";
 import StartLearningContainer from '../../learning/containers/StartLearningContainer'
 import Login from "../../security/containers/Login";
 import securityConfig from '../../security/securityConfiguration';
@@ -29,6 +30,7 @@ const Router = () => {
           <SecureRoute path="/learning/:flashcardFolderId" component={ChoiceModeLearningContainer}/>
           <SecureRoute path="/learning" component={ChoiceFlashcardFolderLearningContainer}/>
           <SecureRoute path="/search" component={FlashcardFoldersContainer}/>
+          <Route path="/academy" component={LibraryContainer}/>
           <Route path="/not-implemented" component={NotImplementedYet}/>
           <Route path="/about" component={About}/>
           <Route path="*" exact={true} component={NotFoundPage}/>

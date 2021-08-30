@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import LoadingBar from "../../app/components/LoadingBar";
 import * as libraryFlashcardFoldersActions from '../actions/libraryFlashcardFoldersActions';
+import LibraryFlashcardsFoldersComponent from "../components/LibraryFlashcardsFoldersComponent";
 
 export class LibraryContainer extends React.Component {
   constructor(props) {
@@ -12,15 +13,17 @@ export class LibraryContainer extends React.Component {
 
     this.state = {
     };
-
   }
 
   render() {
     const {libraryFlashcardFolders, loadingLibraryFlashcardFolders} = this.props;
     return (
       <div>
-        {!loadingLibraryFlashcardFolders && <a href="https://www.w3schools.com">Visit W3Schools {libraryFlashcardFolders.length} .</a>
-
+        <nav className="navbar navbar-light bg-light">
+          <span className="navbar-brand mb-0 h1">Here you can find the brought in folders that you can use for learning.</span>
+        </nav>
+        {!loadingLibraryFlashcardFolders && libraryFlashcardFolders &&
+          <LibraryFlashcardsFoldersComponent libraryFlashcardFolders={libraryFlashcardFolders}/>
         }
         {loadingLibraryFlashcardFolders && <LoadingBar/>}
       </div>

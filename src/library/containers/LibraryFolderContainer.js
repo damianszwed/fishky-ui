@@ -5,7 +5,9 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import LoadingBar from "../../app/components/LoadingBar";
 import * as libraryFlashcardFoldersActions from '../actions/libraryFlashcardFoldersActions';
-import LibraryFlashcardsFoldersComponent from "../components/LibraryFlashcardsFoldersComponent";
+import findFlashcardFolderById from "../proxy/findFlashcardFolderById";
+import FlashcardFolderNavbar from "../../folders/components/FlashcardFolderNavbar";
+import LibraryFlashcard from "../components/LibraryFlashcard";
 
 export class LibraryContainer extends React.Component {
   constructor(props) {
@@ -25,11 +27,38 @@ export class LibraryContainer extends React.Component {
 
   render() {
     const {libraryFlashcardFolders, loadingLibraryFlashcardFolders} = this.props;
+    const flashcardFolder = findFlashcardFolderById(libraryFlashcardFolders,
+      this.state.flashcardFolderId);
     return (
       <div>
-        {!loadingLibraryFlashcardFolders && libraryFlashcardFolders &&
-          <LibraryFlashcardsFoldersComponent libraryFlashcardFolders={libraryFlashcardFolders}/>
-        }
+        <div className="row">
+          <div className="col-12 col-lg-6 mb-2">
+            {flashcardFolder && <FlashcardFolderNavbar
+              flashcardFolderName={flashcardFolder.name}
+              goBack={this.goBack}
+            />
+            }
+          </div>
+        </div>
+        <div className="card-deck">
+          {flashcardFolder.flashcards.map(flashcard => (
+            <div key={flashcard.question}>
+              <LibraryFlashcard
+                question={flashcard.question}
+                answers={flashcard.answers}
+                flashcard={flashcard}
+                modifiedFlashcard={this.state.modifiedFlashcard}
+                onDelete={this.deleteFlashcard}
+                onModifyChange={this.onQuestionChange}
+                onModify={this.saveModifiedFlashcard}
+                onModifiedInitialization={this.onModifiedInitialization}
+                onFlashcardAnswerFormChange = {this.onFlashcardAnswerFormChange}
+                onAddOneMoreAnswer={this.addOneMoreAnswer}
+                onRevokeAnswer={this.revokeAnswer}
+              />
+            </div>
+          ))}
+        </div>
         {loadingLibraryFlashcardFolders && <LoadingBar/>}
       </div>
     )

@@ -19,11 +19,11 @@ const Flashcard = ({question, answers, flashcard, onModifiedInitialization, modi
           }
           <button className="btn btn-outline-success mr-1" type="button" data-toggle="modal"
                   data-target={"#modifyFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}
-                  onClick={() => onModifiedInitialization(flashcard)}>Edit
+                  onClick={() => onModifiedInitialization(flashcard)}>Add to cart (czy jakos tak :P)
           </button>
-          <button className="btn btn-outline-danger" type="button" data-toggle="modal"
-                  data-target={"#deleteFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Delete
-          </button>
+          {/*<button className="btn btn-outline-danger" type="button" data-toggle="modal"*/}
+          {/*        data-target={"#deleteFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}>Delete*/}
+          {/*</button>*/}
         </div>
       </div>
 

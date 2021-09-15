@@ -36,12 +36,13 @@ export class LibraryContainer extends React.Component {
             {flashcardFolder && <FlashcardFolderNavbar
               flashcardFolderName={flashcardFolder.name}
               goBack={this.goBack}
+              flashcardFolderIdToCopy={flashcardFolder.id}
             />
             }
           </div>
         </div>
         <div className="card-deck">
-          {flashcardFolder.flashcards.map(flashcard => (
+          {flashcardFolder && flashcardFolder.flashcards.map(flashcard => (
             <div key={flashcard.question}>
               <LibraryFlashcard
                 question={flashcard.question}

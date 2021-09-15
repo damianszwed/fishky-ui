@@ -12,14 +12,6 @@ export const loadLibraryFlashcardFoldersSuccess = libraryFlashcardFolders => ({
 });
 
 export const loadLibraryFlashcardFolders = () => (dispatch, getState) => {
-/*
-  if(getState().sseInitialized) {
-    console.log("Application already initialized. Returning...");
-    return new Promise(function(resolve, reject) {
-        resolve("Application already initialized. Returned positive promise.");
-    });
-  }
-*/
   console.log("Invoked a loadLibraryFlashcardFolders() method that should be invoked once at the start of the application.");
   dispatch(beginLibraryFlashcardFoldersLoadingAjaxCall());
   return flashcardFoldersApi.getLibraryFlashcardFolders().then(libraryFlashcardFolders => {

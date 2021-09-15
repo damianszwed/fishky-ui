@@ -7,6 +7,7 @@ import FlashcardDeleteFolderContainer from '../../folders/containers/FlashcardDe
 import ChoiceFlashcardFolderLearningContainer from "../../learning/containers/ChoiceFlashcardFolderLearningContainer";
 import ChoiceModeLearningContainer from "../../learning/containers/ChoiceModeLearningContainer";
 import LibraryContainer from "../../library/containers/LibraryContainer";
+import LibraryCopyFolderContainer from "../../library/containers/LibraryCopyFolderContainer";
 import LibraryFolderContainer from "../../library/containers/LibraryFolderContainer";
 import StartLearningContainer from '../../learning/containers/StartLearningContainer'
 import Login from "../../security/containers/Login";
@@ -31,8 +32,9 @@ const Router = () => {
           <SecureRoute path="/learning/:flashcardFolderId" component={ChoiceModeLearningContainer}/>
           <SecureRoute path="/learning" component={ChoiceFlashcardFolderLearningContainer}/>
           <SecureRoute path="/search" component={FlashcardFoldersContainer}/>
-          <Route exact={true} path="/academy" component={LibraryContainer}/>
+          <SecureRoute path="/academy/:flashcardFolderId/copy" component={LibraryCopyFolderContainer}/>
           <Route path="/academy/:flashcardFolderId" component={LibraryFolderContainer}/>
+          <Route exact={true} path="/academy" component={LibraryContainer}/>
           <Route path="/not-implemented" component={NotImplementedYet}/>
           <Route path="/about" component={About}/>
           <Route path="*" exact={true} component={NotFoundPage}/>

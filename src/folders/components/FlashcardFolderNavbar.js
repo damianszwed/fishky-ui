@@ -7,9 +7,9 @@ const FlashcardFolderNavbar = ({goBack, flashcardFolderName, flashcardFolderIdTo
     <div className="card-body">
       <h5 className="card-title">Flaschard folder</h5>
       <p className="card-text">{flashcardFolderName}</p>
-      <button className="btn btn-outline-primary col-lg-3 col-sm-12 mr-1" onClick={() => goBack()}>Go back</button>
+      <button className="btn btn-outline-primary col-lg-4 col-sm-12 mr-1" onClick={() => goBack()}>Go back</button>
       {flashcardFolderIdToCopy && <Link to={`/academy/${flashcardFolderIdToCopy}/copy`}
-            className="btn btn-outline-success col-lg-3 col-sm-12">Copy to me</Link> }
+            className="btn btn-outline-success col-lg-4 col-sm-12">Copy to me</Link> }
     </div>
   </div>
 );

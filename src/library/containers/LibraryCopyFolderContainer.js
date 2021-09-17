@@ -47,12 +47,12 @@ export class LibraryCopyFolderContainer extends React.Component {
               operation</h6>
             <p className="card-text">Make a copy to me.</p>
             <button type="button"
-                    className="btn btn-outline-success col-3 mr-1"
+                    className="btn btn-outline-success col-lg-3 mr-1"
                     onClick={() => this.copyLibraryFolder(flashcardFolder)}>
               Copy the entire folder
             </button>
             <button type="button"
-                    className="btn btn-outline-primary col-3"
+                    className="btn btn-outline-primary col-lg-3"
                     onClick={() => this.goBack()}>
               Go back
             </button>

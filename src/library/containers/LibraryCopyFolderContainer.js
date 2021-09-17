@@ -24,7 +24,8 @@ export class LibraryCopyFolderContainer extends React.Component {
   copyLibraryFolder(flashcardFolder) {
     this.props.actions.copyLibraryFolder(flashcardFolder);
     toastr.success("Flashcard has been removed");//TODO(Damian.Szwed) text
-    this.state.goBack();
+    this.state.goBack();//TODO(Damian.Szwed) maybe it should go to /flashcardFolders ??
+    //TODO(Damian.Szwed) ^^^ https://stackoverflow.com/a/43230829
   }
 
   goBack() {

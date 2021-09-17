@@ -23,7 +23,7 @@ export class FlashcardDeleteFolderContainer extends React.Component {
 
   deleteFlashcardFolder(flashcardFolder) {
     this.props.actions.deleteFlashcardFolder(flashcardFolder);
-    toastr.success("Flashcard has been removed");
+    toastr.success("Flashcard folder has been removed");
     this.state.goBack();
   }
 

@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import flashcardFoldersApi from '../proxy/libraryFlashcardFoldersApi'
+import libraryFlashcardFoldersApi from '../proxy/libraryFlashcardFoldersApi'
 import {
   beginLibraryFlashcardFoldersLoadingAjaxCall,
   endLibraryFlashcardFoldersLoadingAjaxCall,
@@ -14,12 +14,20 @@ export const loadLibraryFlashcardFoldersSuccess = libraryFlashcardFolders => ({
 export const loadLibraryFlashcardFolders = () => (dispatch, getState) => {
   console.log("Invoked a loadLibraryFlashcardFolders() method that should be invoked once at the start of the application.");
   dispatch(beginLibraryFlashcardFoldersLoadingAjaxCall());
-  return flashcardFoldersApi.getLibraryFlashcardFolders().then(libraryFlashcardFolders => {
+  return libraryFlashcardFoldersApi.getLibraryFlashcardFolders().then(libraryFlashcardFolders => {
     dispatch(endLibraryFlashcardFoldersLoadingAjaxCall());
     dispatch(loadLibraryFlashcardFoldersSuccess(libraryFlashcardFolders));
     return "Loaded library flashcard folders.";
   }).catch(error => {
     dispatch(libraryFlashcardFoldersLoadingAjaxCallError(error));
+    throw(error);
+  });
+};
+
+export const copyLibraryFolder = (flashcardFolder) => (dispatch, getState) => {
+  return libraryFlashcardFoldersApi.copyLibraryFolder(getState().security.accessToken, flashcardFolder).then(() => {
+    return "Copied library folder.";
+  }).catch(error => {
     throw(error);
   });
 };

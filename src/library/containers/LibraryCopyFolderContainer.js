@@ -22,8 +22,12 @@ export class LibraryCopyFolderContainer extends React.Component {
   }
 
   copyLibraryFolder(flashcardFolder) {
-    this.props.actions.copyLibraryFolder(flashcardFolder);
-    toastr.success("Flashcard has been removed");//TODO(Damian.Szwed) text
+    this.props.actions.copyLibraryFolder(flashcardFolder).then(function (message) {
+      console.log(message);
+      toastr.success("The flashcard folder has been copied successfully.");
+    }, function (err) {
+      toastr.error("Critical error. Please contact with the administrator.");
+    });
     this.state.goBack();//TODO(Damian.Szwed) maybe it should go to /flashcardFolders ??
     //TODO(Damian.Szwed) ^^^ https://stackoverflow.com/a/43230829
   }

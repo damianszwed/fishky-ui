@@ -44,7 +44,8 @@ export default {
           console.log('textStatus:');
           console.log(textStatus);
           console.log('errorThrown:');
-          console.log(errorThrown);
+          console.log(errorThrown)
+          error(jqXHR, textStatus, errorThrown);
         }
       })
     })

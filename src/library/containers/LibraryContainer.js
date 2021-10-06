@@ -40,8 +40,8 @@ LibraryContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  libraryFlashcardFolders: state.libraryFlashcardFolders,
   actions: PropTypes.object.isRequired,
+  libraryFlashcardFolders: state.libraryFlashcardFolders,
   loadingLibraryFlashcardFolders: state.loadingLibraryFlashcardFolders
 });
 

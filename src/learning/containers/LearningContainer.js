@@ -91,19 +91,12 @@ class LearningContainer extends React.Component {
 
 LearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
-  loadingFlashcards: PropTypes.bool.isRequired,
-  learning: PropTypes.object.isRequired,
-  flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  })).isRequired
+  learning: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
-  loadingFlashcards: state.loadingFlashcards,
-  learning: state.learning,
-  flashcardFolders: state.flashcardFolders
+  learning: state.learning
 });
 
 function mapDispatchToProps(dispatch) {

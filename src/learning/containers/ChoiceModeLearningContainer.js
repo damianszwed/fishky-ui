@@ -30,14 +30,15 @@ class ChoiceModeLearningContainer extends React.Component {
   }
 
   render() {
-    const {flashcardFolders, loadingFlashcardFolders} = this.props;
-    const flashcardFolder = findFlashcardFolderById(flashcardFolders,
-      this.state.flashcardFolderId);
+    const {loadingFlashcardFolders, loadingLibraryFlashcardFolders, flashcardFolders, libraryFlashcardFolders} = this.props;
+    const ownedFlashcardFolder = findFlashcardFolderById(flashcardFolders, this.state.flashcardFolderId);
+    const broughtInFlashcardFolder = findFlashcardFolderById(libraryFlashcardFolders, this.state.flashcardFolderId);
+    const flashcardFolder = ownedFlashcardFolder ? ownedFlashcardFolder : broughtInFlashcardFolder;
 
     return (
       <div>
-        {loadingFlashcardFolders && <LoadingBar/>}
-        {!loadingFlashcardFolders && flashcardFolder && flashcardFolder.flashcards.length !== 0 &&
+        {(loadingFlashcardFolders || loadingLibraryFlashcardFolders) && <LoadingBar/>}
+        {flashcardFolder && flashcardFolder.flashcards.length !== 0 &&
         <div>
           <nav className="navbar navbar-light bg-light mb-3">
             <span className="navbar-brand mb-0 h1">How do you want to learn?</span>
@@ -53,7 +54,7 @@ class ChoiceModeLearningContainer extends React.Component {
           <button className="btn btn-outline-danger btn-block" onClick={this.goBack}>Go back</button>
         </div>
         }
-        {!loadingFlashcardFolders && flashcardFolder && flashcardFolder.flashcards.length === 0 &&
+        {flashcardFolder && flashcardFolder.flashcards.length === 0 &&
         <div>
           <nav className="navbar navbar-light bg-light mb-3">
             <span className="navbar-brand mb-0 h1">Chosen empty fishky folder.</span>
@@ -68,17 +69,24 @@ class ChoiceModeLearningContainer extends React.Component {
 
 ChoiceModeLearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadingFlashcardFolders: PropTypes.bool.isRequired,
+  loadingLibraryFlashcardFolders: PropTypes.bool.isRequired,
   flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })).isRequired,
-  loadingFlashcardFolders: PropTypes.bool.isRequired
+  libraryFlashcardFolders: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  })).isRequired
 };
 
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
+  loadingFlashcardFolders: state.loadingFlashcardFolders,
+  loadingLibraryFlashcardFolders: state.loadingLibraryFlashcardFolders,
   flashcardFolders: state.flashcardFolders,
-  loadingFlashcardFolders: state.loadingFlashcardFolders
+  libraryFlashcardFolders: state.libraryFlashcardFolders
 });
 
 function mapDispatchToProps(dispatch) {

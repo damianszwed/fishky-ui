@@ -36,13 +36,15 @@ class StartLearningContainer extends React.Component {
   };
 
   render() {
-    const {loadingFlashcardFolders, flashcardFolders, learning} = this.props;
-    const flashcardFolder = findFlashcardFolderById(flashcardFolders, this.state.flashcardFolderId);
+    const {loadingFlashcardFolders, loadingLibraryFlashcardFolders, flashcardFolders, libraryFlashcardFolders, learning} = this.props;
+    const ownedFlashcardFolder = findFlashcardFolderById(flashcardFolders, this.state.flashcardFolderId);
+    const broughtInFlashcardFolder = findFlashcardFolderById(libraryFlashcardFolders, this.state.flashcardFolderId);
+    const flashcardFolder = ownedFlashcardFolder ? ownedFlashcardFolder : broughtInFlashcardFolder;
 
     return (
       <div>
-        {loadingFlashcardFolders && <LoadingBar/>}
-        {!learning.learningProcessEnabled && !loadingFlashcardFolders && flashcardFolder &&
+        {(loadingFlashcardFolders || loadingLibraryFlashcardFolders) && <LoadingBar/>}
+        {!learning.learningProcessEnabled && flashcardFolder &&
         <div>
           <nav className="navbar navbar-light bg-light mb-3">
             <span className="navbar-brand mb-0 h1">{flashcardFolder.name}</span>
@@ -66,7 +68,12 @@ StartLearningContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   learning: PropTypes.object.isRequired,
   loadingFlashcardFolders: PropTypes.bool.isRequired,
+  loadingLibraryFlashcardFolders: PropTypes.bool.isRequired,
   flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  })).isRequired,
+  libraryFlashcardFolders: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })).isRequired
@@ -76,7 +83,9 @@ const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
   learning: state.learning,
   loadingFlashcardFolders: state.loadingFlashcardFolders,
-  flashcardFolders: state.flashcardFolders
+  loadingLibraryFlashcardFolders: state.loadingLibraryFlashcardFolders,
+  flashcardFolders: state.flashcardFolders,
+  libraryFlashcardFolders: state.libraryFlashcardFolders
 });
 
 function mapDispatchToProps(dispatch) {

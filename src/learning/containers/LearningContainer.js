@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 import LearningQuestion from '../components/LearningQuestion';
 import * as learningActions from '../actions/learningActions';
@@ -81,8 +81,11 @@ class LearningContainer extends React.Component {
         {
           //TODO statistic will be nice!
           learning.learningProcessFinished &&
-          <button className="btn btn-outline-primary btn-block" onClick={() => this.tryAgain()}>Try
-            again!</button>
+          <div>
+            <button className="btn btn-outline-primary btn-block" onClick={() => this.tryAgain()}>Try again!</button>
+            <Link to={`/learning`} className="btn btn-outline-danger btn-block">Go back</Link>
+          </div>
+
         }
       </div>
     )

@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from "react-router-dom";
 
-const FlashcardFoldersToLearn = ({flashcardFolders}) => {
+const FlashcardFoldersToLearn = ({flashcardFolders, navbarText}) => {
   return (
     <div>
-      <nav className="navbar navbar-light bg-light mb-3">
-        <span className="navbar-brand mb-0 h1">Choose fishky folder to learn:</span>
+      <nav className="navbar navbar-light bg-light mb-3 mt-3">
+        <span className="navbar-brand mb-0 h1">{navbarText}</span>
       </nav>
       {flashcardFolders.map(flashcardFolder => (
         <Link to={`/learning/${flashcardFolder.id}`}
@@ -21,10 +21,11 @@ const FlashcardFoldersToLearn = ({flashcardFolders}) => {
 };
 
 FlashcardFoldersToLearn.propTypes = {
-  flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  })).isRequired
+    flashcardFolders: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+    })).isRequired,
+    navbarText: PropTypes.string.isRequired
 };
 
 export default FlashcardFoldersToLearn;

@@ -41,7 +41,7 @@ class ChoiceModeLearningContainer extends React.Component {
         {flashcardFolder && flashcardFolder.flashcards.length !== 0 &&
         <div>
           <nav className="navbar navbar-light bg-light mb-3">
-            <span className="navbar-brand mb-0 h1">How do you want to learn?</span>
+            <span className="navbar-brand mb-0 h1">{flashcardFolder.name} - How do you want to learn?</span>
           </nav>
           {MODES.map(mode => (
             <Link to={`/learning/${this.state.flashcardFolderId}/mode/${mode.mode}`}

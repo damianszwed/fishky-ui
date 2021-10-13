@@ -37,8 +37,9 @@ export class FlashcardFolderContainer extends React.Component {
         <div className="row">
           <div className="col-12 col-lg-6 mb-2">
             {flashcardFolder && <FlashcardFolderNavbar
-              flashcardFolderName={flashcardFolder.name}
               goBack={this.goBack}
+              flashcardFolderName={flashcardFolder.name}
+              flashcardFolderId={flashcardFolder.id}
             />
             }
           </div>

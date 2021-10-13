@@ -34,9 +34,10 @@ export class LibraryContainer extends React.Component {
         <div className="row">
           <div className="col-12 col-lg-6 mb-2">
             {flashcardFolder && <FlashcardFolderNavbar
-              flashcardFolderName={flashcardFolder.name}
               goBack={this.goBack}
-              flashcardFolderIdToCopy={flashcardFolder.id}
+              flashcardFolderName={flashcardFolder.name}
+              flashcardFolderId={flashcardFolder.id}
+              copyToMe={true}
             />
             }
           </div>

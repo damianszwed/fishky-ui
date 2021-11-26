@@ -5,7 +5,8 @@
 Frontend for fishky
 
 ## node --version
-v16.3.0
+v16.13.0
 
 ## npm --version
-7.15.1
+8.1.0
+

@@ -19,7 +19,7 @@ export default {
       },
       {
         type: "LINKEDIN",
-        id: "0oawb73id71gmSHu40h7"
+        id: "0oa15of4fyvljFisK0h8"
       }
     ]
   }

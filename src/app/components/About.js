@@ -14,7 +14,7 @@ const About = () => {
             <ul className="list-group list-group-flush">
               <li className="list-group-item">Engineer - Damian Szwed</li>
               <li className="list-group-item">Product Owner, Tester - Joanna Szwed</li>
-              <li className="list-group-item">Fronted - React, Redux, Bootstrap, NPM</li>
+              <li className="list-group-item">Frontend - React, Redux, Bootstrap, NPM</li>
               <li className="list-group-item">Backend - Java 11, Gradle, Spring Boot (WebFlux, Security OAuth2, Data), MongoDB, Docker, Kubernetes</li>
             </ul>
             <a href="https://www.linkedin.com/in/damian-szwed/" className="card-link">Damian on LinkedIn</a>

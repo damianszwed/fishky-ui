@@ -12,7 +12,8 @@ export class FlashcardListContainer extends React.Component {
     super(props);
 
     this.state = {
-      modifiedFlashcard: {}
+      modifiedFlashcard: {},
+      markedFolder: null
     };
 
     this.deleteFlashcard = this.deleteFlashcard.bind(this);
@@ -23,6 +24,9 @@ export class FlashcardListContainer extends React.Component {
     this.addOneMoreAnswer = this.addOneMoreAnswer.bind(this);
     this.revokeAnswer = this.revokeAnswer.bind(this);
     this.onFlashcardAnswerFormChange = this.onFlashcardAnswerFormChange.bind(this);
+
+    this.moveFlashcard = this.moveFlashcard.bind(this);
+    this.moveResetState = this.moveResetState.bind(this);
   }
 
   deleteFlashcard(flashcard) {
@@ -96,16 +100,42 @@ export class FlashcardListContainer extends React.Component {
     toastr.success("The flashcard has been modified.");
   }
 
+  moveResetState() {
+    this.setState({
+      modifiedFlashcard: {},
+      markedFolder: null
+    });
+  }
+
+  moveFlashcard(event, flashcard, flashcardFolder) {
+    event.preventDefault();
+
+    if(this.state.markedFolder === flashcardFolder) {
+      this.setState({
+        modifiedFlashcard: {},
+        markedFolder: null
+      });
+      toastr.success("The flashcard will be moved to " + flashcardFolder.name + ".");
+    } else {
+      this.setState({
+        modifiedFlashcard: {},
+        markedFolder: flashcardFolder
+      });
+    }
+  }
+
   render() {
     return (
       <div className="card-deck">
         {this.props.flashcards.map(flashcard => (
           <div key={flashcard.question}>
             <Flashcard
+              flashcardFolders={this.props.flashcardFolders}
               question={flashcard.question}
               answers={flashcard.answers}
               flashcard={flashcard}
               modifiedFlashcard={this.state.modifiedFlashcard}
+              markedFolder={this.state.markedFolder}
               onDelete={this.deleteFlashcard}
               onModifyChange={this.onQuestionChange}
               onModify={this.saveModifiedFlashcard}
@@ -113,6 +143,8 @@ export class FlashcardListContainer extends React.Component {
               onFlashcardAnswerFormChange = {this.onFlashcardAnswerFormChange}
               onAddOneMoreAnswer={this.addOneMoreAnswer}
               onRevokeAnswer={this.revokeAnswer}
+              onMove={this.moveFlashcard}
+              onMoveResetState={this.moveResetState}
             />
           </div>
         ))}
@@ -122,6 +154,7 @@ export class FlashcardListContainer extends React.Component {
 }
 
 FlashcardListContainer.propTypes = {
+  flashcardFolders: PropTypes.array,
   flashcards: PropTypes.array,
   flashcardFolderId: PropTypes.string.isRequired
 };

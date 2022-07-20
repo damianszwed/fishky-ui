@@ -14,10 +14,6 @@ const Flashcard = ({question, answers, flashcard}) => {
               );
             })
           }
-          {/*<button className="btn btn-outline-success mr-1" type="button" data-toggle="modal"*/}
-          {/*        data-target={"#modifyFlashcardModalDataTarget" + flashcard.id.replace(/=/g, '-')}*/}
-          {/*        onClick={() => onModifiedInitialization(flashcard)}>Add to cart (czy jakos tak :P)*/}
-          {/*</button>*/}
         </div>
       </div>
     </div>

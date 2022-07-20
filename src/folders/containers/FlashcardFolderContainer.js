@@ -48,6 +48,7 @@ export class FlashcardFolderContainer extends React.Component {
           />
         </div>
         {flashcardFolder && <FlashcardListContainer
+          flashcardFolders={flashcardFolders}
           flashcards={flashcardFolder.flashcards}
           flashcardFolderId={this.state.flashcardFolderId}
         />}

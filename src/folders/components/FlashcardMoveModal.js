@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const FlashcardModifyModal = ({flashcardFolders, flashcard, markedFolder, onMove}) => {
+const FlashcardModifyModal = ({flashcardFolders, currentFolderId, flashcard, markedFolder, onMove}) => {
   return (
     <div>
       <form>
@@ -19,6 +19,7 @@ const FlashcardModifyModal = ({flashcardFolders, flashcard, markedFolder, onMove
                 {
                   flashcardFolders.map(flashcardFolder => {
                     const isMarked = markedFolder !== null && markedFolder.id === flashcardFolder.id;
+                    const isDisabled = flashcardFolder.id === currentFolderId;
                     const inputProps = {
                       'type': 'button'
                     };
@@ -26,6 +27,10 @@ const FlashcardModifyModal = ({flashcardFolders, flashcard, markedFolder, onMove
                     if (isMarked) {
                       inputProps.type = 'submit';
                       inputProps['data-dismiss'] = 'modal';
+                    }
+
+                    if (isDisabled) {
+                      inputProps['disabled'] = 'true';
                     }
 
                     return (
@@ -71,6 +76,7 @@ const FlashcardModifyModal = ({flashcardFolders, flashcard, markedFolder, onMove
 
 FlashcardModifyModal.propTypes = {
   flashcardFolders: PropTypes.array.isRequired,
+  currentFolderId: PropTypes.string.isRequired,
   flashcard: PropTypes.object.isRequired,
   markedFolder: PropTypes.object.isRequired,
   onMove: PropTypes.func.isRequired

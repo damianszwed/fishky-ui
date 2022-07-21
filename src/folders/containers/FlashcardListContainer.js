@@ -110,11 +110,13 @@ export class FlashcardListContainer extends React.Component {
   moveFlashcard(event, flashcard, flashcardFolder) {
     event.preventDefault();
 
-    if(this.state.markedFolder === flashcardFolder) {
+    if (this.state.markedFolder === flashcardFolder) {
       this.setState({
         modifiedFlashcard: {},
         markedFolder: null
       });
+      this.props.actions.deleteFlashcardFromFolder(flashcard, this.props.flashcardFolderId);
+      this.props.actions.saveFlashcardInFolder(flashcard, flashcardFolder.id);
       toastr.success("The flashcard will be moved to " + flashcardFolder.name + ".");
     } else {
       this.setState({
@@ -131,6 +133,7 @@ export class FlashcardListContainer extends React.Component {
           <div key={flashcard.question}>
             <Flashcard
               flashcardFolders={this.props.flashcardFolders}
+              currentFolderId={this.props.flashcardFolderId}
               question={flashcard.question}
               answers={flashcard.answers}
               flashcard={flashcard}

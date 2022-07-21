@@ -6,6 +6,7 @@ import FlashcardMoveModal from "./FlashcardMoveModal";
 
 const Flashcard = ({
                      flashcardFolders,
+                     currentFolderId,
                      question,
                      answers,
                      flashcard,
@@ -55,6 +56,7 @@ const Flashcard = ({
                             onAddOneMoreAnswer={onAddOneMoreAnswer}
                             onRevokeAnswer={onRevokeAnswer}/>
       <FlashcardMoveModal flashcardFolders={flashcardFolders}
+                          currentFolderId={currentFolderId}
                           flashcard={flashcard}
                           markedFolder={markedFolder}
                           onMove={onMove}/>
@@ -63,6 +65,8 @@ const Flashcard = ({
 };
 
 Flashcard.propTypes = {
+  flashcardFolders: PropTypes.array.isRequired,
+  currentFolderId: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   answers: PropTypes.array,
   flashcard: PropTypes.object.isRequired,

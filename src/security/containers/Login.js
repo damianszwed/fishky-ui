@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
-import OktaSignInWidget from '../components/OktaSignInWidget';
 import {withOktaAuth} from '@okta/okta-react';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import * as securityActions from "../actions/securityActions";
 import {connect} from "react-redux";
 
+/**
+ * @deprecated don't use it, because there will be used different security flow
+ */
 export class Login extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ export class Login extends Component {
   }
 
   async checkAuthentication() {
-    const authenticated = await this.props.authService.isAuthenticated;
+    const authenticated = await this.props.oktaAuth.isAuthenticated;
     if (authenticated !== this.state.authenticated) {
       this.setState({authenticated});
 
@@ -32,7 +34,7 @@ export class Login extends Component {
 
   onSuccess(res) {
     if (res.status === 'SUCCESS') {
-      return this.props.authService.redirect({
+      return this.props.oktaAuth.redirect({
         sessionToken: res.idToken
       });
     } else {

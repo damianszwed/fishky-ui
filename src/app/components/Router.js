@@ -10,8 +10,6 @@ import LibraryContainer from "../../library/containers/LibraryContainer";
 import LibraryCopyFolderContainer from "../../library/containers/LibraryCopyFolderContainer";
 import LibraryFolderContainer from "../../library/containers/LibraryFolderContainer";
 import StartLearningContainer from '../../learning/containers/StartLearningContainer'
-import Login from "../../security/containers/Login";
-import securityConfig from '../../security/securityConfiguration';
 import {LoginCallback, SecureRoute} from '@okta/okta-react';
 import NotFoundPage from './NotFoundPage'
 import NotImplementedYet from './NotImplementedYet'
@@ -23,8 +21,7 @@ const Router = () => {
       <main role="main" className="container">
         <Switch>
           <Route path="/" exact component={Home}/>
-          <Route path='/login' render={() => <Login securityConfiguration={securityConfig}/>}/>
-          <Route path="/implicit/callback" component={LoginCallback}/>
+          <Route path="/login/callback" component={LoginCallback}/>
           <SecureRoute exact={true} path="/flashcardFolders" component={FlashcardFoldersContainer}/>
           <SecureRoute path="/flashcardFolders/:flashcardFolderId/delete" component={FlashcardDeleteFolderContainer}/>
           <SecureRoute path="/flashcardFolders/:flashcardFolderId" component={FlashcardFolderContainer}/>

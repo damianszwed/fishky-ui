@@ -8,8 +8,10 @@ import {loadFlashcardFolders} from '../../folders/actions/flashcardFoldersAction
 import toastr from 'toastr';
 
 async function checkUser() {
-  if (this.props.authState.isAuthenticated && !this.state.userInfo) {
-    const accessToken = await this.props.authService.getAccessToken();
+  return;
+//TODO(Damian.Szwed) Finish security update
+  if (this.props.authState && this.props.authState.isAuthenticated && !this.state.userInfo) {
+    const accessToken = await this.props.oktaAuth.getAccessToken();
     this.props.actions.setAuthenticated(true);
     this.props.actions.setAccessToken(accessToken);
     let loadFlashcardFoldersPromise = this.props.actions.loadFlashcardFolders();
@@ -35,11 +37,11 @@ export class SecurityButton extends React.Component {
   }
 
   async login() {
-    await this.props.authService.login('/');
+    await this.props.oktaAuth.signInWithRedirect();
   }
 
   async logout() {
-    await this.props.authService.logout('/');
+    await this.props.oktaAuth.signOut();
   }
 
   async componentDidMount() {
@@ -51,13 +53,12 @@ export class SecurityButton extends React.Component {
   }
 
   render() {
-    const {authenticated} = this.props;
-
-    if (this.props.authState.isPending) return (
-      <div>
-        <button className="btn btn-outline-secondary">Pending</button>
-      </div>
-    );
+    const authenticated = this.props.authState?.isAuthenticated;
+    //TODO Remove above three lines
+    console.log(":::");
+    console.log(authenticated);
+    console.log(this.props.authState);
+    console.log(this.props);
 
     return (
       <div>

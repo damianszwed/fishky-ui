@@ -6,7 +6,7 @@
   "devDependencies": {
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.6",
-    "react-scripts": "1.1.5",
+    "react-scripts": "5.0.1",
     "react-test-renderer": "16.13.1"
   },
   "dependencies": {
@@ -18,13 +18,13 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "8.0.2",
-    "react-router-dom": "5.2.0",
+    "react-router-dom": "5.2.1",
     "redux": "4.2.0",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.4.1",
     "redux-mock-store": "1.5.4",
-    "@okta/okta-react": "3.0.1",
-    "@okta/okta-signin-widget": "3.9.2",
+    "@okta/okta-react": "6.6.0",
+    "@okta/okta-auth-js": "6.8.0",
     "event-source-polyfill": "1.0.22"
   },
   "scripts": {
@@ -33,5 +33,17 @@
     "eject": "react-scripts eject",
     "test": "react-scripts test",
     "wintest": "winpty npm.cmd run test"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -5,15 +5,10 @@ import {FlashcardNewFormContainer} from './FlashcardNewFormContainer';
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import toastr from 'toastr';
-import jsdom from 'jsdom'
 
 jest.mock('toastr');
 
 Enzyme.configure({adapter: new Adapter()});
-
-const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
-global.document = doc;
-global.window = doc.defaultView;
 
 function setup() {
   const props = {
@@ -32,7 +27,6 @@ describe('Flashcards New Form Container Page', () => {
   it('doesnt change flashcard key', () => {
 
     const wrapper = setup();
-    console.log(wrapper);
     const saveButton = wrapper.find('button').first();
     expect(saveButton.prop('type')).toBe('submit');
     saveButton.simulate('click');

@@ -7,11 +7,13 @@ import * as securityActions from '../actions/securityActions';
 import {loadFlashcardFolders} from '../../folders/actions/flashcardFoldersActions';
 import toastr from 'toastr';
 
+/**
+ * this.props.authState and this.props.oktaAuth are automatically injected by withOktaAuth function.
+ * @returns {Promise<void>}
+ */
 async function checkUser() {
-  return;
-//TODO(Damian.Szwed) Finish security update
-  if (this.props.authState && this.props.authState.isAuthenticated && !this.state.userInfo) {
-    const accessToken = await this.props.oktaAuth.getAccessToken();
+  if (this.props.authState?.isAuthenticated) {
+    const accessToken = await this.props.authState.accessToken.accessToken;
     this.props.actions.setAuthenticated(true);
     this.props.actions.setAccessToken(accessToken);
     let loadFlashcardFoldersPromise = this.props.actions.loadFlashcardFolders();
@@ -32,7 +34,6 @@ export class SecurityButton extends React.Component {
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.state = {userInfo: null};
     this.checkUser = checkUser.bind(this);
   }
 
@@ -54,11 +55,6 @@ export class SecurityButton extends React.Component {
 
   render() {
     const authenticated = this.props.authState?.isAuthenticated;
-    //TODO Remove above three lines
-    console.log(":::");
-    console.log(authenticated);
-    console.log(this.props.authState);
-    console.log(this.props);
 
     return (
       <div>

@@ -10,6 +10,8 @@ const Home = () => (
       <p>Do you find that memorizing a list of topics, definitions or concepts is not effective after a long day? Do you
         need more time to study? </p>
       <SecurityButton className="lead btn btn-primary btn-lg" signInText="Sign up!"/>
+      <hr className="my-4"/>
+      <p>By using this website, you agree to accept our <a className="badge badge-primary" href="https://sites.google.com/view/fishkyprivacypolicy/home">Privacy Policy</a>. If not, please close this website.</p>
     </div>
   </div>
 );

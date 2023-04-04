@@ -10,14 +10,13 @@ export class SearchInputContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
     this.updateSearchState = this.updateSearchState.bind(this);
   }
 
   updateSearchState(event) {
     const field = event.target.name;
-    if( field === "search") {
+    if (field === "search") {
       this.props.actions.setSearchQ(event.target.value)
     }
   }
@@ -31,13 +30,10 @@ export class SearchInputContainer extends React.Component {
   }
 }
 
-SearchInputContainer.propTypes = {
-  // searchQ: PropTypes.string.isRequired
-};
+SearchInputContainer.propTypes = {};
 
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
-  searchQ: state.searchQ
 });
 
 function mapDispatchToProps(dispatch) {

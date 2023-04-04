@@ -1,7 +1,8 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  searchQ: ""
+  searchQ: "",
+  searchResults: []
 }
 
 export default function searchReducer(state = initialState, action) {
@@ -11,6 +12,12 @@ export default function searchReducer(state = initialState, action) {
         ...state,
         searchQ: action.searchQ
       };
+
+    case types.LOAD_SEARCH_RESULTS_SUCCESS:
+      return {
+        ...state,
+        searchResults: action.searchResults
+      }
 
     default:
       return state;

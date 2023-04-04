@@ -6,6 +6,7 @@ import loadingLibraryFlashcardFolders from '../../library/reducers/libraryFlashc
 import sseInitialized from '../../folders/reducers/flashcardFoldersSseInitializationReducer'
 import learning from '../../learning/reducers/learningReducer'
 import security from '../../security/reducers/securityReducer'
+import search from '../../search/reducers/searchReducer'
 
 export default combineReducers({
   flashcardFolders,
@@ -14,5 +15,6 @@ export default combineReducers({
   loadingLibraryFlashcardFolders,
   sseInitialized,
   learning,
-  security
+  security,
+  search
 })

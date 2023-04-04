@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import SecurityButton from '../../security/containers/SecurityButton'
+import SearchInputContainer from "../../search/containers/SearchInputContainer";
 
 const Navbar = () => {
   return (
@@ -26,8 +27,7 @@ const Navbar = () => {
           </li>
         </ul>
         <form className="form-inline mt-2 mt-md-0">
-          <input className="form-control mr-sm-2" placeholder="Search in my flashcards" aria-label="Search"
-                 type="text"/>
+          <SearchInputContainer/>
           <div data-toggle="collapse" data-target=".navbar-collapse.show">
             <Link to="/search" className="btn btn-outline-primary my-2 my-sm-1 mr-sm-2">Search</Link>
           </div>

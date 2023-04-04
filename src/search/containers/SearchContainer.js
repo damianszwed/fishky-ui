@@ -4,33 +4,54 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import * as searchActions from '../actions/searchActions';
+import toastr from "toastr";
+import LoadingBar from "../../app/components/LoadingBar";
+
+async function doSearch() {
+  this.props.actions.doSearch().then(function (message) {
+      console.log(message);
+    }, function (err) {
+      console.log("Cannot invoke search query!")
+      console.log(err)
+      toastr.error("Critical error. Please contact with the administrator.");
+    }
+  )
+}
 
 export class SearchContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
+
+    this.doSearch = doSearch.bind(this)
   }
 
+  async componentDidMount() {
+    this.doSearch();
+  }
 
   render() {
-    const {searchQ} = this.props;
+    const {searchResults, searchLoading} = this.props;
     return (
       <div>
-        {searchQ}
+        Search results:
+        {JSON.stringify(searchResults, null, 2) }
+        {searchLoading && <LoadingBar/>}
       </div>
     )
   }
 }
 
 SearchContainer.propTypes = {
-  searchQ: PropTypes.string.isRequired
+  searchResults: PropTypes.array.isRequired,
+  searchLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   actions: PropTypes.object.isRequired,
-  searchQ: state.search.searchQ
+  searchResults: state.search.searchResults,
+  searchLoading: state.searchLoading
 });
 
 function mapDispatchToProps(dispatch) {

@@ -10,6 +10,7 @@ import LibraryContainer from "../../library/containers/LibraryContainer";
 import LibraryCopyFolderContainer from "../../library/containers/LibraryCopyFolderContainer";
 import LibraryFolderContainer from "../../library/containers/LibraryFolderContainer";
 import StartLearningContainer from '../../learning/containers/StartLearningContainer'
+import SearchContainer from "../../search/containers/SearchContainer";
 import {LoginCallback, SecureRoute} from '@okta/okta-react';
 import NotFoundPage from './NotFoundPage'
 import NotImplementedYet from './NotImplementedYet'
@@ -28,7 +29,7 @@ const Router = () => {
           <SecureRoute path="/learning/:flashcardFolderId/mode/:mode" component={StartLearningContainer}/>
           <SecureRoute path="/learning/:flashcardFolderId" component={ChoiceModeLearningContainer}/>
           <SecureRoute path="/learning" component={ChoiceFlashcardFolderLearningContainer}/>
-          <SecureRoute path="/search" component={FlashcardFoldersContainer}/>
+          <SecureRoute path="/search" component={SearchContainer}/>
           <SecureRoute path="/academy/:flashcardFolderId/copy" component={LibraryCopyFolderContainer}/>
           <Route path="/academy/:flashcardFolderId" component={LibraryFolderContainer}/>
           <Route exact={true} path="/academy" component={LibraryContainer}/>

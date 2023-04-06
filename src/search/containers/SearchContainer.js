@@ -6,6 +6,7 @@ import {withRouter} from "react-router-dom";
 import * as searchActions from '../actions/searchActions';
 import toastr from "toastr";
 import LoadingBar from "../../app/components/LoadingBar";
+import SearchResults from "../components/SearchResults"
 
 async function doSearch() {
   this.props.actions.doSearch().then(function (message) {
@@ -35,8 +36,12 @@ export class SearchContainer extends React.Component {
     const {searchResults, searchLoading} = this.props;
     return (
       <div>
-        Search results:
-        {JSON.stringify(searchResults, null, 2) }
+        <nav className="navbar navbar-light bg-light">
+          <span className="navbar-text mb-0 h3">Search results:</span>
+        </nav>
+        {!searchLoading &&
+          <SearchResults searchResults={searchResults}/>
+        }
         {searchLoading && <LoadingBar/>}
       </div>
     )

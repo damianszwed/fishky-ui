@@ -34,7 +34,7 @@ export function setSearchQ(searchQ) {
 export const doSearch = () => (dispatch, getState) => {
   if (!getState().security.authenticated) {
     console.log("Won't perform a search, cause the user is not signed in.");
-    return;
+    return Promise.resolve() ;
   }
 
   console.log("Invoked a doSearch() method.");

@@ -26,12 +26,12 @@ const Navbar = () => {
             <Link to="/learning" className="nav-link">Learning</Link>
           </li>
         </ul>
-        <form className="form-inline mt-2 mt-md-0">
+        <div className="form-inline mt-2 mt-md-0">
           <SearchInputContainer/>
           <div data-toggle="collapse" data-target=".navbar-collapse.show">
             <Link to="/search" className="btn btn-outline-primary my-2 my-sm-1 mr-sm-2">Search</Link>
           </div>
-        </form>
+        </div>
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
           <SecurityButton className="btn btn-outline-danger" signInText="Sign in" signOutText="Sign out"/>
         </div>

@@ -37,7 +37,7 @@ export class SearchContainer extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-light bg-light">
-          <span className="navbar-text mb-0 h3">Search results:</span>
+          <span className="navbar-text mb-0 h3">Search results</span>
         </nav>
         {!searchLoading &&
           <SearchResults searchResults={searchResults}/>
